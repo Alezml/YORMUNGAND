@@ -9,5 +9,6 @@ namespace YORMUNGAND.ViewModels
     public class IdsListViewModel
     {
         public IEnumerable<QueueItemID> allIds { get; set; }
+        public byte ShowType { get; set; }
     }
 }

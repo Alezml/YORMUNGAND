@@ -12,28 +12,34 @@ namespace YORMUNGAND.Controllers
     public class QueueItemIDController : Controller
     {
         private readonly IALLids _allids;
+        private readonly byte _showType;
 
         public QueueItemIDController(IALLids iAllids)
         {
             _allids = iAllids;
         }
-        [Route("Cars/List")]
-        //[Route("Cars/List/{category}")]
+        [Route("ids")]
+        [Route("ids/{id}")]
 
-        public ViewResult List(string category)
+        public ViewResult List(string id, string date, string project)
         {
-            string _category = category;
+
             IEnumerable<QueueItemID> ids = null;
-            string currCategory = "";
-            
-            ids = _allids.QueueItems.OrderBy(i => i.QID);
-            
+            if (string.IsNullOrEmpty(id))
+            {
+                ids = _allids.QueueItems.OrderBy(i => i.QID);
+            }
+            else
+            {
+                ids = _allids.QueueItems.Where(i => i.QID.Equals(id)).OrderBy(i => i.QID);
+            }
+
             var idsObj = new IdsListViewModel
             {
                 allIds = ids,
+                ShowType = 1
             };
-            ViewBag.Title = "Страница с автомобилями";
-
+            ViewBag.Title = "Страница с автомобилями " + date + " " + project;
 
             return View(idsObj);
         }
