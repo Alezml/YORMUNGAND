@@ -1,0 +1,12 @@
+﻿<h1>Ожидающие решения:</h1>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (QueueItemID id in Model.allIds)
+        {
+            @Html.Partial("allIds", id)
+        }
+
+
+
+    }
+</div>

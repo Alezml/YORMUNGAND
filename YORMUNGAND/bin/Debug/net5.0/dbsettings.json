@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YD-RPADB002;Database=WEBPILOT;Trusted_Connection=True;MultipleActiveResultSets=true;User Id=WEBSERVER001;Password=s6I1Lc5,87LjKm/B0"
+  }
+}
