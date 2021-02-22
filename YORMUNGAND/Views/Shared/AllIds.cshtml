@@ -1,18 +1,19 @@
 ﻿@model QueueItemID
 
-<div class="col-lg-3" style="margin:5px;">
-    <div style="        background: #8dafff;
-        height: 400px;
-        border-radius: 15%;
+<div class="col-lg-12" style="margin:5px;">
+    <div style="    background: rgba(0, 139, 140, 0.65);
+        border-radius: 15px;
         text-align: center;
         box-shadow: 0 0 15px rgba(0,0,0,0.5);
-" class="aer">
+    " class="aer">
         <div class="topchic">
-
-            <h2>@Model.QID</h2>
-            <p>@Model.QID</p>
-            <p>Филиал: @Model.QID</p>
+                <p>ID: @Model.QID   Филиал: @Model.FILIAL   Регион: @Model.REGION
+                    <a class="btn btn-warning" asp-controller="DetailItem" asp-action="ShowDetail" asp-route-QID="@Model.QID">Подробнее</a>
+                </p>
+                <p>
+                    KEY: @Model.KEY
+                    Test: @Model.CESS76INT.STATUS
+                </p>
         </div>
     </div>
-
 </div>

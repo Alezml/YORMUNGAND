@@ -176,3 +176,6 @@ C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\YORMUN
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\ref\YORMUNGAND.dll
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\YORMUNGAND.pdb
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\YORMUNGAND.genruntimeconfig.cache
+C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Detailitem\List.cshtml.g.cs
+C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Shared\DetailId.cshtml.g.cs
+C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs

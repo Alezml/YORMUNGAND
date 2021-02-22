@@ -8,7 +8,8 @@ namespace YORMUNGAND.ViewModels
 {
     public class IdsListViewModel
     {
-        public IEnumerable<QueueItemID> allIds { get; set; }
-        public byte ShowType { get; set; }
+        public IEnumerable<QueueItemID> AllIds { get; set; }
+        public IEnumerable<QueueItemID> NewIds { get; set; }
+        public IEnumerable<QueueItemID> AcceptedIds { get; set; }
     }
 }

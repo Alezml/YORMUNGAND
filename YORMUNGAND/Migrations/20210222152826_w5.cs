@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YORMUNGAND.Migrations
 {
-    public partial class q : Migration
+    public partial class w5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "QueueItemID",
+                name: "QueueItemIDs",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -80,14 +81,47 @@ namespace YORMUNGAND.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QueueItemID", x => x.id);
+                    table.PrimaryKey("PK_QueueItemIDs", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Cess76Ints",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    STATUS = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RESPONSIBLE_FOR_CHOICE = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CHOICE_STATUS = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CHOICE_DATETIME = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    QUEUEITEMID_REF = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cess76Ints", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Cess76Ints_QueueItemIDs_QUEUEITEMID_REF",
+                        column: x => x.QUEUEITEMID_REF,
+                        principalTable: "QueueItemIDs",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cess76Ints_QUEUEITEMID_REF",
+                table: "Cess76Ints",
+                column: "QUEUEITEMID_REF",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "QueueItemID");
+                name: "Cess76Ints");
+
+            migrationBuilder.DropTable(
+                name: "QueueItemIDs");
         }
     }
 }
