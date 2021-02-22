@@ -6934,11 +6934,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\WEBPILOT\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
+      "projectUniqueName": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
       "projectName": "YORMUNGAND",
-      "projectPath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\WEBPILOT\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
+      "projectPath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
       "packagesPath": "C:\\Users\\AlVaKuznetsov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\WEBPILOT\\YORMUNGAND\\YORMUNGAND\\obj\\",
+      "outputPath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\YORMUNGAND\\YORMUNGAND\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AlVaKuznetsov\\AppData\\Roaming\\NuGet\\NuGet.Config",
