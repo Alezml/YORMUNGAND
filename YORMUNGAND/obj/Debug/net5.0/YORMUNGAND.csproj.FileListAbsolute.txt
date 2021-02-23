@@ -179,3 +179,5 @@ C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\YORMUN
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Detailitem\List.cshtml.g.cs
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Shared\DetailId.cshtml.g.cs
 C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Shared\AllIdsFin.cshtml.g.cs
+C:\Users\AlVaKuznetsov\Desktop\WEB\YORMUNGAND\YORMUNGAND\obj\Debug\net5.0\Razor\Views\Shared\AllIdsTo.cshtml.g.cs

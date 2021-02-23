@@ -19,18 +19,22 @@ namespace YORMUNGAND.Controllers
         }
         [Route("CESS/ids")]
 
+        //[Route("CESS/{id}")]
         public ViewResult List(string id)
         {
 
             IEnumerable<QueueItemID> ids = null;
             IEnumerable<QueueItemID> accid = null;
+            IEnumerable<QueueItemID> finid = null;
             ids = _allids.QueueItems.Where(i => i.CESS76INT.STATUS.Equals("NEW")).OrderBy(i => i.QID);
-            accid= _allids.QueueItems.Where(i => new[] { "TODO_FALSE", "TODO_OK"}.Contains(i.CESS76INT.STATUS)).OrderBy(i => i.QID);
+            accid = _allids.QueueItems.Where(i => new[] { "TODO_FALSE", "TODO_OK" }.Contains(i.CESS76INT.STATUS)).OrderBy(i => i.QID);
+            finid = _allids.QueueItems.Where(i => new[] { "FIN_FALSE", "FIN_OK"}.Contains(i.CESS76INT.STATUS)).OrderBy(i => i.QID);
 
             var idsObj = new IdsListViewModel
             {
                 NewIds = ids,
-                AcceptedIds = accid
+                AcceptedIds = accid,
+                FinishedIds = finid
             };
             ViewBag.Title = "ЦЭСС Инцидент №76";
 

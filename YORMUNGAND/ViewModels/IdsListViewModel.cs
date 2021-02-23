@@ -11,5 +11,8 @@ namespace YORMUNGAND.ViewModels
         public IEnumerable<QueueItemID> AllIds { get; set; }
         public IEnumerable<QueueItemID> NewIds { get; set; }
         public IEnumerable<QueueItemID> AcceptedIds { get; set; }
+        public IEnumerable<QueueItemID> FinishedIds { get; set; }
+
+        
     }
 }

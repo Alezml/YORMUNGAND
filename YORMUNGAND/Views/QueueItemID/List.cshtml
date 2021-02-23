@@ -12,7 +12,16 @@
     @{
         foreach (QueueItemID id in Model.AcceptedIds)
         {
-            @Html.Partial("allIds", id)
+            @Html.Partial("allIdsTo", id)
+        }
+    }
+</div>
+<h1>Решение Исполнено:</h1>
+<div class="row mt-2 mb-2">
+    @{
+        foreach (QueueItemID id in Model.FinishedIds)
+        {
+            @Html.Partial("allIdsFin", id)
         }
     }
 </div>
