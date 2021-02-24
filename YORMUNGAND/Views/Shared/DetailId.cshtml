@@ -12,8 +12,9 @@
             <h2>ID: @Model.QID</h2>
             <h2>KEY: @Model.KEY</h2>
             <div>
-                <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolOK" asp-route-QIDw="@Model.QID">Продолжить обработку роботом</a>
-                <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolFalse" asp-route-QID="@Model.QID">Направить в ручную обработку</a>
+                <a class="btn btn-warning" asp-controller="Cess76DoSol" asp-action="ToDoOk" asp-route-QID="@Model.QID">Продолжить обработку роботом</a>
+                <a class="btn btn-warning" asp-controller="Cess76DoSol" asp-action="ToDoFalse" asp-route-QID="@Model.QID">Направить в ручную обработку</a>
+                <a class="btn btn-warning" asp-controller="Cess76DoSol" asp-action="ToNew" asp-route-QID="@Model.QID">Отозвать решение</a>
             </div>
             <p>Ошибка: @Model.ERROR1</p><br>
             <p>Ошибка: @Model.ERROR2</p><br>

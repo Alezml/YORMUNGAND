@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace YORMUNGAND.Data.Models
 {
-    public class UsersRole
+    public class AccessRole
     {
         public int id { set; get; }
         public string ROLE { set; get; }
-        public string DISCRIPTION { set; get; }
+        public virtual AccessUserRole ACCESSUSERROLE { set; get; }
 
-    }
+
+}
 }

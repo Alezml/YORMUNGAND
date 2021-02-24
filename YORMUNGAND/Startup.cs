@@ -33,6 +33,9 @@ namespace YORMUNGAND
             // Подключение к БД
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IALLids, QueueItemRepository>();
+            //services.AddTransient<Ids, QueueItemRepository>();
+            services.AddScoped<Cess76DoSol>();
+
             //services.AddTransient<Icess76int, Cess76IntRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
