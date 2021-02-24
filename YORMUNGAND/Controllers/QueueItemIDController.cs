@@ -12,34 +12,31 @@ namespace YORMUNGAND.Controllers
     public class QueueItemIDController : Controller
     {
         private readonly IALLids _allids;
-        private readonly byte _showType;
 
         public QueueItemIDController(IALLids iAllids)
         {
             _allids = iAllids;
         }
-        [Route("ids")]
-        [Route("ids/{id}")]
+        [Route("CESS/ids")]
 
-        public ViewResult List(string id, string date, string project)
+        //[Route("CESS/{id}")]
+        public ViewResult List(string id)
         {
 
             IEnumerable<QueueItemID> ids = null;
-            if (string.IsNullOrEmpty(id))
-            {
-                ids = _allids.QueueItems.OrderBy(i => i.QID);
-            }
-            else
-            {
-                ids = _allids.QueueItems.Where(i => i.QID.Equals(id)).OrderBy(i => i.QID);
-            }
+            IEnumerable<QueueItemID> accid = null;
+            IEnumerable<QueueItemID> finid = null;
+            ids = _allids.QueueItems.Where(i => i.CESS76INT.STATUS.Equals("NEW")).OrderBy(i => i.QID);
+            accid = _allids.QueueItems.Where(i => new[] { "TODO_FALSE", "TODO_OK" }.Contains(i.CESS76INT.STATUS)).OrderBy(i => i.QID);
+            finid = _allids.QueueItems.Where(i => new[] { "FIN_FALSE", "FIN_OK"}.Contains(i.CESS76INT.STATUS)).OrderBy(i => i.QID);
 
             var idsObj = new IdsListViewModel
             {
-                allIds = ids,
-                ShowType = 1
+                NewIds = ids,
+                AcceptedIds = accid,
+                FinishedIds = finid
             };
-            ViewBag.Title = "Страница с автомобилями " + date + " " + project;
+            ViewBag.Title = "ЦЭСС Инцидент №76";
 
             return View(idsObj);
         }

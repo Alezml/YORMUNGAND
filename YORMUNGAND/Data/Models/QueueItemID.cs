@@ -8,8 +8,9 @@ namespace YORMUNGAND.Data.Models
     public class QueueItemID
     {
         public int id { set; get; }
-        public string QID { set;get;}
-        public string ERROR1 { set;get; }
+        public string QID { set;get; }
+        public string KEY { set; get; }
+        public string ERROR1 { set; get; }
         public string ERROR2 { set; get; }
         public string TECH_ERROR { set; get; }
         public string VIR_DATE { set; get; }
@@ -73,6 +74,7 @@ namespace YORMUNGAND.Data.Models
         public string VENDOR { set; get; }
         public string NRI_CODE_PROJECT_LIST { set; get; }
         public string RESPONSIBLE_CHOISE_REASON { set; get; }
+        public virtual Cess76Int CESS76INT { get; set; }
 
     }
 }

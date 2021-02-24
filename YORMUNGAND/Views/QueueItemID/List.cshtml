@@ -1,10 +1,27 @@
 ﻿<h1>Ожидающие решения:</h1>
-<p>@Model.ShowType</p>
-<div class="row mt-5 mb-2">
+<div class="row mt-2 mb-2">
     @{
-        foreach (QueueItemID id in Model.allIds)
+        foreach (QueueItemID id in Model.NewIds)
         {
             @Html.Partial("allIds", id)
+        }
+    }
+</div>
+<h1>Решение принято:</h1>
+<div class="row mt-2 mb-2">
+    @{
+        foreach (QueueItemID id in Model.AcceptedIds)
+        {
+            @Html.Partial("allIdsTo", id)
+        }
+    }
+</div>
+<h1>Решение Исполнено:</h1>
+<div class="row mt-2 mb-2">
+    @{
+        foreach (QueueItemID id in Model.FinishedIds)
+        {
+            @Html.Partial("allIdsFin", id)
         }
     }
 </div>

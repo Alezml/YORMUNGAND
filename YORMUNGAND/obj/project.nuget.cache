@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XEctwnW5OuTUY/1/1X4Kqm7L2JCec6IXOMji/8fS9V7GuKXn8Nlx0YftL6dK9y9o/ybvgE1bmO6omj/vttKyVQ==",
+  "dgSpecHash": "2JsA66YVN5OvLA8pg6wvMz+69BSVw+8x1kMg0e8uwUMiznV+ZYV7BVeUe8kKcRhtH1X6HdE9f/H37UCki9sbDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\WEBPILOT\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
+  "projectFilePath": "C:\\Users\\AlVaKuznetsov\\Desktop\\WEB\\YORMUNGAND\\YORMUNGAND\\YORMUNGAND.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AlVaKuznetsov\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\AlVaKuznetsov\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

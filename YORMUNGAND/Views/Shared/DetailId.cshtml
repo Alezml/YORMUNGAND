@@ -1,0 +1,85 @@
+﻿@model QueueItemID
+
+<div class="col-lg-12" style="margin:5px;">
+    <div style="    background: rgba(0, 139, 140, 0.55);
+        /*height: 400px;*/
+        border-radius: 30px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    " class="aer">
+        <div>
+
+            <h2>ID: @Model.QID</h2>
+            <h2>KEY: @Model.KEY</h2>
+            <div>
+                <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolOK" asp-route-QIDw="@Model.QID">Продолжить обработку роботом</a>
+                <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolFalse" asp-route-QID="@Model.QID">Направить в ручную обработку</a>
+            </div>
+            <p>Ошибка: @Model.ERROR1</p><br>
+            <p>Ошибка: @Model.ERROR2</p><br>
+            <p>Техническая ошибка: @Model.TECH_ERROR</p><br>
+            <p>ВИР дата: @Model.VIR_DATE</p><br>
+            <p>ВИР файл: @Model.VIR_FILE</p><br>
+            <p>ВИР комментарий: @Model.VIR_COMMENT</p><br>
+            <p>ВИР тип документа: @Model.VIR_DOC_TYPE</p><br>
+            <p>ВИР начало работ: @Model.VIR_START_WORK</p><br>
+            <p>ВИР окончание работ: @Model.VIR_END_WORK</p><br>
+            <p>ВИР дата интеграции: @Model.VIR_INTEGRATION_DATE</p><br>
+            <p>ВИР условия платежа: @Model.VIR_PAY_CONDITIONS</p><br>
+            <p>ВИР доверенность: @Model.VIR_ATTORNEY</p><br>
+            <p>ВИР таблица: @Model.VIR_REF_TAB</p><br>
+            <p>ВИР ПСДЦ: @Model.VIR_PSDC</p><br>
+            <p>ВИР дополнение: @Model.VIR_DOP</p><br>
+            <p>ВИР дополнение номер: @Model.VIR_DOP_N</p><br>
+            <p>ВИР сумма без НДС: @Model.VIR_SUMM_WO_NDS</p><br>
+            <p>ВИР диапазон: @Model.VIR_DIAP</p><br>
+            <p>ДС номер: @Model.DS_N</p><br>
+            <p>ДС дата: @Model.DS_DATE</p><br>
+            <p>Договор номер: @Model.DOG_N</p><br>
+            <p>Контракт дата: @Model.CONTRACT_DATE</p><br>
+            <p>ГФК: @Model.GFK</p><br>
+            <p>Список задач: @Model.TASK_LIST</p><br>
+            <p>Контракт номер: @Model.CONTRACT_N</p><br>
+            <p>Поставщик: @Model.PROVIDER</p><br>
+            <p>Поставщик ИНН: @Model.PROVIDER_INN</p><br>
+            <p>ЗМ номер: @Model.ZM_N</p><br>
+            <p>ЗМ с лотом: @Model.ZM_LOT</p><br>
+            <p>ЗМ тип: @Model.ZM_TYPE</p><br>
+            <p>Направление: @Model.DIRECTION</p><br>
+            <p>Регион: @Model.REGION</p><br>
+            <p>Филиал: @Model.FILIAL</p><br>
+            <p>География: @Model.GEO</p><br>
+            <p>Компания: @Model.COMPANY</p><br>
+            <p>NRI код проекта: @Model.NRI_CODE_PROJECT</p><br>
+            <p>NRI ссылка: @Model.NRI_REF</p><br>
+            <p>NRI номер БС: @Model.NRI_BS_N</p><br>
+            <p>NRI наименование БС: @Model.NRI_BS_NAME</p><br>
+            <p>КТ СМР: @Model.NRI_KT_CMP</p><br>
+            <p>NRI дубль проекта: @Model.NRI_DOUBLE_OF_PROJECT</p><br>
+            <p>PR номер: @Model.PR_N</p><br>
+            <p>PR файл: @Model.PR_FILE</p><br>
+            <p>PR статус: @Model.PR_STATUS</p><br>
+            <p>Инициатор ФИО: @Model.INITIATOR_FIO</p><br>
+            <p>Инициатор почта: @Model.INITIATOR_MAIL</p><br>
+            <p>Ответственный ФИО: @Model.RESPONSIBLE_FIO</p><br>
+            <p>Ответственный почта: @Model.RESPONSIBLE_MAIL</p><br>
+            <p>Диадок ссылка: @Model.DIADOK_REF</p><br>
+            <p>Диадок ID: @Model.DIADOK_ID</p><br>
+            <p>Диадок файл: @Model.DIADOK_FILE</p><br>
+            <p>Диадок дата загрузки: @Model.DIADOK_UPLOAD_DATE</p><br>
+            <p>Диадок дата подписания: @Model.DIADOK_SIGN_DATE</p><br>
+            <p>Требуемая дата: @Model.REQUIRED_DATE</p><br>
+            <p>Ожидаемая дата: @Model.EXPECTED_DATE</p><br>
+            <p>СЭВД: @Model.SEVD</p><br>
+            <p>СЭВД номер: @Model.SEVD_N</p><br>
+            <p>Код налога: @Model.TAX_CODE</p><br>
+            <p>P2P: @Model.P2P</p><br>
+            <p>ECM ссылка: @Model.ECM_REF</p><br>
+            <p>IMS ссылка: @Model.IMS_LINK</p><br>
+            <p>Вендор: @Model.VENDOR</p><br>
+            <p>NRI код проекта (список): @Model.NRI_CODE_PROJECT_LIST</p><br>
+            <p>Основание выбора ответственного: @Model.RESPONSIBLE_CHOISE_REASON</p><br>
+        </div>
+    </div>
+
+</div>

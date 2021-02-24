@@ -1,0 +1,10 @@
+﻿<h1>Подробности:</h1>
+<p><a class="btn btn-warning" href="/CESS/IDS">Назад</a></p>
+<div class="row mt-1 mb-2">
+    @{
+        foreach (QueueItemID id in Model.AllIds)
+        {
+            @Html.Partial("DetailId", id)
+        }
+    }
+</div>

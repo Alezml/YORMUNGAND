@@ -15,6 +15,6 @@ namespace YORMUNGAND.Data.Repository
         {
             this.appDBContent = appDBContent;
         }
-        public IEnumerable<QueueItemID> QueueItems => appDBContent.QueueItemID.OrderBy(c => c.QID);
+        public IEnumerable<QueueItemID> QueueItems => appDBContent.QueueItemIDs.Include(c => c.CESS76INT);
     }
 }
