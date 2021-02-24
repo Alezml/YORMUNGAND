@@ -11,74 +11,74 @@
 
             <h2>ID: @Model.QID</h2>
             <h2>KEY: @Model.KEY</h2>
-            <p>
+            <div>
                 <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolOK" asp-route-QIDw="@Model.QID">Продолжить обработку роботом</a>
                 <a class="btn btn-warning" asp-controller="DetailItem" asp-action="DoSolFalse" asp-route-QID="@Model.QID">Направить в ручную обработку</a>
-            </p>
-            <p>Ошибка: @Model.ERROR1</p>
-            <p>Ошибка: @Model.ERROR2</p>
-            <p>Техническая ошибка: @Model.TECH_ERROR</p>
-            <p>ВИР дата: @Model.VIR_DATE</p>
-            <p>ВИР файл: @Model.VIR_FILE</p>
-            <p>ВИР комментарий: @Model.VIR_COMMENT</p>
-            <p>ВИР тип документа: @Model.VIR_DOC_TYPE</p>
-            <p>ВИР начало работ: @Model.VIR_START_WORK</p>
-            <p>ВИР окончание работ: @Model.VIR_END_WORK</p>
-            <p>ВИР дата интеграции: @Model.VIR_INTEGRATION_DATE</p>
-            <p>ВИР условия платежа: @Model.VIR_PAY_CONDITIONS</p>
-            <p>ВИР доверенность: @Model.VIR_ATTORNEY</p>
-            <p>ВИР таблица: @Model.VIR_REF_TAB</p>
-            <p>ВИР ПСДЦ: @Model.VIR_PSDC</p>
-            <p>ВИР дополнение: @Model.VIR_DOP</p>
-            <p>ВИР дополнение номер: @Model.VIR_DOP_N</p>
-            <p>ВИР сумма без НДС: @Model.VIR_SUMM_WO_NDS</p>
-            <p>ВИР диапазон: @Model.VIR_DIAP</p>
-            <p>ДС номер: @Model.DS_N</p>
-            <p>ДС дата: @Model.DS_DATE</p>
-            <p>Договор номер: @Model.DOG_N</p>
-            <p>Контракт дата: @Model.CONTRACT_DATE</p>
-            <p>ГФК: @Model.GFK</p>
-            <p>Список задач: @Model.TASK_LIST</p>
-            <p>Контракт номер: @Model.CONTRACT_N</p>
-            <p>Поставщик: @Model.PROVIDER</p>
-            <p>Поставщик ИНН: @Model.PROVIDER_INN</p>
-            <p>ЗМ номер: @Model.ZM_N</p>
-            <p>ЗМ с лотом: @Model.ZM_LOT</p>
-            <p>ЗМ тип: @Model.ZM_TYPE</p>
-            <p>Направление: @Model.DIRECTION</p>
-            <p>Регион: @Model.REGION</p>
-            <p>Филиал: @Model.FILIAL</p>
-            <p>География: @Model.GEO</p>
-            <p>Компания: @Model.COMPANY</p>
-            <p>NRI код проекта: @Model.NRI_CODE_PROJECT</p>
-            <p>NRI ссылка: @Model.NRI_REF</p>
-            <p>NRI номер БС: @Model.NRI_BS_N</p>
-            <p>NRI наименование БС: @Model.NRI_BS_NAME</p>
-            <p>КТ СМР: @Model.NRI_KT_CMP</p>
-            <p>NRI дубль проекта: @Model.NRI_DOUBLE_OF_PROJECT</p>
-            <p>PR номер: @Model.PR_N</p>
-            <p>PR файл: @Model.PR_FILE</p>
-            <p>PR статус: @Model.PR_STATUS</p>
-            <p>Инициатор ФИО: @Model.INITIATOR_FIO</p>
-            <p>Инициатор почта: @Model.INITIATOR_MAIL</p>
-            <p>Ответственный ФИО: @Model.RESPONSIBLE_FIO</p>
-            <p>Ответственный почта: @Model.RESPONSIBLE_MAIL</p>
-            <p>Диадок ссылка: @Model.DIADOK_REF</p>
-            <p>Диадок ID: @Model.DIADOK_ID</p>
-            <p>Диадок файл: @Model.DIADOK_FILE</p>
-            <p>Диадок дата загрузки: @Model.DIADOK_UPLOAD_DATE</p>
-            <p>Диадок дата подписания: @Model.DIADOK_SIGN_DATE</p>
-            <p>Требуемая дата: @Model.REQUIRED_DATE</p>
-            <p>Ожидаемая дата: @Model.EXPECTED_DATE</p>
-            <p>СЭВД: @Model.SEVD</p>
-            <p>СЭВД номер: @Model.SEVD_N</p>
-            <p>Код налога: @Model.TAX_CODE</p>
-            <p>P2P: @Model.P2P</p>
-            <p>ECM ссылка: @Model.ECM_REF</p>
-            <p>IMS ссылка: @Model.IMS_LINK</p>
-            <p>Вендор: @Model.VENDOR</p>
-            <p>NRI код проекта (список): @Model.NRI_CODE_PROJECT_LIST</p>
-            <p>Основание выбора ответственного: @Model.RESPONSIBLE_CHOISE_REASON</p>
+            </div>
+            <p>Ошибка: @Model.ERROR1</p><br>
+            <p>Ошибка: @Model.ERROR2</p><br>
+            <p>Техническая ошибка: @Model.TECH_ERROR</p><br>
+            <p>ВИР дата: @Model.VIR_DATE</p><br>
+            <p>ВИР файл: @Model.VIR_FILE</p><br>
+            <p>ВИР комментарий: @Model.VIR_COMMENT</p><br>
+            <p>ВИР тип документа: @Model.VIR_DOC_TYPE</p><br>
+            <p>ВИР начало работ: @Model.VIR_START_WORK</p><br>
+            <p>ВИР окончание работ: @Model.VIR_END_WORK</p><br>
+            <p>ВИР дата интеграции: @Model.VIR_INTEGRATION_DATE</p><br>
+            <p>ВИР условия платежа: @Model.VIR_PAY_CONDITIONS</p><br>
+            <p>ВИР доверенность: @Model.VIR_ATTORNEY</p><br>
+            <p>ВИР таблица: @Model.VIR_REF_TAB</p><br>
+            <p>ВИР ПСДЦ: @Model.VIR_PSDC</p><br>
+            <p>ВИР дополнение: @Model.VIR_DOP</p><br>
+            <p>ВИР дополнение номер: @Model.VIR_DOP_N</p><br>
+            <p>ВИР сумма без НДС: @Model.VIR_SUMM_WO_NDS</p><br>
+            <p>ВИР диапазон: @Model.VIR_DIAP</p><br>
+            <p>ДС номер: @Model.DS_N</p><br>
+            <p>ДС дата: @Model.DS_DATE</p><br>
+            <p>Договор номер: @Model.DOG_N</p><br>
+            <p>Контракт дата: @Model.CONTRACT_DATE</p><br>
+            <p>ГФК: @Model.GFK</p><br>
+            <p>Список задач: @Model.TASK_LIST</p><br>
+            <p>Контракт номер: @Model.CONTRACT_N</p><br>
+            <p>Поставщик: @Model.PROVIDER</p><br>
+            <p>Поставщик ИНН: @Model.PROVIDER_INN</p><br>
+            <p>ЗМ номер: @Model.ZM_N</p><br>
+            <p>ЗМ с лотом: @Model.ZM_LOT</p><br>
+            <p>ЗМ тип: @Model.ZM_TYPE</p><br>
+            <p>Направление: @Model.DIRECTION</p><br>
+            <p>Регион: @Model.REGION</p><br>
+            <p>Филиал: @Model.FILIAL</p><br>
+            <p>География: @Model.GEO</p><br>
+            <p>Компания: @Model.COMPANY</p><br>
+            <p>NRI код проекта: @Model.NRI_CODE_PROJECT</p><br>
+            <p>NRI ссылка: @Model.NRI_REF</p><br>
+            <p>NRI номер БС: @Model.NRI_BS_N</p><br>
+            <p>NRI наименование БС: @Model.NRI_BS_NAME</p><br>
+            <p>КТ СМР: @Model.NRI_KT_CMP</p><br>
+            <p>NRI дубль проекта: @Model.NRI_DOUBLE_OF_PROJECT</p><br>
+            <p>PR номер: @Model.PR_N</p><br>
+            <p>PR файл: @Model.PR_FILE</p><br>
+            <p>PR статус: @Model.PR_STATUS</p><br>
+            <p>Инициатор ФИО: @Model.INITIATOR_FIO</p><br>
+            <p>Инициатор почта: @Model.INITIATOR_MAIL</p><br>
+            <p>Ответственный ФИО: @Model.RESPONSIBLE_FIO</p><br>
+            <p>Ответственный почта: @Model.RESPONSIBLE_MAIL</p><br>
+            <p>Диадок ссылка: @Model.DIADOK_REF</p><br>
+            <p>Диадок ID: @Model.DIADOK_ID</p><br>
+            <p>Диадок файл: @Model.DIADOK_FILE</p><br>
+            <p>Диадок дата загрузки: @Model.DIADOK_UPLOAD_DATE</p><br>
+            <p>Диадок дата подписания: @Model.DIADOK_SIGN_DATE</p><br>
+            <p>Требуемая дата: @Model.REQUIRED_DATE</p><br>
+            <p>Ожидаемая дата: @Model.EXPECTED_DATE</p><br>
+            <p>СЭВД: @Model.SEVD</p><br>
+            <p>СЭВД номер: @Model.SEVD_N</p><br>
+            <p>Код налога: @Model.TAX_CODE</p><br>
+            <p>P2P: @Model.P2P</p><br>
+            <p>ECM ссылка: @Model.ECM_REF</p><br>
+            <p>IMS ссылка: @Model.IMS_LINK</p><br>
+            <p>Вендор: @Model.VENDOR</p><br>
+            <p>NRI код проекта (список): @Model.NRI_CODE_PROJECT_LIST</p><br>
+            <p>Основание выбора ответственного: @Model.RESPONSIBLE_CHOISE_REASON</p><br>
         </div>
     </div>
 
