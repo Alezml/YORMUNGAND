@@ -1,19 +1,22 @@
-﻿<h1>Ожидающие решения:</h1>
-<div class="row mt-2 mb-2">
-    @{
-        foreach (QueueItemID id in Model.NewIds)
-        {
-            @Html.Partial("allIds", id)
+﻿<div class="main_content-body">
+    <h1>Ожидающие решения:</h1>
+    <div class="row mt-2 mb-2">
+        @{
+            foreach (QueueItemID id in Model.NewIds)
+            {
+                @Html.Partial("allIds", id)
+            }
         }
-    }
-</div>
-<h1>Решение принято:</h1>
-<div class="row mt-2 mb-2">
-    @{
-        foreach (QueueItemID id in Model.AcceptedIds)
-        {
-            @Html.Partial("allIdsTo", id)
+    </div>
+    <h1>Решение принято:</h1>
+    <div class="row mt-2 mb-2">
+        @{
+            foreach (QueueItemID id in Model.AcceptedIds)
+            {
+                @Html.Partial("allIdsTo", id)
+            }
         }
+<<<<<<< HEAD
     }
 </div>
 <h1>Решение исполнено:</h1>
@@ -22,6 +25,16 @@
         foreach (QueueItemID id in Model.FinishedIds)
         {
             @Html.Partial("allIdsFin", id)
+=======
+    </div>
+    <h1>Решение Исполнено:</h1>
+    <div class="row mt-2 mb-2">
+        @{
+            foreach (QueueItemID id in Model.FinishedIds)
+            {
+                @Html.Partial("allIdsFin", id)
+            }
+>>>>>>> 39d66433bab1662949aa758afb4a6fc591eb7ccd
         }
-    }
+    </div>
 </div>
