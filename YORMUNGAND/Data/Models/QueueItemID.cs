@@ -75,6 +75,5 @@ namespace YORMUNGAND.Data.Models
         public string NRI_CODE_PROJECT_LIST { set; get; }
         public string RESPONSIBLE_CHOISE_REASON { set; get; }
         public virtual Cess76Int CESS76INT { get; set; }
-
     }
 }

@@ -19,24 +19,18 @@ namespace YORMUNGAND.Controllers
         [Route("DetailItem/{id}")]
         public ViewResult List(string QID)
         {
-
             IEnumerable<QueueItemID> ids = null;
             ids = _allids.QueueItems.Where(i => i.QID.Equals(QID)).OrderBy(i => i.QID);
-            
-
             var idsObj = new IdsListViewModel
             {
                 AllIds = ids
             };
             ViewBag.Title = "ЦЭСС Инцидент №76 " + QID;
-
             return View(idsObj);
         }
         public RedirectToActionResult ShowDetail(string QID)
         {
             return RedirectToAction(QID);
         }
-     
-
     }
 }

@@ -1,0 +1,49 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace YORMUNGAND.Migrations
+{
+    public partial class w9 : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            //Cess76
+            migrationBuilder.Sql("IF EXISTS( SELECT * FROM sys.triggers WHERE name='Cess76Int_DEL')" +
+                " DROP TRIGGER Cess76Int_DEL");
+
+            migrationBuilder.Sql("CREATE TRIGGER Cess76Int_DEL ON QueueItemIDs FOR DELETE AS " +
+                "BEGIN " +
+                "IF @@ROWCOUNT = 0 " +
+                "   RETURN " +
+                "SET NOCOUNT ON " +
+                "DECLARE @QID VARCHAR(50) " +
+                "SELECT @QID = (SELECT QID FROM DELETED) " +
+                "DELETE Cess76Ints " +
+                "WHERE QID = @QID " +
+                "END");
+
+            migrationBuilder.Sql("IF EXISTS( SELECT * FROM sys.triggers WHERE name='Cess76Int_ADD') " +
+                "DROP TRIGGER Cess76Int_ADD");
+
+            migrationBuilder.Sql("CREATE TRIGGER Cess76Int_ADD  " +
+                "ON QueueItemIDs " +
+                "FOR INSERT " +
+                "AS " +
+                "BEGIN " +
+                "IF @@ROWCOUNT = 0 " +
+                "   RETURN " +
+                "SET NOCOUNT ON " +
+                "DECLARE @QID VARCHAR(50) " +
+                "DECLARE @sID INT " +
+                "SELECT @QID = (SELECT QID FROM INSERTED) " +
+                "SELECT @sID = (SELECT id FROM INSERTED) " +
+                "INSERT Cess76Ints(QID, STATUS, QUEUEITEMID_REF, CHOICE_DATETIME) " +
+                "VALUES(@QID, 'NEW', @sID, GETDATE()) " +
+                "END");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+
+        }
+    }
+}

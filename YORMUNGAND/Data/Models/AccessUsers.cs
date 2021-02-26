@@ -10,7 +10,5 @@ namespace YORMUNGAND.Data.Models
         public int id { set; get; }
         public string USER { set; get; }
         public virtual AccessUserRole ACCESSUSERROLE { set; get; }
-
-
     }
 }
