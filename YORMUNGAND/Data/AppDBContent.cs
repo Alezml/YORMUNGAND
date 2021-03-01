@@ -17,6 +17,7 @@ namespace YORMUNGAND.Data
         public DbSet<AccessUsers> AccessUsers { get; set; }
         public DbSet<AccessRole> AccessRole { get; set; }
         public DbSet<AccessUserRole> AccessUserRole { get; set; }
+        public DbSet<AccessRolePermissions> AccessRolePermissions { get; set; }
         public DbSet<AccessPermissions> AccessPermissions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,17 +26,21 @@ namespace YORMUNGAND.Data
                 .WithOne(b => b.QUEUEITEMID)
                 .HasForeignKey<Cess76Int>(p => p.QUEUEITEMID_REF);
 
-            modelBuilder.Entity<AccessUsers>()
-                .HasOne(p => p.ACCESSUSERROLE)
-                .WithMany(b => b.ACCESSUSERS);
+            modelBuilder.Entity<AccessUserRole>()
+                .HasOne(p => p.ACCESSUSERS)
+                .WithMany(b => b.ACCESSUSERROLE);
 
-            modelBuilder.Entity<AccessRole>()
-                .HasOne(p => p.ACCESSUSERROLE)
-                .WithMany(b => b.ACCESSROLE);
+            modelBuilder.Entity<AccessUserRole>()
+                .HasOne(p => p.ACCESSROLE)
+                .WithMany(b => b.ACCESSUSERROLE);
 
-            modelBuilder.Entity<AccessRole>()
+            modelBuilder.Entity<AccessRolePermissions>()
+                .HasOne(p => p.ACCESSROLE)
+                .WithMany(b => b.ACCESSROLEPERMISSIONS);
+
+            modelBuilder.Entity<AccessRolePermissions>()
                 .HasOne(p => p.ACCESSPERMISSIONS)
-                .WithMany(b => b.ACCESSROLE);
+                .WithMany(b => b.ACCESSROLEPERMISSIONS);
         }
     }
 }
