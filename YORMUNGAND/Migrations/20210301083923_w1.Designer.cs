@@ -10,8 +10,8 @@ using YORMUNGAND.Data;
 namespace YORMUNGAND.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20210226150949_w10")]
-    partial class w10
+    [Migration("20210301083923_w1")]
+    partial class w1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,8 +28,8 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ACCESSROLE_REF")
-                        .HasColumnType("int");
+                    b.Property<string>("DESC")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PERMISSION")
                         .HasColumnType("nvarchar(max)");
@@ -46,22 +46,37 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ACCESSPERMISSIONSid")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ACCESSUSERROLEid")
-                        .HasColumnType("int");
+                    b.Property<string>("DESC")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ROLE")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
+                    b.ToTable("AccessRole");
+                });
+
+            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessRolePermissions", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ACCESSPERMISSIONSid")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ACCESSROLEid")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
                     b.HasIndex("ACCESSPERMISSIONSid");
 
-                    b.HasIndex("ACCESSUSERROLEid");
+                    b.HasIndex("ACCESSROLEid");
 
-                    b.ToTable("AccessRole");
+                    b.ToTable("AccessRolePermissions");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.AccessUserRole", b =>
@@ -71,13 +86,17 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ACCESSROLE_REF")
+                    b.Property<int?>("ACCESSROLEid")
                         .HasColumnType("int");
 
-                    b.Property<int>("ACCESSUSERS_REF")
+                    b.Property<int?>("ACCESSUSERSid")
                         .HasColumnType("int");
 
                     b.HasKey("id");
+
+                    b.HasIndex("ACCESSROLEid");
+
+                    b.HasIndex("ACCESSUSERSid");
 
                     b.ToTable("AccessUserRole");
                 });
@@ -89,15 +108,16 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ACCESSUSERROLEid")
-                        .HasColumnType("int");
+                    b.Property<string>("MAIL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NAME")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("USER")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
-
-                    b.HasIndex("ACCESSUSERROLEid");
 
                     b.ToTable("AccessUsers");
                 });
@@ -345,28 +365,34 @@ namespace YORMUNGAND.Migrations
                     b.ToTable("QueueItemIDs");
                 });
 
-            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessRole", b =>
+            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessRolePermissions", b =>
                 {
                     b.HasOne("YORMUNGAND.Data.Models.AccessPermissions", "ACCESSPERMISSIONS")
-                        .WithMany("ACCESSROLE")
+                        .WithMany("ACCESSROLEPERMISSIONS")
                         .HasForeignKey("ACCESSPERMISSIONSid");
 
-                    b.HasOne("YORMUNGAND.Data.Models.AccessUserRole", "ACCESSUSERROLE")
-                        .WithMany("ACCESSROLE")
-                        .HasForeignKey("ACCESSUSERROLEid");
+                    b.HasOne("YORMUNGAND.Data.Models.AccessRole", "ACCESSROLE")
+                        .WithMany("ACCESSROLEPERMISSIONS")
+                        .HasForeignKey("ACCESSROLEid");
 
                     b.Navigation("ACCESSPERMISSIONS");
 
-                    b.Navigation("ACCESSUSERROLE");
+                    b.Navigation("ACCESSROLE");
                 });
 
-            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessUsers", b =>
+            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessUserRole", b =>
                 {
-                    b.HasOne("YORMUNGAND.Data.Models.AccessUserRole", "ACCESSUSERROLE")
-                        .WithMany("ACCESSUSERS")
-                        .HasForeignKey("ACCESSUSERROLEid");
+                    b.HasOne("YORMUNGAND.Data.Models.AccessRole", "ACCESSROLE")
+                        .WithMany("ACCESSUSERROLE")
+                        .HasForeignKey("ACCESSROLEid");
 
-                    b.Navigation("ACCESSUSERROLE");
+                    b.HasOne("YORMUNGAND.Data.Models.AccessUsers", "ACCESSUSERS")
+                        .WithMany("ACCESSUSERROLE")
+                        .HasForeignKey("ACCESSUSERSid");
+
+                    b.Navigation("ACCESSROLE");
+
+                    b.Navigation("ACCESSUSERS");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.Cess76Int", b =>
@@ -382,14 +408,19 @@ namespace YORMUNGAND.Migrations
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.AccessPermissions", b =>
                 {
-                    b.Navigation("ACCESSROLE");
+                    b.Navigation("ACCESSROLEPERMISSIONS");
                 });
 
-            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessUserRole", b =>
+            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessRole", b =>
                 {
-                    b.Navigation("ACCESSROLE");
+                    b.Navigation("ACCESSROLEPERMISSIONS");
 
-                    b.Navigation("ACCESSUSERS");
+                    b.Navigation("ACCESSUSERROLE");
+                });
+
+            modelBuilder.Entity("YORMUNGAND.Data.Models.AccessUsers", b =>
+                {
+                    b.Navigation("ACCESSUSERROLE");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.QueueItemID", b =>

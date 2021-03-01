@@ -3,10 +3,53 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YORMUNGAND.Migrations
 {
-    public partial class w5 : Migration
+    public partial class w1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AccessPermissions",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PERMISSION = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DESC = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessPermissions", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccessRole",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ROLE = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DESC = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessRole", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccessUsers",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    USER = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NAME = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MAIL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessUsers", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "QueueItemIDs",
                 columns: table => new
@@ -14,6 +57,7 @@ namespace YORMUNGAND.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    KEY = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ERROR1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ERROR2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TECH_ERROR = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -85,6 +129,58 @@ namespace YORMUNGAND.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccessRolePermissions",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ACCESSROLEid = table.Column<int>(type: "int", nullable: true),
+                    ACCESSPERMISSIONSid = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessRolePermissions", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_AccessRolePermissions_AccessPermissions_ACCESSPERMISSIONSid",
+                        column: x => x.ACCESSPERMISSIONSid,
+                        principalTable: "AccessPermissions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccessRolePermissions_AccessRole_ACCESSROLEid",
+                        column: x => x.ACCESSROLEid,
+                        principalTable: "AccessRole",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AccessUserRole",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ACCESSUSERSid = table.Column<int>(type: "int", nullable: true),
+                    ACCESSROLEid = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessUserRole", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_AccessUserRole_AccessRole_ACCESSROLEid",
+                        column: x => x.ACCESSROLEid,
+                        principalTable: "AccessRole",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AccessUserRole_AccessUsers_ACCESSUSERSid",
+                        column: x => x.ACCESSUSERSid,
+                        principalTable: "AccessUsers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cess76Ints",
                 columns: table => new
                 {
@@ -109,16 +205,84 @@ namespace YORMUNGAND.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AccessRolePermissions_ACCESSPERMISSIONSid",
+                table: "AccessRolePermissions",
+                column: "ACCESSPERMISSIONSid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessRolePermissions_ACCESSROLEid",
+                table: "AccessRolePermissions",
+                column: "ACCESSROLEid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessUserRole_ACCESSROLEid",
+                table: "AccessUserRole",
+                column: "ACCESSROLEid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessUserRole_ACCESSUSERSid",
+                table: "AccessUserRole",
+                column: "ACCESSUSERSid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cess76Ints_QUEUEITEMID_REF",
                 table: "Cess76Ints",
                 column: "QUEUEITEMID_REF",
                 unique: true);
+            //Cess76
+            migrationBuilder.Sql("IF EXISTS( SELECT * FROM sys.triggers WHERE name='Cess76Int_DEL')" +
+                " DROP TRIGGER Cess76Int_DEL");
+
+            migrationBuilder.Sql("CREATE TRIGGER Cess76Int_DEL ON QueueItemIDs FOR DELETE AS " +
+                "BEGIN " +
+                "IF @@ROWCOUNT = 0 " +
+                "   RETURN " +
+                "SET NOCOUNT ON " +
+                "DECLARE @QID VARCHAR(50) " +
+                "SELECT @QID = (SELECT QID FROM DELETED) " +
+                "DELETE Cess76Ints " +
+                "WHERE QID = @QID " +
+                "END");
+
+            migrationBuilder.Sql("IF EXISTS( SELECT * FROM sys.triggers WHERE name='Cess76Int_ADD') " +
+                "DROP TRIGGER Cess76Int_ADD");
+
+            migrationBuilder.Sql("CREATE TRIGGER Cess76Int_ADD  " +
+                "ON QueueItemIDs " +
+                "FOR INSERT " +
+                "AS " +
+                "BEGIN " +
+                "IF @@ROWCOUNT = 0 " +
+                "   RETURN " +
+                "SET NOCOUNT ON " +
+                "DECLARE @QID VARCHAR(50) " +
+                "DECLARE @sID INT " +
+                "SELECT @QID = (SELECT QID FROM INSERTED) " +
+                "SELECT @sID = (SELECT id FROM INSERTED) " +
+                "INSERT Cess76Ints(QID, STATUS, QUEUEITEMID_REF, CHOICE_DATETIME) " +
+                "VALUES(@QID, 'NEW', @sID, GETDATE()) " +
+                "END");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AccessRolePermissions");
+
+            migrationBuilder.DropTable(
+                name: "AccessUserRole");
+
+            migrationBuilder.DropTable(
                 name: "Cess76Ints");
+
+            migrationBuilder.DropTable(
+                name: "AccessPermissions");
+
+            migrationBuilder.DropTable(
+                name: "AccessRole");
+
+            migrationBuilder.DropTable(
+                name: "AccessUsers");
 
             migrationBuilder.DropTable(
                 name: "QueueItemIDs");

@@ -9,6 +9,8 @@ namespace YORMUNGAND.Data.Models
     {
         public int id { set; get; }
         public string USER { set; get; }
-        public virtual AccessUserRole ACCESSUSERROLE { set; get; }
+        public string NAME { set; get; }
+        public string MAIL { set; get; }
+        public virtual List<AccessUserRole> ACCESSUSERROLE { set; get; }
     }
 }
