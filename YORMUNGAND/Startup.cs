@@ -21,7 +21,7 @@ namespace YORMUNGAND
     public class Startup
     {
         // Конфигурация
-        private IConfigurationRoot _confString;
+        public IConfigurationRoot _confString;
         public Startup(IHostEnvironment hostEnv)
         {
             _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
@@ -33,20 +33,22 @@ namespace YORMUNGAND
             // Подключение к БД
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             services.AddTransient<IALLids, QueueItemRepository>();
-            //services.AddTransient<Ids, QueueItemRepository>();
             services.AddScoped<Cess76DoSol>();
-
-            //services.AddTransient<Icess76int, Cess76IntRepository>();
+            services.AddScoped<Access>();
+            //services.AddScoped<AppDBContent>();
+            //=====================================================================
+            //services.AddScoped<ITimer, Timer>();
+            //services.AddScoped<TimeService>();
+            //=====================================================================
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddScoped(sp => ShopCart.GetCart(sp));
+            //services.AddTransient<IServiceProvider, ServiceProvider>();
+            //services.AddScoped(sp => Access.IniUser(sp));
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddMemoryCache();
             services.AddSession();
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +58,10 @@ namespace YORMUNGAND
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //=====================================================================
+            //app.UseDeveloperExceptionPage();
+            //app.UseMiddleware<TimerMiddleware>();
+            //=====================================================================
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
@@ -67,7 +72,7 @@ namespace YORMUNGAND
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}");
-                routes.MapRoute(name: "categoryFilter", template: "{Car}/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
+                //routes.MapRoute(name: "categoryFilter", template: "{Car}/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
             });
 
             //using (var scope = app.ApplicationServices.CreateScope())

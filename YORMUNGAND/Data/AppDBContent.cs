@@ -4,12 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace YORMUNGAND.Data
 {
     public class AppDBContent : DbContext
     {
-        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options) {
+        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options)
+        {
 
         }
         public DbSet<QueueItemID> QueueItemIDs { get; set; }
