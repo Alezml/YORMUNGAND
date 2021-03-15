@@ -10,6 +10,6 @@ namespace YORMUNGAND.Data.Models
         public int id { set; get; }
         public string PERMISSION { set; get; }
         public string DESC { set; get; }
-        public virtual List<AccessRolePermissions> ACCESSROLEPERMISSIONS { set; get; }
+        public virtual List<AccessRole> ACCESSROLE { set; get; }
     }
 }

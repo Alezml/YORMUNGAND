@@ -1,0 +1,88 @@
+﻿@*<h1>Подробности:</h1>
+    <p><a class="btn btn-warning" href="/CESS/IDS">Назад</a></p>
+    <div class="row mt-1 mb-2">
+        @{
+            foreach (TestModel id in Model)
+            {
+                @Html.Partial("Testa", id)
+            }
+        }
+    </div>*@
+@*<table class="table table-hover table-inverse">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+                foreach (TestModel id in Model)
+                {
+                    <tr>
+                        @Html.Partial("Testb", id)
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>*@

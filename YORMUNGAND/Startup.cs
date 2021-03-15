@@ -32,7 +32,10 @@ namespace YORMUNGAND
         {
             // Подключение к БД
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
+            // Подключение к БД
+            services.AddDbContext<CESSDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnectionCESS")));
             services.AddTransient<IALLids, QueueItemRepository>();
+            services.AddTransient<ITest, TestRepository>();
             services.AddScoped<Cess76DoSol>();
             services.AddScoped<Access>();
             //services.AddScoped<AppDBContent>();
@@ -75,11 +78,11 @@ namespace YORMUNGAND
                 //routes.MapRoute(name: "categoryFilter", template: "{Car}/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
             });
 
-            //using (var scope = app.ApplicationServices.CreateScope())
-            //{
-            //    AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-            //    DBObjects.Initial(content);
-            //}
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
+                DBObjects.Initial(content);
+            }
         }
     }
 }

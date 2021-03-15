@@ -11,6 +11,6 @@ namespace YORMUNGAND.Data.Models
         public string USER { set; get; }
         public string NAME { set; get; }
         public string MAIL { set; get; }
-        public virtual List<AccessUserRole> ACCESSUSERROLE { set; get; }
+        public virtual List<AccessRole> ACCESSROLE { set; get; }
     }
 }

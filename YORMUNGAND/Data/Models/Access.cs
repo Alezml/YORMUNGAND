@@ -21,12 +21,14 @@ namespace YORMUNGAND.Data.Models
             var _user = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.User.Identity.Name;
 
             var user = context.AccessUsers.FirstOrDefault(i => i.USER == _user);
+            var listrole = new List<AccessRole>();
+            listrole.Add(context.AccessRole.FirstOrDefault(i => i.ROLE == "INDEEC"));
             if (!(user != null))
             {
                 context.AccessUsers.Add(new AccessUsers
                 {
-                    USER = _user
-
+                    USER = _user,
+                    ACCESSROLE = listrole
                 });
                 context.SaveChanges();
             }
