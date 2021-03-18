@@ -36,6 +36,7 @@ namespace YORMUNGAND
             services.AddDbContext<CESSDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnectionCESS")));
             services.AddTransient<IALLids, QueueItemRepository>();
             services.AddTransient<ITest, TestRepository>();
+            services.AddTransient<ICessReport, CessReportRepository>();
             services.AddScoped<Cess76DoSol>();
             services.AddScoped<Access>();
             //services.AddScoped<AppDBContent>();

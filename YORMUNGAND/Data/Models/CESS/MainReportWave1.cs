@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,10 +8,11 @@ using System.Threading.Tasks;
 namespace YORMUNGAND.Data.Models
 {
     [Table("MAIN-1")]
+    [Keyless]
     public class MainReportWave1
     {
-        [Column("Ключ(счетчик)")]
-        public int  id { set; get; }
+        //    [Column("NRI_ссылка")]
+        //    public int id { set; get; }
 
         [Column("NRI_ссылка")]
         public string NRI_LINK { set; get; }
