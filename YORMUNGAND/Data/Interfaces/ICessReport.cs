@@ -9,6 +9,6 @@ namespace YORMUNGAND.Data.Interfaces
     public interface ICessReport
     {
 
-        IEnumerable<MainReportWave1> MainReportWave1s { get; }
+        IEnumerable<MainReportWave1> MainReportWave1 { get; }
     }
 }

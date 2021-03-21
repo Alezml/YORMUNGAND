@@ -1,0 +1,79 @@
+﻿
+
+<table 
+       data-toggle="table"
+        data-search="true"
+        data-show-columns="true"
+       >
+  <thead>
+      <tr class="tr-class-2">
+          @*<th data-field="id">Ключ (счетчик)</th>*@
+          <th data-field="NRI_LINK">NRI_ссылка</th>
+          <th data-field="ZM_LOT">ЗМ_с_лотом</th>
+          <th data-field="REGION">Регион</th>
+          <th data-field="FILIAL">Филиал</th>
+          <th data-field="NRI_BS_N">NRI_БС_Номер</th>
+          <th data-field="NRI_BS_NAME">NRI_БС_Наименование</th>
+          <th data-field="DS_N">ДС_Номер</th>
+          <th data-field="PROVIDER">Поставщик</th>
+          <th data-field="VIR_DOC_TYPE">ВИР_Тип_документа</th>
+          <th data-field="VIR_DOP">ВИР_Дополнение</th>
+          <th data-field="VIR_DOP_N">ВИР_Дополнение_номер</th>
+          <th data-field="VIR_DATE">ВИР_дата</th>
+          <th data-field="VIR_SUMM_WO_NDS">ВИР_Сумма_без_НДС</th>
+          <th data-field="VIR_PAY_CONDITIONS">ВИР_Условия_платежа</th>
+          <th data-field="INITIATOR_FIO">Инициатор_ФИО</th>
+          <th data-field="RESPONSIBLE_FIO">Ответственный_ФИО</th>
+          <th data-field="STAGE">Этап</th>
+          <th data-field="PR_N">PR_Номер</th>
+          <th data-field="PR_STATUS">PR_статус</th>
+          <th data-field="PR_COM">PR_Комментарий</th>
+          <th data-field="SEVD">СЭВД</th>
+          <th data-field="SEVD_N">СЭВД_Номер</th>
+          <th data-field="ECM_LINK">ЕСМ_ссылка</th>
+          <th data-field="DS_DATE">ДС_Дата</th>
+          <th data-field="GFK">ГФК</th>
+          <th data-field="VIR_START_WORK">ВИР_Начало_работ</th>
+          <th data-field="VIR_END_WORK">ВИР_Завершение_работ</th>
+          <th data-field="VIR_INTEGRATION_DATE">ВИР_Дата_интеграции</th>
+          <th data-field="DIADOK_UPLOAD_DATE">Диадок_Дата_загрузки</th>
+          <th data-field="DIADOK_SIGN_DATE">Диадок_Дата_подписания</th>
+          <th data-field="IMS_LINK">IMS_ссылка</th>
+          <th data-field="DIADOK_ID">Диадок_ID</th>
+          <th data-field="DIADOK_LINK">Диадок_ссылка</th>
+          <th data-field="NRI_CODE_PROJECT">NRI_Код_проекта</th>
+          <th data-field="CONTRACT_N">Контракт_номер</th>
+          <th data-field="DOG_N">Договор_номер</th>
+          <th data-field="DOG_DATE">Договор_дата</th>
+          <th data-field="INITIATOR_MAIL">Инициатор_почта</th>
+          <th data-field="PROVIDER_INN">Поставщик_ИНН</th>
+          <th data-field="ERROR1">Ошибка1</th>
+          <th data-field="ERROR2">Ошибка2</th>
+          <th data-field="TECH_ERROR">Тех_Ошибка</th>
+          <th data-field="STATUS">Статус</th>
+          <th data-field="PROCESSING">Обработка</th>
+          <th data-field="GEO">География</th>
+          <th data-field="ZP_N">ЗП_Номер</th>
+          <th data-field="ZP_STATUS">ЗП_Статус</th>
+          <th data-field="BD_COM">БД_комментарий</th>
+          <th data-field="PR_FILE">PR_файл</th>
+          <th data-field="VIR_COM">ВИР_комментарий</th>
+          <th data-field="DOUBLE">Дубль</th>
+          <th data-field="VIR_DIAP">ВИР_Диапазоны</th>
+          <th data-field="PROSTAVLENIE">Проставление</th>
+          <th data-field="ECM_FILL">Дозаполнение_ЕСМ</th>
+
+      </tr>
+    </thead>
+  <tbody>
+
+      @{
+          foreach (MainReportWave1 id in Model)
+          {
+              <tr>
+                  @Html.Partial("CessReportWave1", id)
+              </tr>
+          }
+      }
+  </tbody>
+</table>
