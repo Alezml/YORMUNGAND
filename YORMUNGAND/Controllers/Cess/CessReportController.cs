@@ -39,7 +39,7 @@ namespace YORMUNGAND.Controllers
             return View(SerchParam);
         }
         [HttpPost]
-        public IActionResult List2(MainReportWave1FS SerchParam)
+        public IActionResult List1s(MainReportWave1FS SerchParam)
         {
             var s = new CessReportRepository(_appDBContent);
 
@@ -47,7 +47,7 @@ namespace YORMUNGAND.Controllers
             SerchParam.data = s.MainReportWave1s(SerchParam);
 
             SerchParam.count = s.MainReportWave1c(SerchParam);
-            SerchParam = MainReportWave1FS.UnCheck(SerchParam);
+            //SerchParam = MainReportWave1FS.UnCheck(SerchParam);
             ViewBag.Title = "TEST -=- TEST ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
 
             return View(SerchParam);

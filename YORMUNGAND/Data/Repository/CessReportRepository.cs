@@ -55,7 +55,7 @@ namespace YORMUNGAND.Data.Repository
         EF.Functions.Like(p.DIADOK_LINK, SerchParam.DIADOK_LINK) || p.DIADOK_LINK == null).Where(p =>
         EF.Functions.Like(p.NRI_CODE_PROJECT, SerchParam.NRI_CODE_PROJECT) || p.NRI_CODE_PROJECT == null).Where(p =>
         EF.Functions.Like(p.CONTRACT_N, SerchParam.CONTRACT_N) || p.CONTRACT_N == null).Where(p =>
-        EF.Functions.Like(p.DOG_N, SerchParam.DOG_N) || p.DOG_N == null).Where(p =>
+        EF.Functions.Like(p.DOG_N, (SerchParam.DOG_N == "") ? "%" : SerchParam.DOG_N) || p.DOG_N == null).Where(p =>
         EF.Functions.Like(p.DOG_DATE, SerchParam.DOG_DATE) || p.DOG_DATE == null).Where(p =>
         EF.Functions.Like(p.INITIATOR_MAIL, SerchParam.INITIATOR_MAIL) || p.INITIATOR_MAIL == null).Where(p =>
         EF.Functions.Like(p.PROVIDER_INN, SerchParam.PROVIDER_INN) || p.PROVIDER_INN == null).Where(p =>
@@ -114,7 +114,7 @@ namespace YORMUNGAND.Data.Repository
         EF.Functions.Like(p.DIADOK_LINK, SerchParam.DIADOK_LINK) || p.DIADOK_LINK == null).Where(p =>
         EF.Functions.Like(p.NRI_CODE_PROJECT, SerchParam.NRI_CODE_PROJECT) || p.NRI_CODE_PROJECT == null).Where(p =>
         EF.Functions.Like(p.CONTRACT_N, SerchParam.CONTRACT_N) || p.CONTRACT_N == null).Where(p =>
-        EF.Functions.Like(p.DOG_N, SerchParam.DOG_N) || p.DOG_N == null).Where(p =>
+        EF.Functions.Like(p.DOG_N, (SerchParam.DOG_N == "") ? "%" : SerchParam.DOG_N) || p.DOG_N == null).Where(p =>
         EF.Functions.Like(p.DOG_DATE, SerchParam.DOG_DATE) || p.DOG_DATE == null).Where(p =>
         EF.Functions.Like(p.INITIATOR_MAIL, SerchParam.INITIATOR_MAIL) || p.INITIATOR_MAIL == null).Where(p =>
         EF.Functions.Like(p.PROVIDER_INN, SerchParam.PROVIDER_INN) || p.PROVIDER_INN == null).Where(p =>

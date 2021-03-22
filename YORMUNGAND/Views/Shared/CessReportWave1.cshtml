@@ -1,5 +1,5 @@
 ﻿@model MainReportWave1
-@*<td>@Model.id</td>*@
+<td>@Model.id</td>
 <td>@Model.NRI_LINK</td>
 <td>@Model.ZM_LOT</td>
 <td>@Model.REGION</td>
@@ -24,7 +24,12 @@
 <td>@Model.SEVD_N</td>
 <td>@Model.ECM_LINK</td>
 <td>@Model.DS_DATE</td>
-<td>@Model.GFK</td>
+<td style="        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+        display: block;"
+    title="@Model.GFK">@Model.GFK</td>
 <td>@Model.VIR_START_WORK</td>
 <td>@Model.VIR_END_WORK</td>
 <td>@Model.VIR_INTEGRATION_DATE</td>
@@ -39,9 +44,24 @@
 <td>@Model.DOG_DATE</td>
 <td>@Model.INITIATOR_MAIL</td>
 <td>@Model.PROVIDER_INN</td>
-<td>@Model.ERROR1</td>
-<td>@Model.ERROR2</td>
-<td>@Model.TECH_ERROR</td>
+<td style="        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+        display: block;"
+    title="@Model.ERROR1">@Model.ERROR1</td>
+<td style="        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+        display: block;"
+    title="@Model.ERROR2">@Model.ERROR2</td>
+<td style="        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 200px;
+        display: block;"
+    title="@Model.TECH_ERROR">@Model.TECH_ERROR</td>
 <td>@Model.STATUS</td>
 <td>@Model.PROCESSING</td>
 <td>@Model.GEO</td>

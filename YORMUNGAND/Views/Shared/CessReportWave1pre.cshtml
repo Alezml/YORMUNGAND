@@ -1,12 +1,12 @@
 ﻿@model MainReportWave1FS
 <div class="row">
-    <form asp-controller="CessReport" asp-action="List2" method="post" class="form-check-label">
-        <div class="col-md-1 mt-3">
+    <form asp-controller="CessReport" asp-action="List1s" method="post" class="form-check-label">
+        <div class="col-md-4 mt-3 mb-0">
             <table>
                 <thead>
                     <tr>
-                        <td align="left" valign="bottom">Размер:<input asp-for="pagesize" class="form-control w-40" /></td>
-                        <td align="left" valign="bottom">Страница:<input asp-for="page" class="form-control w-40" /></td>
+                        <td align="left" valign="bottom" style="width:100px"> Размер: <input asp-for="pagesize" class="form-control"/></td>
+                        <td align="left" valign="bottom" style="width:100px">Страница:<input asp-for="page" class="form-control"/></td>
                         <td valign="bottom"><input class="btn btn-success" type="submit" value="Применить" /></td>
                         <td>Найдено: @Model.count</td>
                     </tr>
@@ -31,7 +31,7 @@
                data-search-highlight="true">
             <thead>
                 <tr class="tr-class-1">
-                    @*<th data-field="id">Ключ (счетчик)</th>*@
+                    <th data-field="id">Ключ (счетчик)</th>
                     <th data-field="NRI_LINK">NRI_ссылка</th>
                     <th data-field="ZM_LOT">ЗМ_с_лотом</th>
                     <th data-field="REGION">Регион</th>
@@ -92,7 +92,7 @@
             </thead>
             <tbody>
                 <tr class="tr-class-2">
-                    @*<th data-field="id">Ключ (счетчик)</th>*@
+                    <th data-field="id">Ключ (счетчик)</th>
                     <th><input asp-for="NRI_LINK" class="form-control" /></th>
                     <th><input asp-for="ZM_LOT" class="form-control" /></th>
                     <th><input asp-for="REGION" class="form-control" /></th>
@@ -151,7 +151,7 @@
                 @{
                     foreach (MainReportWave1 id in Model.data)
                     {
-                        <tr>
+                        <tr style="line-height:0.95">
                             @Html.Partial("CessReportWave1", id)
                         </tr>
                     }

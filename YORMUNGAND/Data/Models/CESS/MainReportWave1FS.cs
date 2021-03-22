@@ -189,7 +189,7 @@ namespace YORMUNGAND.Data.Models
                 SearchParam.CONTRACT_N = "%";
 
             if (SearchParam.DOG_N == "" || SearchParam.DOG_N == null)
-                SearchParam.DOG_N = "%";
+                SearchParam.DOG_N = "";
 
             if (SearchParam.DOG_DATE == "" || SearchParam.DOG_DATE == null)
                 SearchParam.DOG_DATE = "%";
