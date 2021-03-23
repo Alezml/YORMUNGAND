@@ -14,11 +14,14 @@ namespace YORMUNGAND.Controllers
     public class CessReportController : Controller
     {
         //private readonly ICessReport _cessReport;
+
         private readonly CESSDBContent _appDBContent;
+        private CessReportRepository _rep;
         public CessReportController(CESSDBContent appDBContent) //ICessReport iCessReport, 
         {
             //_cessReport = iCessReport;
             _appDBContent = appDBContent;
+            _rep = new CessReportRepository(_appDBContent);
         }
         //[Route("CESS/REPORTS/WAVE1/{page:int?}")]
         [Route("CESS/REPORTS/WAVE1")]
@@ -26,11 +29,11 @@ namespace YORMUNGAND.Controllers
         public IActionResult List1(int page = 1)
         {
             MainReportWave1FS SerchParam = new MainReportWave1FS();
-            var s = new CessReportRepository(_appDBContent);
+            //var s = new CessReportRepository(_appDBContent);
             SerchParam.page = page;
             SerchParam = MainReportWave1FS.Check(SerchParam);
-            SerchParam.data = s.MainReportWave1s(SerchParam);
-            SerchParam.count = s.MainReportWave1c(SerchParam);
+            SerchParam.data = _rep.MainReportWave1s(SerchParam);
+            SerchParam.count = _rep.MainReportWave1c(SerchParam);
             //SerchParam = MainReportWave1FS.UnCheck(SerchParam);
 
             ViewBag.Title = "TEST ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
@@ -41,16 +44,22 @@ namespace YORMUNGAND.Controllers
         [HttpPost]
         public IActionResult List1s(MainReportWave1FS SerchParam)
         {
-            var s = new CessReportRepository(_appDBContent);
+            //var s = new CessReportRepository(_appDBContent);
 
             SerchParam = MainReportWave1FS.Check(SerchParam);
-            SerchParam.data = s.MainReportWave1s(SerchParam);
+            SerchParam.data = _rep.MainReportWave1s(SerchParam);
 
-            SerchParam.count = s.MainReportWave1c(SerchParam);
+            SerchParam.count = _rep.MainReportWave1c(SerchParam);
             //SerchParam = MainReportWave1FS.UnCheck(SerchParam);
             ViewBag.Title = "TEST -=- TEST ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
 
             return View(SerchParam);
+        }
+        public IActionResult Detail1stWave(int ID)
+        {
+            MainReportWave1 One1stWave = new MainReportWave1();
+            One1stWave = _rep.Detail1stWaveById(ID);
+            return View(One1stWave);
         }
     }
 }

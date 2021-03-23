@@ -16,6 +16,10 @@ namespace YORMUNGAND.Data.Repository
             this.appDBContent = appDBContent;
         }
         public IEnumerable<MainReportWave1> MainReportWave1 { get; }
+        //Получить итем по ID
+        public MainReportWave1 Detail1stWaveById(int ID) =>
+            appDBContent.MAIN_1.FirstOrDefault(i => i.id == ID);
+        //Посчитать колличество записей для вывода по параметрам поиска
         public int MainReportWave1c(MainReportWave1FS SerchParam) =>
             appDBContent.MAIN_1.OrderByDescending(i => i.VIR_DATE).Where(k1 =>
         k1.VIR_DATE >= SerchParam.VIR_DATEfrom).Where(k2 =>
@@ -74,7 +78,7 @@ namespace YORMUNGAND.Data.Repository
         EF.Functions.Like(p.VIR_DIAP, SerchParam.VIR_DIAP) || p.VIR_DIAP == null).Where(p =>
         EF.Functions.Like(p.PROSTAVLENIE, SerchParam.PROSTAVLENIE) || p.PROSTAVLENIE == null).Where(p =>
         EF.Functions.Like(p.NRI_LINK, SerchParam.NRI_LINK) || p.NRI_LINK == null).Count();
-
+        //Вывести записи по параметрам поиска
         public IEnumerable<MainReportWave1> MainReportWave1s(MainReportWave1FS SerchParam) =>
             appDBContent.MAIN_1.OrderByDescending(i => i.VIR_DATE).OrderBy(l => l.id).Where(k1 =>
         k1.VIR_DATE >= SerchParam.VIR_DATEfrom).Where(k2 =>
