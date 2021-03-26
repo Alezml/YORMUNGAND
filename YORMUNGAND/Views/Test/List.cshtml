@@ -1,62 +1,26 @@
-﻿<link href="https://unpkg.com/bootstrap-table@1.18.2/dist/themes/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+﻿<div>
 
-<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/themes/bootstrap-table/bootstrap-table.min.js"></script>
-
-<div class="toolbar">
-    <button id="load" class="btn btn-secondary">Load 10000 Rows</button>
-    <button id="append" class="btn btn-secondary">Append 10000 Rows</button>
-    Total rows: <span id="total"></span>
+    <table id="table"
+           data-show-columns="true"
+           data-cookie="true"
+           data-cookie-id-table="saveId"
+           data-pagination="true"
+           data-search="true"
+           data-toggle="url"
+           data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
+           data-side-pagination="server">
+        <thead>
+            <tr>
+                <th data-field="id" data-sortable="true">ID</th>
+                <th data-field="name" data-sortable="true">Item Name</th>
+                <th data-field="price" data-sortable="true">Item Price</th>
+            </tr>
+        </thead>
+    </table>
+    <a class="btn btn-warning" asp-controller="Test" asp-action="Export">Тест</a>
+    <script>
+        $(function () {
+            $('#table').bootstrapTable()
+        })
+    </script>
 </div>
-
-<table id="table"
-       data-toolbar=".toolbar"
-       data-height="400"
-       data-virtual-scroll="true"
-       data-show-columns="true">
-    <thead>
-        <tr>
-            <th data-field="id">ID</th>
-            <th data-field="name">Item Name</th>
-            <th data-field="price">Item Price</th>
-        </tr>
-    </thead>
-</table>
-
-<script>
-    var $table = $('#table')
-    var total = 0
-
-    function getData(number, isAppend) {
-        if (!isAppend) {
-            total = 0
-        }
-        var data = []
-        for (var i = total; i < total + number; i++) {
-            data.push({
-                'id': i,
-                'name': 'Item ' + i,
-                'price': '$' + i
-            })
-        }
-        if (isAppend) {
-            total += number
-        } else {
-            total = number
-        }
-        $('#total').text(total)
-        return data
-    }
-
-    $(function () {
-        $table.bootstrapTable({ data: getData(20) })
-
-        $('#load').click(function () {
-            $table.bootstrapTable('load', getData(10000))
-        })
-
-        $('#append').click(function () {
-            $table.bootstrapTable('append', getData(10000, true))
-        })
-    })
-</script>

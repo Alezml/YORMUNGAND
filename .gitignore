@@ -2,3 +2,5 @@
 .vs/
 YORMUNGAND/bin/
 YORMUNGAND/obj/
+node_modules/
+package-lock.json
