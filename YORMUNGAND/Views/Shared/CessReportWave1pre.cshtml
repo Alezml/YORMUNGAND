@@ -19,14 +19,14 @@
 
         <table data-toggle="table"
                id="table"
-               data-search="true"
+               @*data-search="true"*@
                @*data-show-export="true"*@
                data-show-columns="true"
                @*data-click-to-select="true"*@
                @*data-toolbar="#toolbar"*@
                @*data-show-footer="true"*@
                data-show-toggle="true"
-               data-height="780"
+               data-height="600"
                data-buttons-align="right"
                @*data-height-unit="%"*@
                data-show-fullscreen="true"
@@ -35,7 +35,7 @@
                data-search-highlight="true">
             <thead>
                 <tr class="tr-class-1">
-                    <th data-field="id">Info</th>
+                    <th>Info</th>@*data-field="id"*@
                     <th data-field="ZM_LOT">ЗМ</th>
                     <th data-field="REGION">Регион</th>
                     <th data-field="FILIAL">Филиал</th>
@@ -94,62 +94,62 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tr-class-2">
-                    <th data-field="id">Info</th>
-                    <th><input asp-for="ZM_LOT" class="form-control" /></th>
-                    <th><input asp-for="REGION" class="form-control" /></th>
-                    <th><input asp-for="FILIAL" class="form-control" /></th>
-                    <th><input asp-for="NRI_BS_N" class="form-control" /></th>
-                    <th><input asp-for="NRI_BS_NAME" class="form-control" /></th>
-                    <th><input asp-for="DS_N" class="form-control" /></th>
-                    <th><input asp-for="VIR_DOP_N" class="form-control" /></th>
-                    <th><input asp-for="PROVIDER" class="form-control" /></th>
-                    <th><input asp-for="VIR_DATEfrom" class="form-control" /><input asp-for="VIR_DATEto" class="form-control" /></th>
-                    <th><input asp-for="VIR_SUMM_WO_NDSfrom" class="form-control" /><input asp-for="VIR_SUMM_WO_NDSto" class="form-control" /></th>
-                    <th><input asp-for="INITIATOR_FIO" class="form-control" /></th>
-                    <th><input asp-for="RESPONSIBLE_FIO" class="form-control" /></th>
-                    <th><input asp-for="STAGE" class="form-control" /></th>
-                    <th><input asp-for="STATUS" class="form-control" /></th>
-                    <th><input asp-for="PROCESSING" class="form-control" /></th>
-                    <th><input asp-for="VIR_DOC_TYPE" class="form-control" /></th>
-                    <th><input asp-for="VIR_DOP" class="form-control" /></th>
-                    <th><input asp-for="PR_N" class="form-control" /></th>
-                    <th><input asp-for="PR_STATUS" class="form-control" /></th>
-                    <th><input asp-for="PR_COM" class="form-control" /></th>
-                    <th><input asp-for="SEVD" class="form-control" /></th>
-                    <th><input asp-for="SEVD_N" class="form-control" /></th>
-                    <th><input asp-for="ECM_LINK" class="form-control" /></th>
-                    <th><input asp-for="DS_DATE" class="form-control" /></th>
-                    <th><input asp-for="GFK" class="form-control" /></th>
-                    <th><input asp-for="VIR_START_WORK" class="form-control" /></th>
-                    <th><input asp-for="VIR_END_WORK" class="form-control" /></th>
-                    <th><input asp-for="VIR_INTEGRATION_DATE" class="form-control" /></th>
-                    <th><input asp-for="DIADOK_UPLOAD_DATE" class="form-control" /></th>
-                    <th><input asp-for="DIADOK_SIGN_DATE" class="form-control" /></th>
-                    <th><input asp-for="IMS_LINK" class="form-control" /></th>
-                    <th><input asp-for="DIADOK_ID" class="form-control" /></th>
-                    <th><input asp-for="DIADOK_LINK" class="form-control" /></th>
-                    <th><input asp-for="NRI_CODE_PROJECT" class="form-control" /></th>
-                    <th><input asp-for="CONTRACT_N" class="form-control" /></th>
-                    <th><input asp-for="DOG_N" class="form-control" /></th>
-                    <th><input asp-for="DOG_DATE" class="form-control" /></th>
-                    <th><input asp-for="INITIATOR_MAIL" class="form-control" /></th>
-                    <th><input asp-for="PROVIDER_INN" class="form-control" /></th>
-                    <th><input asp-for="ERROR1" class="form-control" /></th>
-                    <th><input asp-for="ERROR2" class="form-control" /></th>
-                    <th><input asp-for="TECH_ERROR" class="form-control" /></th>
-                    <th><input asp-for="NRI_LINK" class="form-control" /></th>
-                    <th><input asp-for="VIR_PAY_CONDITIONS" class="form-control" /></th>
-                    <th><input asp-for="GEO" class="form-control" /></th>
-                    <th><input asp-for="ZP_N" class="form-control" /></th>
-                    <th><input asp-for="ZP_STATUS" class="form-control" /></th>
-                    <th><input asp-for="BD_COM" class="form-control" /></th>
-                    <th><input asp-for="PR_FILE" class="form-control" /></th>
-                    <th><input asp-for="VIR_COM" class="form-control" /></th>
-                    <th><input asp-for="DOUBLE" class="form-control" /></th>
-                    <th><input asp-for="VIR_DIAP" class="form-control" /></th>
-                    <th><input asp-for="PROSTAVLENIE" class="form-control" /></th>
-                    <th><input asp-for="ECM_FILL" class="form-control" /></th>
+                <tr>
+                    <th class="slimrow">Info</th>  @*data-field="id"*@
+                    <th class="slimrow"><input asp-for="ZM_LOT" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="REGION" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="FILIAL" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="NRI_BS_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="NRI_BS_NAME" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DS_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_DOP_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PROVIDER" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_DATEfrom" class="form-control" /><input asp-for="VIR_DATEto" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_SUMM_WO_NDSfrom" class="form-control" /><input asp-for="VIR_SUMM_WO_NDSto" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="INITIATOR_FIO" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="RESPONSIBLE_FIO" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="STAGE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="STATUS" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PROCESSING" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_DOC_TYPE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_DOP" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PR_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PR_STATUS" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PR_COM" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="SEVD" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="SEVD_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ECM_LINK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DS_DATE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="GFK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_START_WORK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_END_WORK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_INTEGRATION_DATE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DIADOK_UPLOAD_DATE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DIADOK_SIGN_DATE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="IMS_LINK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DIADOK_ID" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DIADOK_LINK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="NRI_CODE_PROJECT" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="CONTRACT_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DOG_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DOG_DATE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="INITIATOR_MAIL" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PROVIDER_INN" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ERROR1" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ERROR2" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="TECH_ERROR" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="NRI_LINK" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_PAY_CONDITIONS" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="GEO" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ZP_N" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ZP_STATUS" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="BD_COM" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PR_FILE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_COM" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="DOUBLE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="VIR_DIAP" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="PROSTAVLENIE" class="form-control" /></th>
+                    <th class="slimrow"><input asp-for="ECM_FILL" class="form-control" /></th>
                 </tr>
                 @{
                     foreach (MainReportWave1 id in Model.data)

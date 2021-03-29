@@ -1,5 +1,6 @@
 ﻿body {
-    background: #fcfcfc
+    background: rgba(241, 239, 199, 0.30);
+    overflow-x: hidden;
 }
 .main_content-body {
     margin-top: 100px;
@@ -37,10 +38,37 @@ a:hover {
     padding: 10px;
 }
 
-/*td {
+div.row_oneItem-extraSmall {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 500px;
-    display: block;
-}*/
+    width: 50px;
+    padding: 1px;
+}
+div.row_oneItem-small {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+    padding: 1px;
+}
+div.row_oneItem-medium {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    padding: 1px;
+}
+div.row_oneItem-large {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 650px;
+    padding: 1px;
+}
+td.slimrow {
+    padding: 0px;
+}
+th.slimrow {
+    padding: 0px;
+}
