@@ -4,7 +4,7 @@
     @{
         foreach (QueueItemID id in Model.AllIds)
         {
-            @Html.Partial("DetailId", id)
-        }
-    }
+        @await Html.PartialAsync("DetailId", id)
+                 }
+                 }
 </div>

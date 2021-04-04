@@ -8,13 +8,13 @@ using YORMUNGAND.Data.Models;
 
 namespace YORMUNGAND.Data.Repository
 {
-    public class TestRepository : ITest
+    public class TestRepository 
     {
         private readonly CESSDBContent appDBContent;
         public TestRepository(CESSDBContent appDBContent)
         {
             this.appDBContent = appDBContent;
         }
-        public IEnumerable<TestModel> TestModels => appDBContent.TEST.OrderBy(i => i.Test3);
+        //public IEnumerable<TestModel> TestModels => appDBContent.TEST.OrderBy(i => i.Test3);
     }
 }

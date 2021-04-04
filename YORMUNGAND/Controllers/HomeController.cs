@@ -18,7 +18,7 @@ namespace YORMUNGAND.Controllers
         public IActionResult Index()
         {
             Access.IniUser(_service);
-            
+
             return View();
         }
     }

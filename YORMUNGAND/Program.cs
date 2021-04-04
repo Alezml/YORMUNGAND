@@ -21,7 +21,6 @@ namespace YORMUNGAND
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseIIS();
                 });
     }
 }

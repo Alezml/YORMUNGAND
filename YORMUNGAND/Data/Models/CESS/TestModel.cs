@@ -8,17 +8,11 @@ using System.Threading.Tasks;
 
 namespace YORMUNGAND.Data.Models
 {
-    [Table("Test-Table")]
-    [Keyless]
     public class TestModel
     {
-        [Column("f")]
-        public string  Test1 { set; get; }
-
-        [Column("test-column")]
-        public string Test2 { set; get; }
-        //[Key]
-        [Column("ключ")]
-        public int Test3 { set; get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Company { get; set; }
+        public int Year { get; set; }
     }
 }

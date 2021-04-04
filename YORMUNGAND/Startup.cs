@@ -21,38 +21,34 @@ namespace YORMUNGAND
     public class Startup
     {
         // Конфигурация
-        public IConfigurationRoot _confString;
-        public Startup(IHostEnvironment hostEnv)
+        public IConfiguration _confString { get; }
+        public IConfigurationRoot _confString2;
+        public Startup(IConfiguration configuration, IHostEnvironment hostEnv) //IHostEnvironment hostEnv
         {
-            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+            _confString2 = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
+            _confString = configuration;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             // Подключение к БД
-            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("DefaultConnection")));
             // Подключение к БД
-            services.AddDbContext<CESSDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnectionCESS")));
+            services.AddDbContext<CESSDBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("DefaultConnectionCESS")));
             services.AddTransient<IALLids, QueueItemRepository>();
-            services.AddTransient<ITest, TestRepository>();
+            //services.AddTransient<ITest, TestRepository>();
             services.AddTransient<ICessReport, CessReportRepository>();
             services.AddScoped<Cess76DoSol>();
             services.AddScoped<Access>();
-            //services.AddScoped<AppDBContent>();
-            //=====================================================================
-            //services.AddScoped<ITimer, Timer>();
-            //services.AddScoped<TimeService>();
-            //=====================================================================
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddTransient<IServiceProvider, ServiceProvider>();
-            //services.AddScoped(sp => Access.IniUser(sp));
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddMemoryCache();
             services.AddSession();
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,16 +58,25 @@ namespace YORMUNGAND
             {
                 app.UseDeveloperExceptionPage();
             }
-            //=====================================================================
-            //app.UseDeveloperExceptionPage();
-            //app.UseMiddleware<TimerMiddleware>();
-            //=====================================================================
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
+
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
             // авторизация
-            app.UseAuthorization();
             app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
@@ -79,11 +84,11 @@ namespace YORMUNGAND
                 //routes.MapRoute(name: "categoryFilter", template: "{Car}/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
             });
 
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-                DBObjects.Initial(content);
-            }
+            //using (var scope = app.ApplicationServices.CreateScope())
+            //{
+            //    AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
+            //    DBObjects.Initial(content);
+            //}
         }
     }
 }

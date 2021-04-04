@@ -175,5 +175,11 @@ namespace YORMUNGAND.Data.Models
 
         [Column("Дозаполнение_ЕСМ")]
         public string ECM_FILL { set; get; }
+        //public virtual string NRI_BS_NAME_FULL { set; get; }
+        //public virtual string VIR_DOP_N_FULL { set; get; }
+        //public virtual string PROVIDER_FULL { set; get; }
+        //public virtual string INITIATOR_FIO_FULL { set; get; }
+        //public virtual string RESPONSIBLE_FIO_FULL { set; get; }
+        //public virtual string STATUS_FULL { set; get; }
     }
 }

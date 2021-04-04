@@ -13,74 +13,26 @@ namespace YORMUNGAND.Controllers
 {
     public class TestController : Controller
     {
-        private readonly ITest _allids;
-        public TestController(ITest iAllids)
+        static List<TestModel> comps = new List<TestModel>();
+        static TestController()
         {
-            _allids = iAllids;
+            comps.Add(new TestModel { Id = 1, Name = "Apple II", Company = "Apple", Year = 1977 });
+            comps.Add(new TestModel { Id = 2, Name = "Macintosh", Company = "Apple", Year = 1983 });
+            comps.Add(new TestModel { Id = 3, Name = "IBM PC", Company = "IBM", Year = 1981 });
+            comps.Add(new TestModel { Id = 4, Name = "Altair", Company = "MITS", Year = 1975 });
         }
-        [Route("TEST/ids")]
-
-        //[Route("CESS/{id}")]
-        public ViewResult List(string id)
+        public ActionResult Index()
         {
-
-            IEnumerable<TestModel> ids = null;
-
-            ids = _allids.TestModels.OrderBy(i => i.Test3);
-
-            ViewBag.Title = "TEST -=- TEST";
-            return View(ids);
+            return View(comps);
         }
-        public ActionResult Export()
+        public ActionResult List()
         {
-            List<PhoneBrand> phoneBrands = new List<PhoneBrand>();
-            phoneBrands.Add(new PhoneBrand()
-            {
-                Title = "Apple",
-                PhoneModels = new List<PhoneModel>()
-            {
-                new PhoneModel() { Title = "iPhone 7"},
-                new PhoneModel() { Title = "iPhone 7 Plus"}
-            }
-            });
-            phoneBrands.Add(new PhoneBrand()
-            {
-                Title = "Samsung",
-                PhoneModels = new List<PhoneModel>()
-            {
-                new PhoneModel() { Title = "A3"},
-                new PhoneModel() { Title = "A3 2016"},
-                new PhoneModel() { Title = "A3 2017"}
-            }
-            });
-
-            using (XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled))
-            {
-                var worksheet = workbook.Worksheets.Add("Brands");
-
-                worksheet.Cell("A1").Value = "Бренд";
-                worksheet.Cell("B1").Value = "Модели";
-                worksheet.Row(1).Style.Font.Bold = true;
-
-                //нумерация строк/столбцов начинается с индекса 1 (не 0)
-                for (int i = 0; i < phoneBrands.Count; i++)
-                {
-                    worksheet.Cell(i + 2, 1).Value = phoneBrands[i].Title;
-                    worksheet.Cell(i + 2, 2).Value = string.Join(", ", phoneBrands[i].PhoneModels.Select(x => x.Title));
-                }
-
-                using (var stream = new MemoryStream())
-                {
-                    workbook.SaveAs(stream);
-                    stream.Flush();
-
-                    return new FileContentResult(stream.ToArray(),
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-                    {
-                        FileDownloadName = $"brands_{DateTime.UtcNow.ToShortDateString()}.xlsx"
-                    };
-                }
-            }
+            return View();
+        }
+        public ActionResult TestDetails()
+        {
+            //TestModel c = comps.FirstOrDefault(com => com.Id == 4);
+            return PartialView();
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿@model MainReportWave1
-<tr>
-    <td class="slimrow" title="Подробнее"><div class="row_oneItem-extraSmall"><a class="btn btn-warning" asp-controller="CessReport" asp-action="Detail1stWave" asp-route-ID="@Model.id">...</a></div></td>
+@using YORMUNGAND.Data.Models.SUPPORT;
+<tr class="jsTableRow">
     <td class="slimrow" title="@Model.ZM_LOT"><div class="row_oneItem-small">@Model.ZM_LOT</div></td>
     <td class="slimrow" title="@Model.REGION"><div class="row_oneItem-small">@Model.REGION</div></td>
     <td class="slimrow" title="@Model.FILIAL"><div class="row_oneItem-small">@Model.FILIAL</div></td>
-    <td class="slimrow" title="@Model.NRI_BS_N"><div class="row_oneItem-small">@Model.NRI_BS_N</div></td>
-    <td class="slimrow" title="@Model.NRI_BS_NAME"><div class="row_oneItem-medium">@Model.NRI_BS_NAME</div></td>
-    <td class="slimrow" title="@Model.DS_N"><div class="row_oneItem-medium">@Model.DS_N</div></td>
-    <td class="slimrow" title="@Model.VIR_DOP_N"><div class="row_oneItem-medium">@Model.VIR_DOP_N</div></td>
-    <td class="slimrow" title="@Model.PROVIDER"><div class="row_oneItem-medium">@Model.PROVIDER</div></td>
-    <td class="slimrow" title="@Model.VIR_DATE"><div class="row_oneItem-medium">@Model.VIR_DATE</div></td>
-    <td class="slimrow" title="@Model.VIR_SUMM_WO_NDS"><div class="row_oneItem-small">@Model.VIR_SUMM_WO_NDS</div></td>
-    <td class="slimrow" title="@Model.INITIATOR_FIO"><div class="row_oneItem-medium">@Model.INITIATOR_FIO</div></td>
-    <td class="slimrow" title="@Model.RESPONSIBLE_FIO"><div class="row_oneItem-medium">@Model.RESPONSIBLE_FIO</div></td>
-    <td class="slimrow" title="@Model.STAGE"><div class="row_oneItem-medium">@Model.STAGE</div></td>
+    <td class="slimrow" title="@Model.NRI_BS_N"><div class="row_oneItem-small0">@Model.NRI_BS_N</div></td>
+    <td class="slimrow" title="@SupportClass.ToHtml(Model.NRI_BS_NAME)"><div class="row_oneItem-medium">@Model.NRI_BS_NAME</div></td>
+    <td class="slimrow" title="@SupportClass.ToHtml(Model.DS_N)"><div class="row_oneItem-medium">@Model.DS_N</div></td>
+    <td class="slimrow" title="@SupportClass.ToHtml(Model.VIR_DOP_N)"><div class="row_oneItem-small0">@Model.VIR_DOP_N</div></td>
+    <td class="slimrow" title="@SupportClass.ToHtml(Model.PROVIDER)"><div class="row_oneItem-medium">@Model.PROVIDER</div></td>
+    <td class="slimrow" title="@Model.VIR_DATE"><div class="row_oneItem-small">@SupportClass.DataShort(Model.VIR_DATE)</div></td>
+    <td class="slimrow" title="@Model.VIR_SUMM_WO_NDS"><div class="row_oneItem-small">@decimal.Round(Model.VIR_SUMM_WO_NDS, 2)</div></td>
+    <td class="slimrow" title="@Model.INITIATOR_FIO"><div class="row_oneItem-small">@SupportClass.FIOshort(Model.INITIATOR_FIO)</div></td>
+    <td class="slimrow" title="@Model.RESPONSIBLE_FIO"><div class="row_oneItem-small">@SupportClass.FIOshort(Model.RESPONSIBLE_FIO)</div></td>
+    <td class="slimrow" title="@Model.STAGE"><div class="row_oneItem-small">@Model.STAGE</div></td>
     <td class="slimrow" title="@Model.STATUS"><div class="row_oneItem-medium">@Model.STATUS</div></td>
     <td class="slimrow" title="@Model.PROCESSING"><div class="row_oneItem-small">@Model.PROCESSING</div></td>
     <td class="slimrow" title="@Model.VIR_DOC_TYPE"><div class="row_oneItem-medium">@Model.VIR_DOC_TYPE</div></td>
@@ -55,4 +55,7 @@
     <td class="slimrow" title="@Model.VIR_DIAP"><div class="row_oneItem-medium">@Model.VIR_DIAP</div></td>
     <td class="slimrow" title="@Model.PROSTAVLENIE"><div class="row_oneItem-medium">@Model.PROSTAVLENIE</div></td>
     <td class="slimrow" title="@Model.ECM_FILL"><div class="row_oneItem-medium">@Model.ECM_FILL</div></td>
+    <td class="slimrow" title="Отменить обработку роботом"><div><a class="btn btn-danger" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank" >Отменить обработку роботом</a></div></td>
+    <td class="slimrow" title="Не дубль"><div><a class="btn btn-warning" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank" >Это не дубль</a></div></td>
+
 </tr>

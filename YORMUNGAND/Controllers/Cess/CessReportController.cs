@@ -17,6 +17,15 @@ namespace YORMUNGAND.Controllers
     {
         private readonly CESSDBContent _appDBContent;
         private CessReportRepository _rep;
+
+        static List<TestModel> comps = new List<TestModel>();
+        static CessReportController()
+        {
+            comps.Add(new TestModel { Id = 1, Name = "Apple II", Company = "Apple", Year = 1977 });
+            comps.Add(new TestModel { Id = 2, Name = "Macintosh", Company = "Apple", Year = 1983 });
+            comps.Add(new TestModel { Id = 3, Name = "IBM PC", Company = "IBM", Year = 1981 });
+            comps.Add(new TestModel { Id = 4, Name = "Altair", Company = "MITS", Year = 1975 });
+        }
         public CessReportController(CESSDBContent appDBContent)
         {
             _appDBContent = appDBContent;
@@ -28,9 +37,10 @@ namespace YORMUNGAND.Controllers
         {
             MainReportWave1FS SerchParam = new MainReportWave1FS();
             //var s = new CessReportRepository(_appDBContent);
-            SerchParam.data = _rep.MainReportWave1s(SerchParam);
+            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
+            //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
             ViewBag.Title = "ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -40,9 +50,10 @@ namespace YORMUNGAND.Controllers
         public IActionResult List1(MainReportWave1FS SerchParam)
         {
             SerchParam = MainReportWave1FS.Check(SerchParam);
-            SerchParam.data = _rep.MainReportWave1s(SerchParam);
+            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
+            //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
             ViewBag.Title = "Поиск ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -50,7 +61,8 @@ namespace YORMUNGAND.Controllers
         {
             MainReportWave1 One1stWave = new MainReportWave1();
             One1stWave = _rep.Detail1stWaveById(ID);
-            return View(One1stWave);
+            //return View(One1stWave);
+            return Content("В разработке");
         }
         public ActionResult Export(MainReportWave1FS SerchParam)
         {
@@ -202,6 +214,20 @@ namespace YORMUNGAND.Controllers
                     };
                 }
             }
+        }
+        public ActionResult HowToSearch(string id)
+        {
+            return PartialView();
+        }
+        public ActionResult TestDetails()
+        {
+            TestModel c = comps.FirstOrDefault(com => com.Id == 4);
+            return PartialView(c);
+        }
+        public ActionResult InProcess(int id)
+        {
+
+            return PartialView();
         }
     }
 }

@@ -4,8 +4,8 @@
         @{
             foreach (QueueItemID id in Model.NewIds)
             {
-                @Html.Partial("allIds", id)
-            }
+            @await Html.PartialAsync("allIds", @id)
+                         }
         }
     </div>
     <h1>Решение принято:</h1>
@@ -13,17 +13,17 @@
         @{
             foreach (QueueItemID id in Model.AcceptedIds)
             {
-                @Html.Partial("allIdsTo", id)
-            }
-        }
+                @await Html.PartialAsync("allIdsTo", @id)
+                         }
+                         }
     </div>
     <h1>Решение Исполнено:</h1>
     <div class="row mt-2 mb-2">
         @{
             foreach (QueueItemID id in Model.FinishedIds)
             {
-                @Html.Partial("allIdsFin", id)
-            }
-        }
+                @await Html.PartialAsync("allIdsFin", @id)
+                         }
+                         }
     </div>
 </div>

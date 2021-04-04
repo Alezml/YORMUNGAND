@@ -38,19 +38,29 @@ a:hover {
     padding: 10px;
 }
 
-div.row_oneItem-extraSmall {
+div.row_oneItem-NoWay {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 50px;
+    width: 0px;
+    padding: 0px;
+    margin: auto;
+}
+div.row_oneItem-small0 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 105px;
     padding: 1px;
+    margin: auto;
 }
 div.row_oneItem-small {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 150px;
+    width: 120px;
     padding: 1px;
+    margin: auto;
 }
 div.row_oneItem-medium {
     white-space: nowrap;
@@ -58,6 +68,7 @@ div.row_oneItem-medium {
     text-overflow: ellipsis;
     width: 250px;
     padding: 1px;
+    margin: auto;
 }
 div.row_oneItem-large {
     white-space: nowrap;
@@ -65,10 +76,14 @@ div.row_oneItem-large {
     text-overflow: ellipsis;
     width: 650px;
     padding: 1px;
+    margin: auto;
 }
 td.slimrow {
     padding: 0px;
 }
 th.slimrow {
     padding: 0px;
+}
+a.compItem {
+    width: 650px;
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace YORMUNGAND.Data.Models
         public int count { set; get; }
         public int countTotal { set; get; }
         public IEnumerable<MainReportWave1> data { set; get; }
+        public List<MainReportWave1> list { set; get; }
         public int id { set; get; }
         public string NRI_LINK { set; get; }
         public string ZM_LOT { set; get; }
@@ -29,7 +31,11 @@ namespace YORMUNGAND.Data.Models
         public string VIR_DOC_TYPE { set; get; }
         public string VIR_DOP { set; get; }
         public string VIR_DOP_N { set; get; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Date)]
         public DateTime VIR_DATEfrom { set; get; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Date)]
         public DateTime VIR_DATEto { set; get; }
         public decimal VIR_SUMM_WO_NDSfrom { set; get; }
         public decimal VIR_SUMM_WO_NDSto { set; get; }
@@ -78,8 +84,8 @@ namespace YORMUNGAND.Data.Models
         {
             this.pagesize = 50;
             this.page = 1;
-            this.VIR_DATEto = DateTime.Now;
-            this.VIR_DATEfrom = new DateTime(2020, 1, 1);
+            this.VIR_DATEto = DateTime.Now; // DateTime.Now;
+            this.VIR_DATEfrom = new DateTime(2020, 1, 1); // new DateTime(2020, 1, 1);
             this.VIR_SUMM_WO_NDSto = 999999999;
         }
         public static MainReportWave1FS Check (MainReportWave1FS SearchParam)

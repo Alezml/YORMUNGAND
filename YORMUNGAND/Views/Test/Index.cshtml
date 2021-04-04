@@ -1,0 +1,12 @@
+﻿@model IEnumerable<TestModel>
+@{
+    ViewBag.Title = "Компьютеры";
+}
+<h3>Список моделей</h3>
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+    
+            @Html.ActionLink("testtt", "TestDetails",
+            new { id = 2 }, new { @class = "compItem" })
+
