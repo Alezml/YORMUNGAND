@@ -1,0 +1,78 @@
+﻿<div>
+    @*<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+        #sortable1, #sortable2 {
+            border: 1px solid #eee;
+            width: 180px;
+            min-height: 100px;
+            list-style-type: none;
+            margin: 5px 0 0 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+            background-color: rgba(242, 114, 68, 0.15); /*#F27244*/
+        }
+
+            #sortable1 li, #sortable2 li {
+                margin: 0px 5px 5px 5px;
+                padding: 5px;
+                font-size: 1.2em;
+                width: 170px;
+            }
+    </style>*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<script>
+        $(function () {
+            $("#sortable1, #sortable2").sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
+    </script>*@
+    @*<div style="display: inline-flex; margin-top: 35px; margin-left: 50px;">*@
+        @*<div style="display:inline"  id="dvleft">*@
+            <h3>Роль</h3>
+            <div id="sortabl331">
+            </div>
+
+        @*</div>*@
+
+        @*<div style="display:inline" id="dvright">
+            <h3>Все права</h3>
+            <ul id="sortable2" class="connectedSortable">
+                <li class="ui-state-highlight">Item 1</li>
+                <li class="ui-state-highlight">Item 2</li>
+                <li class="ui-state-highlight">Item 3</li>
+                <li class="ui-state-highlight">Item 4</li>
+                <li class="ui-state-highlight">Item 5</li>
+            </ul>
+        </div>*@
+        @*</div>*@
+    <script>
+            $(document).ready(function () {
+
+                loadProducts();
+
+                function loadProducts() {
+                    var data = { role : "BaseRight"}
+                    var items = "";
+                    $.ajax({
+                        url: '@Url.Action("GetPermByRoleAndOther", "TestApi")',
+                        type: "POST",
+                        data: data,
+                    }).done(function (resp) {
+                        $.each(resp, function (idx, val) {
+                            items += "<li draggable='true' class='ui-state-default'>" + val.one + val.two + val.three + "</li>";
+                        });
+                        $("#sortabl331").html(items);
+                        setEvents();
+                    }).error(function (err) {
+                        alert("Error! " + err.status);
+                    });
+                }
+            });
+    </script>
+    </div>

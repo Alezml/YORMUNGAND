@@ -1,27 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YORMUNGAND.Data.Interfaces;
 using YORMUNGAND.Data.Models;
 
 namespace YORMUNGAND.Controllers
 {
-    public class HomeController : Controller
+    public class CessBaseController : Controller
     {
         protected static IServiceProvider _service;
-        public HomeController (IServiceProvider service)
+        public CessBaseController(IServiceProvider service)
         {
             _service = service;
         }
-        public IActionResult Index()
+        public IActionResult index()
         {
+
             if (!Access.IsAccess(_service, "BaseRight"))
             {
                 return RedirectToAction("NoAccess", "Access");
             }
-
+            ViewBag.Title = "ЦЭСС";
             return View();
         }
     }

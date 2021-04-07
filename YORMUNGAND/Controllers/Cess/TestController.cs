@@ -31,7 +31,6 @@ namespace YORMUNGAND.Controllers
         }
         public ActionResult TestDetails()
         {
-            //TestModel c = comps.FirstOrDefault(com => com.Id == 4);
             return PartialView();
         }
     }

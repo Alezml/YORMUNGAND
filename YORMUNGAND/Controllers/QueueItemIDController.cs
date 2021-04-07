@@ -12,17 +12,23 @@ namespace YORMUNGAND.Controllers
     public class QueueItemIDController : Controller
     {
         private readonly IALLids _allids;
+        protected static IServiceProvider _service;
 
-        public QueueItemIDController(IALLids iAllids)
+        public QueueItemIDController(IALLids iAllids, IServiceProvider service)
         {
             _allids = iAllids;
+            _service = service;
         }
         [Route("CESS/ids")]
 
         //[Route("CESS/{id}")]
-        public ViewResult List(string id)
+        public IActionResult List(string id)
         {
 
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             IEnumerable<QueueItemID> ids = null;
             IEnumerable<QueueItemID> accid = null;
             IEnumerable<QueueItemID> finid = null;

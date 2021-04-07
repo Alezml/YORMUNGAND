@@ -11,16 +11,23 @@ namespace YORMUNGAND.Controllers
 {
     public class Cess76DoSolController : Controller
     {
+        protected static IServiceProvider _service;
         private IALLids _qiRep;
         private readonly Cess76DoSol _dosol;
-        public Cess76DoSolController(IALLids queueItemRepository, Cess76DoSol cess76DoSol)
+        public Cess76DoSolController(IALLids queueItemRepository, Cess76DoSol cess76DoSol, IServiceProvider service)
         {
             _qiRep = queueItemRepository;
             _dosol = cess76DoSol;
+            _service = service;
         }
 
         public RedirectToActionResult ToDoOk(string QID)
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)
             {
@@ -31,6 +38,11 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ToDoFalse(string QID)
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)
             {
@@ -41,6 +53,11 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ToNew(string QID)
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)
             {

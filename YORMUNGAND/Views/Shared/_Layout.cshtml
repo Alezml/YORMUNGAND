@@ -28,9 +28,11 @@
     <script src="~/js/bootstrap-table.min.js"></script>
     <script src="~/js/bootstrap-table-cookie.min.js"></script>
     <script type="text/javascript">
+
         $(function () {
             $.ajaxSetup({ cache: false });
             $(".compItem").click(function (e) {
+
                 e.preventDefault();
                 $.get(this.href, function (data) {
                     $('#dialogContent').html(data);
@@ -52,20 +54,14 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/cess/ids">ЦЭСС</a>
+                            <a class="nav-link" href="/CESSBASE">ЦЭСС</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/CESS/REPORTS/WAVE1">Кнопка2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/CessReport/List1">Кнопка3</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/test/ids">Кнопка4</a>
+                            <a class="nav-link" href="/RPABASE">RPA</a>
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        @*<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">*@
                         <button class="btn btn-outline-success" type="submit">@User.Identity.IsAuthenticated</button>
                     </form>
                 </div>
@@ -80,17 +76,42 @@
         <p>© 2021· <a href="#">Privacy</a> · <a href="#">Terms</a></p>
     </footer>
     <script>
-            var inter = setInterval(() => {
-                var item = document.getElementsByClassName("fixed-table-container")[0];
-                //var item = document.querySelectorAll('.fixed-table-loading, .table, .table-bordered, .table-hover'); //fixed-table-loading table table-bordered table-hover
-                //var item = $('#table')
-                console.log(item);
-                if (item != null) {
-                    item.style.height = (window.screen.availHeight - 330) + 'px';
-                    //console.error(document.getElementsByClassName("fixed-table-container")[0].style.height);
-                    //clearTimeout(inter);
-                }
-            }, 1000);
-        </script>
+        var inter = setInterval(() => {
+            var item = document.getElementsByClassName("fixed-table-container")[0];
+            //var item = document.querySelectorAll('.fixed-table-loading, .table, .table-bordered, .table-hover'); //fixed-table-loading table table-bordered table-hover
+            //var item = $('#table')
+            //console.log(item);
+            if (item != null) {
+                item.style.height = (window.screen.availHeight - 280) + 'px';
+                //console.error(document.getElementsByClassName("fixed-table-container")[0].style.height);
+                $('input.form-control.search-input').attr('placeholder', 'Поиск по странице')
+                clearTimeout(inter);
+            }
+        }, 1000);
+
+    </script>
+
+    @if (ViewData["NoExport"] != null)
+    {
+        if (ViewData["NoExport"].ToString() == "Yes")
+        {
+            <div>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                <link rel="stylesheet" href="/resources/demos/style.css">
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script>
+                    $(function () {
+                        $("#dialog").dialog();
+                    });
+                </script>
+                <div id="dialog" title="Предупреждение">
+                    <p>Нет строк для выгрузки.</p>
+                </div>
+            </div>
+        }
+    }
 </body>
 </html>

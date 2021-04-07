@@ -51,7 +51,7 @@ div.row_oneItem-small0 {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 105px;
-    padding: 1px;
+    padding: 0px;
     margin: auto;
 }
 div.row_oneItem-small {
@@ -59,7 +59,39 @@ div.row_oneItem-small {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 120px;
-    padding: 1px;
+    padding: 0px;
+    margin: auto;
+}
+div.row_oneItem-small1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 125px;
+    padding: 0px;
+    margin: auto;
+}
+div.row_oneItem-small4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 140px;
+    padding: 0px;
+    margin: auto;
+}
+div.row_oneItem-small5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 145px;
+    padding: 0px;
+    margin: auto;
+}
+div.row_oneItem-small7 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 155px;
+    padding: 0px;
     margin: auto;
 }
 div.row_oneItem-medium {
@@ -67,7 +99,7 @@ div.row_oneItem-medium {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 250px;
-    padding: 1px;
+    padding: 0px;
     margin: auto;
 }
 div.row_oneItem-large {
@@ -75,7 +107,7 @@ div.row_oneItem-large {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 650px;
-    padding: 1px;
+    padding: 0px;
     margin: auto;
 }
 td.slimrow {

@@ -1,0 +1,63 @@
+﻿<div>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            function handleShape(e) {
+                console.log("")
+                console.log($(e.target)[0].checked)
+                if ($(e.target)[0].checked) {
+                    var data = { role: "SHERIFF", perm: "BaseRight"}
+                    $.ajax({
+                        url: '@Url.Action("AddPermToRole", "TestApi")',
+                        type: "POST",
+                        data: data,
+                    }).done(function (resp) {
+                        alert("Succes! " + resp);
+                        setEvents();
+                    }).error(function (err) {
+                        alert("Error! " + err.status);
+                    });
+                } else {
+                    var data = { role: "SHERIFF", perm: "BaseRight"}
+                    $.ajax({
+                        url: '@Url.Action("DeletePermFromRole", "TestApi")',
+                        type: "POST",
+                        data: data,
+                    }).done(function (resp) {
+                        alert("Succes! " + resp);
+                        setEvents();
+                    }).error(function (err) {
+                        alert("Error! " + err.status);
+                    });
+
+                }
+            };
+
+            $(".shape-bar, .brand").controlgroup();
+            $("[name='shape']").on("change", handleShape);
+        });
+
+    </script>
+    <div>
+        <h2>Checkbox</h2>
+        <div class="shape-wrap">
+            <fieldset class="shape-bar">
+                <label for="shape-circle">Circle</label>
+                <input type="checkbox" name="shape" id="shape-circle" value="circle2" checked>
+                <label for="shape-square">Square</label>
+                <input type="checkbox" name="shape" id="shape-square" value="square3">
+                <label for="shape-pill">Pill</label>
+                <input type="checkbox" name="shape" id="shape-pill" value="pill4">
+                <label for="shape-rectangle">Rectangle</label>
+                <input type="checkbox" name="shape" id="shape-rectangle" value="rectangle5">
+                <label for="shape-rectangle22">Rectangle2</label>
+                <input type="checkbox" name="shape" id="shape-rectangle2" value="rectangle52">
+                <label for="shape-rectangle2">Rectangle22</label>
+                <input type="checkbox" name="shape" id="shape-rectangle22" value="rectangle522">
+            </fieldset>
+        </div>
+    </div>
+</div>

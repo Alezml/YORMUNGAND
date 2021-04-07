@@ -1,25 +1,41 @@
 ﻿@model MainReportWave1FS
 <div class="row">
     <form asp-controller="CessReport" asp-action="List1" method="post" class="form-check-label">
-        <div class="col-md-4 mt-3 mb-0">
-            <table>
+        <div class="col-md-1 mt-1 mb-0">
+            <table style="margin-top: 20px">
                 <thead>
                     <tr>
-                        <td align="left" valign="bottom" style="width:100px">Размер:<input asp-for="pagesize" class="form-control" /></td>
-                        <td align="left" valign="bottom" style="width:100px">Страница:<input asp-for="page" class="form-control" /></td>
-                        <td valign="bottom"><input class="btn btn-success" type="submit" value="Применить" /></td>
-                        <td>Найдено: @Model.count</td>
-                        <td>Из: @Model.countTotal</td>
-                        <td style="width: 150px; display: block; vertical-align: bottom;"><input class="btn btn-success" type="submit" value="Excel"  style=" margin-top: 15px" asp-controller="CessReport" asp-action="Export"></td>
+                        <td>Размер:</td>
+                        <td><input style="width:70px;" asp-for="pagesize" class="form-control" /></td>
+                        <td style="padding-left: 5px;"> Страница:</td>
+                        <td><input style="width:70px; padding-left: 5px" asp-for="page" class="form-control" /></td>
+                        <td style="padding-left: 5px;"><input class="btn btn-outline-dark" type="submit" value="Применить" /></td>
+                        <td style="padding-left: 75px;">Найдено </td>
+                        <td>@Model.count</td>
+                        <td> из </td>
+                        <td>@Model.countTotal</td>
+                        <td style="padding-left: 75px;"><input class="btn btn-outline-dark" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
+                        <td style="padding-left: 75px; display:block"><a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-outline-info compItem">Как пользоваться поиском</a></td>
+
                         <td>
                             <div id="modDialog" class="modal fade">
                                 <div id="dialogContent" class="modal-dialog"></div>
                             </div>
-                        </td>
-                        <td  valign="bottom" style="width:150px; display:block">
-                            @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
-                       new { id = "SQL_LIKE" }, new { @class = "compItem" })
-                        </td>
+                        </td>                        @*<td valign="bottom" style="width:100px">Из: @Model.countTotal</td>
+        <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
+
+                        @*<td valign="bottom" style="width:150px; padding-left: 90px;">
+             @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
+        new { id = "SQL_LIKE" }, new { @class = "compItem" })
+         </td>*@
+                        @*<td valign="bottom" style="padding-left: 90px;">
+            <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+        </td>*@
+                        @*<td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success compItem" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
+
+        <td valign="bottom" style="width:150px; padding-left: 90px;">
+            <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+        </td>*@
                     </tr>
                 </thead>
             </table>
@@ -33,10 +49,9 @@
                data-detail-filter="detailFilter"
                data-detail-formatter="DetailFormatter"
                data-show-toggle="true"
-               data-buttons-align="right"
                data-show-fullscreen="true"
                data-cookie="true"
-               data-height="1000"
+               @*data-height="1000"*@
                data-cookie-id-table="saveId"
                data-detail-view="true"
                data-detail-view-by-click="true"
@@ -44,122 +59,122 @@
                data-detail-view-icon="true">
             <thead>
                 <tr class="tr-class-1">
-                    <th data-field="ZM_LOT" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">ЗМ</div></th>
-                    <th data-field="REGION" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Регион</div></th>
-                    <th data-field="FILIAL" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Филиал</div></th>
-                    <th data-field="NRI_BS_N" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small0">Номер БС</div></th>
-                    <th data-field="NRI_BS_NAME" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Наименование БС</div></th>
-                    <th data-field="DS_N" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ДС</div></th>
-                    <th data-field="VIR_DOP_N" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small0">Дополнение</div></th>
-                    <th data-field="PROVIDER" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Поставщик</div></th>
-                    <th data-field="VIR_DATE" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">ВИР дата</div></th>
-                    <th data-field="VIR_SUMM_WO_NDS" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Сумма</div></th>
-                    <th data-field="INITIATOR_FIO" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Инициатор</div></th>
-                    <th data-field="RESPONSIBLE_FIO" data-detail-formatter="DetailFormatter"><div>Ответственный</div></th>
-                    <th data-field="STAGE" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Этап</div></th>
-                    <th data-field="STATUS" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Статус</div></th>
-                    <th data-field="PROCESSING" data-detail-formatter="DetailFormatter"><div class="row_oneItem-small">Обработка</div></th>
-                    <th data-field="VIR_DOC_TYPE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Тип_документа</div></th>
-                    <th data-field="VIR_DOP" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Дополнение</div></th>
-                    <th data-field="PR_N" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">PR_Номер</div></th>
-                    <th data-field="PR_STATUS" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">PR_статус</div></th>
-                    <th data-field="PR_COM" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">PR_Комментарий</div></th>
-                    <th data-field="SEVD" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">СЭВД</div></th>
-                    <th data-field="SEVD_N" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">СЭВД_Номер</div></th>
-                    <th data-field="ECM_LINK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ЕСМ_ссылка</div></th>
-                    <th data-field="DS_DATE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ДС_Дата</div></th>
-                    <th data-field="GFK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ГФК</div></th>
-                    <th data-field="VIR_START_WORK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Начало_работ</div></th>
-                    <th data-field="VIR_END_WORK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Завершение_работ</div></th>
-                    <th data-field="VIR_INTEGRATION_DATE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Дата_интеграции</div></th>
-                    <th data-field="DIADOK_UPLOAD_DATE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Диадок_Дата_загрузки</div></th>
-                    <th data-field="DIADOK_SIGN_DATE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Диадок_Дата_подписания</div></th>
-                    <th data-field="IMS_LINK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">IMS_ссылка</div></th>
-                    <th data-field="DIADOK_ID" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Диадок_ID</div></th>
-                    <th data-field="DIADOK_LINK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Диадок_ссылка</div></th>
-                    <th data-field="NRI_CODE_PROJECT" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">NRI_Код_проекта</div></th>
-                    <th data-field="CONTRACT_N" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Контракт_номер</div></th>
-                    <th data-field="DOG_N" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Договор_номер</div></th>
-                    <th data-field="DOG_DATE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Договор_дата</div></th>
-                    <th data-field="INITIATOR_MAIL" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Инициатор_почта</div></th>
-                    <th data-field="PROVIDER_INN" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Поставщик_ИНН</div></th>
-                    <th data-field="ERROR1" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Ошибка1</div></th>
-                    <th data-field="ERROR2" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Ошибка2</div></th>
-                    <th data-field="TECH_ERROR" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Тех_Ошибка</div></th>
-                    <th data-field="NRI_LINK" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">NRI_ссылка</div></th>
-                    <th data-field="VIR_PAY_CONDITIONS" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Условия_платежа</div></th>
-                    <th data-field="GEO" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">География</div></th>
-                    <th data-field="ZP_N" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ЗП_Номер</div></th>
-                    <th data-field="ZP_STATUS" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ЗП_Статус</div></th>
-                    <th data-field="BD_COM" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">БД_комментарий</div></th>
-                    <th data-field="PR_FILE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">PR_файл</div></th>
-                    <th data-field="VIR_COM" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_комментарий</div></th>
-                    <th data-field="DOUBLE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Дубль</div></th>
-                    <th data-field="VIR_DIAP" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">ВИР_Диапазоны</div></th>
-                    <th data-field="PROSTAVLENIE" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Проставление</div></th>
-                    <th data-field="ECM_FILL" data-visible="false" data-detail-formatter="DetailFormatter"><div class="row_oneItem-medium">Дозаполнение_ЕСМ</div></th>
-                    <th data-field="cancel" data-visible="false" data-detail-formatter="DetailFormatter" data-switchable="false"><div class="row_oneItem-NoWay"> </div></th>
-                    <th data-field="nodouble" data-visible="false" data-detail-formatter="DetailFormatter" data-switchable="false"><div class="row_oneItem-NoWay"> </div></th>
+                    <th data-field="ZM_LOT" data-detail-formatter="DetailFormatter">ЗМ</th>
+                    <th data-field="REGION" data-detail-formatter="DetailFormatter">Регион</th>
+                    <th data-field="FILIAL" data-detail-formatter="DetailFormatter">Филиал</th>
+                    <th data-field="NRI_BS_N" data-detail-formatter="DetailFormatter">Номер БС</th>
+                    <th data-field="NRI_BS_NAME" data-detail-formatter="DetailFormatter">Наименование БС</th>
+                    <th data-field="DS_N" data-detail-formatter="DetailFormatter">ДС</th>
+                    <th data-field="VIR_DOP_N" data-detail-formatter="DetailFormatter">Дополнение</th>
+                    <th data-field="PROVIDER" data-detail-formatter="DetailFormatter">Поставщик</th>
+                    <th data-field="VIR_DATE" data-detail-formatter="DetailFormatter">ВИР дата</th>
+                    <th data-field="VIR_SUMM_WO_NDS" data-detail-formatter="DetailFormatter">Сумма</th>
+                    <th data-field="INITIATOR_FIO" data-detail-formatter="DetailFormatter">Инициатор</th>
+                    <th data-field="RESPONSIBLE_FIO" data-detail-formatter="DetailFormatter">Ответственный</th>
+                    <th data-field="STAGE" data-detail-formatter="DetailFormatter">Этап</th>
+                    <th data-field="STATUS" data-detail-formatter="DetailFormatter">Статус</th>
+                    <th data-field="PROCESSING" data-detail-formatter="DetailFormatter">Обработка</th>
+                    <th data-field="VIR_DOC_TYPE" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Тип_документа</th>
+                    <th data-field="VIR_DOP" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Дополнение</th>
+                    <th data-field="PR_N" data-visible="false" data-detail-formatter="DetailFormatter">PR_Номер</th>
+                    <th data-field="PR_STATUS" data-visible="false" data-detail-formatter="DetailFormatter">PR_статус</th>
+                    <th data-field="PR_COM" data-visible="false" data-detail-formatter="DetailFormatter">PR_Комментарий</th>
+                    <th data-field="SEVD" data-visible="false" data-detail-formatter="DetailFormatter">СЭВД</th>
+                    <th data-field="SEVD_N" data-visible="false" data-detail-formatter="DetailFormatter">СЭВД_Номер</th>
+                    <th data-field="ECM_LINK" data-visible="false" data-detail-formatter="DetailFormatter">ЕСМ_ссылка</th>
+                    <th data-field="DS_DATE" data-visible="false" data-detail-formatter="DetailFormatter">ДС_Дата</th>
+                    <th data-field="GFK" data-visible="false" data-detail-formatter="DetailFormatter">ГФК</th>
+                    <th data-field="VIR_START_WORK" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Начало_работ</th>
+                    <th data-field="VIR_END_WORK" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Завершение_работ</th>
+                    <th data-field="VIR_INTEGRATION_DATE" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Дата_интеграции</th>
+                    <th data-field="DIADOK_UPLOAD_DATE" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_Дата_загрузки</th>
+                    <th data-field="DIADOK_SIGN_DATE" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_Дата_подписания</th>
+                    <th data-field="IMS_LINK" data-visible="false" data-detail-formatter="DetailFormatter">IMS_ссылка</th>
+                    <th data-field="DIADOK_ID" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_ID</th>
+                    <th data-field="DIADOK_LINK" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_ссылка</th>
+                    <th data-field="NRI_CODE_PROJECT" data-visible="false" data-detail-formatter="DetailFormatter">NRI_Код_проекта</th>
+                    <th data-field="CONTRACT_N" data-visible="false" data-detail-formatter="DetailFormatter">Контракт_номер</th>
+                    <th data-field="DOG_N" data-visible="false" data-detail-formatter="DetailFormatter">Договор_номер</th>
+                    <th data-field="DOG_DATE" data-visible="false" data-detail-formatter="DetailFormatter">Договор_дата</th>
+                    <th data-field="INITIATOR_MAIL" data-visible="false" data-detail-formatter="DetailFormatter">Инициатор_почта</th>
+                    <th data-field="PROVIDER_INN" data-visible="false" data-detail-formatter="DetailFormatter">Поставщик_ИНН</th>
+                    <th data-field="ERROR1" data-visible="false" data-detail-formatter="DetailFormatter">Ошибка1</th>
+                    <th data-field="ERROR2" data-visible="false" data-detail-formatter="DetailFormatter">Ошибка2</th>
+                    <th data-field="TECH_ERROR" data-visible="false" data-detail-formatter="DetailFormatter">Тех_Ошибка</th>
+                    <th data-field="NRI_LINK" data-visible="false" data-detail-formatter="DetailFormatter">NRI_ссылка</th>
+                    <th data-field="VIR_PAY_CONDITIONS" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Условия_платежа</th>
+                    <th data-field="GEO" data-visible="false" data-detail-formatter="DetailFormatter">География</th>
+                    <th data-field="ZP_N" data-visible="false" data-detail-formatter="DetailFormatter">ЗП_Номер</th>
+                    <th data-field="ZP_STATUS" data-visible="false" data-detail-formatter="DetailFormatter">ЗП_Статус</th>
+                    <th data-field="BD_COM" data-visible="false" data-detail-formatter="DetailFormatter">БД_комментарий</th>
+                    <th data-field="PR_FILE" data-visible="false" data-detail-formatter="DetailFormatter">PR_файл</th>
+                    <th data-field="VIR_COM" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_комментарий</th>
+                    <th data-field="DOUBLE" data-visible="false" data-detail-formatter="DetailFormatter">Дубль</th>
+                    <th data-field="VIR_DIAP" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Диапазоны</th>
+                    <th data-field="PROSTAVLENIE" data-visible="false" data-detail-formatter="DetailFormatter">Проставление</th>
+                    <th data-field="ECM_FILL" data-visible="false" data-detail-formatter="DetailFormatter">Дозаполнение_ЕСМ</th>
+                    <th data-field="cancel" data-visible="false" data-detail-formatter="DetailFormatter" data-switchable="false"></th>
+                    <th data-field="nodouble" data-visible="false" data-detail-formatter="DetailFormatter" data-switchable="false"></th>
                 </tr>
             </thead>
-            <tbody  class="tb-class-1">
+            <tbody class="tb-class-1">
                 <tr>
-                    <td class="slimrow"><input asp-for="ZM_LOT" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="REGION" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="FILIAL" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="NRI_BS_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="NRI_BS_NAME" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DS_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_DOP_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PROVIDER" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_DATEfrom" class="form-control" /><input asp-for="VIR_DATEto" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_SUMM_WO_NDSfrom" asp-format="{0:N2}" class="form-control" /><input asp-for="VIR_SUMM_WO_NDSto" asp-format="{0:N2}" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="INITIATOR_FIO" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="RESPONSIBLE_FIO" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="STAGE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="STATUS" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PROCESSING" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_DOC_TYPE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_DOP" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PR_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PR_STATUS" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PR_COM" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="SEVD" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="SEVD_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ECM_LINK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DS_DATE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="GFK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_START_WORK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_END_WORK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_INTEGRATION_DATE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DIADOK_UPLOAD_DATE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DIADOK_SIGN_DATE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="IMS_LINK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DIADOK_ID" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DIADOK_LINK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="NRI_CODE_PROJECT" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="CONTRACT_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DOG_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DOG_DATE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="INITIATOR_MAIL" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PROVIDER_INN" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ERROR1" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ERROR2" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="TECH_ERROR" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="NRI_LINK" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_PAY_CONDITIONS" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="GEO" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ZP_N" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ZP_STATUS" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="BD_COM" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PR_FILE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_COM" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="DOUBLE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="VIR_DIAP" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="PROSTAVLENIE" class="form-control" /></td>
-                    <td class="slimrow"><input asp-for="ECM_FILL" class="form-control" /></td>
-                    <td class="slimrow row_oneItem-extraSmall"></td>  @*data-field="id"*@
-                    <td class="slimrow row_oneItem-extraSmall"></td>  @*data-field="id"*@
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="ZM_LOT" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="REGION" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="FILIAL" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small0"><input asp-for="NRI_BS_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="NRI_BS_NAME" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DS_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small1"><input asp-for="VIR_DOP_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PROVIDER" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small7"><input asp-for="VIR_DATEfrom" class="form-control" /><input asp-for="VIR_DATEto" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small4"><input asp-for="VIR_SUMM_WO_NDSfrom" asp-format="{0:N2}" class="form-control" /><input asp-for="VIR_SUMM_WO_NDSto" asp-format="{0:N2}" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="INITIATOR_FIO" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="RESPONSIBLE_FIO" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="STAGE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="STATUS" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="PROCESSING" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_DOC_TYPE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_DOP" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PR_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PR_STATUS" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PR_COM" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="SEVD" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="SEVD_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="ECM_LINK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DS_DATE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="GFK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_START_WORK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_END_WORK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_INTEGRATION_DATE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DIADOK_UPLOAD_DATE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DIADOK_SIGN_DATE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="IMS_LINK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DIADOK_ID" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DIADOK_LINK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="NRI_CODE_PROJECT" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="CONTRACT_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="CONTRACT_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DOG_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DOG_DATE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="INITIATOR_MAIL" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PROVIDER_INN" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="ERROR1" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="ERROR2" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="TECH_ERROR" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="NRI_LINK" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_PAY_CONDITIONS" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="GEO" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="ZP_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="ZP_STATUS" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="BD_COM" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PR_FILE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_COM" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DOUBLE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_DIAP" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PROSTAVLENIE" class="form-control" /></div></td>
+                    <td class="slimrow row_oneItem-extraSmall"><div class="row_oneItem-NoWay"></div></td>  @*data-field="id"*@
+                    <td class="slimrow row_oneItem-extraSmall"><div class="row_oneItem-NoWay"></div></td>  @*data-field="id"*@
                 </tr>
                 @{
                     foreach (MainReportWave1 id in Model.data)
@@ -172,10 +187,18 @@
         </table>
     </form>
     <script>
+
         $(function () {
-            $('#table').bootstrapTable('hideColumn', 'cancel')
-            $('#table').bootstrapTable('hideColumn', 'nodouble')
-            $('#table').bootstrapTable()
+            $('#table').bootstrapTable({
+                formatsearch: function () {
+                    return 'Поиск по странице'
+                }
+            })
+        })
+        $(function () {
+            $('#table').bootstrapTable('hideColumn', 'cancel');
+            $('#table').bootstrapTable('hideColumn', 'nodouble');
+            $('#table').bootstrapTable();
         })
     </script>
     <script>
@@ -267,5 +290,4 @@
             return newDiv;
         }
     </script>
-
 </div>

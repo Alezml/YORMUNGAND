@@ -19,7 +19,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "ancmHostingModel": "InProcess",
-      "nativeDebugging": true,
+      "nativeDebugging": false,
       "use64Bit": true
     },
     "YORMUNGAND": {

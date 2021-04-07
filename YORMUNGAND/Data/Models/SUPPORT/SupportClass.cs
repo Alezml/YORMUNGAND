@@ -13,21 +13,30 @@ namespace YORMUNGAND.Data.Models.SUPPORT
             string fio = "";
             if (FullName != null)
             {
-                string[] _subs = FullName.Split(' ');
-                Boolean firstword = true;
-                foreach (string row in _subs)
+                if (FullName.IndexOf(' ') > -1)
                 {
-                    if (firstword)
+                    string[] _subs = FullName.Split(' ');
+                    Boolean firstword = true;
+                    foreach (string row in _subs)
                     {
-                        fio = row + ' ';
+                        if (firstword)
+                        {
+                            fio = row + ' ';
+                        }
+                        else
+                        {
+                            if (row.Length  > 0)
+                                fio = fio + row.Substring(0, 1) + '.';
+                        }
+                        firstword = false;
                     }
-                    else
-                    {
-                        fio = fio + row.Substring(0, 1) + '.';
-                    }
-                    firstword = false;
+                    return fio;
                 }
-                return fio;
+                else
+                {
+                    return FullName;
+                }
+                
             }
             else
             {

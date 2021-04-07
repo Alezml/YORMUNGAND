@@ -12,13 +12,20 @@ namespace YORMUNGAND.Controllers
     public class DetailItemController : Controller
     {
         private readonly IALLids _allids;
-        public DetailItemController(IALLids iAllids)
+        protected static IServiceProvider _service;
+        public DetailItemController(IALLids iAllids, IServiceProvider service)
         {
             _allids = iAllids;
+            _service = service;
         }
         [Route("DetailItem/{id}")]
-        public ViewResult List(string QID)
+        public IActionResult List(string QID) //IActionResult ViewResult
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             IEnumerable<QueueItemID> ids = null;
             ids = _allids.QueueItems.Where(i => i.QID.Equals(QID)).OrderBy(i => i.QID);
             var idsObj = new IdsListViewModel
@@ -30,6 +37,11 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ShowDetail(string QID)
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             return RedirectToAction(QID);
         }
     }

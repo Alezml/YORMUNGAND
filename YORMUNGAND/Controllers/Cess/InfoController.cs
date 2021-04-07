@@ -13,12 +13,26 @@ namespace YORMUNGAND.Controllers
 {
     public class InfoController : Controller
     {
+        protected static IServiceProvider _service;
+        public InfoController(IServiceProvider service)
+        {
+            _service = service;
+        }
         public ActionResult Index()
         {
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             return View();
         }
         public ActionResult HowToSearch(int d)
         {
+
+            if (!Access.IsAccess(_service, "BaseRight"))
+            {
+                return RedirectToAction("NoAccess", "Access");
+            }
             return PartialView();
         }
     }
