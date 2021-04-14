@@ -61,6 +61,7 @@ namespace YORMUNGAND.Data.Repository
             }
             return _PermList;
         }
+        //Создать новое право
         public AccessPermissionsForm AddNewPermission(AccessPermissionsForm inptForm)
         {
             if (inptForm.PERMISSION == null || inptForm.PERMISSION.Replace(" ", "") == "" || inptForm.PERMISSION == "Имя не может быть пустым")
@@ -79,7 +80,7 @@ namespace YORMUNGAND.Data.Repository
                     appDBContent.AccessPermissions.Add(new AccessPermissions
                     {
                         PERMISSION = inptForm.PERMISSION.Replace(" ", ""),
-                        DESC = inptForm.DESC.Replace(" ", "")
+                        DESC = inptForm.DESC
                     });
                     appDBContent.SaveChanges();
                     inptForm.PERMISSION = "Добавлено успешно";
@@ -133,7 +134,7 @@ namespace YORMUNGAND.Data.Repository
                     appDBContent.AccessRole.Add(new AccessRole
                     {
                         ROLE = inptForm.ROLE.Replace(" ", ""),
-                        DESC = inptForm.DESC.Replace(" ", "")
+                        DESC = inptForm.DESC
                     });
                     appDBContent.SaveChanges();
                     inptForm.ROLE = "Добавлено успешно";
@@ -225,6 +226,21 @@ namespace YORMUNGAND.Data.Repository
             AccessRole _role = appDBContent.AccessRole.FirstOrDefault(p => p.ROLE == role);
             _user.ACCESSROLE.Remove(_role);
             appDBContent.SaveChanges();
+        }
+        //добавить юзерагента в лог
+        public void AddUserAgentLog(string _userAgent, string _userName)
+        {
+            if (appDBContent.UserAgentLog.FirstOrDefault(u => u.USERNAME == _userName && u.USERAGENT == _userAgent) ==null )
+            {
+                appDBContent.UserAgentLog.Add(new UserAgentLog
+                {
+                    USERAGENT = _userAgent,
+                    USERNAME = _userName,
+                    LOGDATE = DateTime.Now
+                });
+                appDBContent.SaveChanges();
+
+            }
         }
     }
 }

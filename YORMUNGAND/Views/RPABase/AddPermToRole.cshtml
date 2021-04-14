@@ -10,10 +10,9 @@
                 console.log("")
                 console.log($(e.target)[0].checked)
                 if ($(e.target)[0].checked) {
-                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val() }
-
+                    var data = { role: "@ViewBag.Role", perm: $(e.target).val()}
                     $.ajax({
-                        url: '@Url.Action("AddRoleToUser", "TestApi")',
+                        url: '@Url.Action("AddPermToRole", "TestApi")',
                         type: "POST",
                         data: data,
                     }).done(function (resp) {
@@ -23,10 +22,9 @@
                         alert("Error! " + err.status);
                     });
                 } else {
-                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val()}
-                    console.log("@ViewBag.User")
+                    var data = { role: "@ViewBag.Role", perm: $(e.target).val()}
                     $.ajax({
-                        url: '@Url.Action("DeleteRoleFromUser", "TestApi")',
+                        url: '@Url.Action("DeletePermFromRole", "TestApi")',
                         type: "POST",
                         data: data,
                     }).done(function (resp) {
@@ -43,7 +41,7 @@
         });
     </script>
     <div>
-        <h2>Выбрать роли для пользователя @ViewBag.User</h2>
+        <h2>Выбрать права для роли @ViewBag.RoleDesc</h2>
         <div class="shape-wrap">
             <fieldset class="shape-bar">
                 @foreach (ThreeString _ts in Model)

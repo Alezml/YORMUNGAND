@@ -51,7 +51,7 @@ namespace YORMUNGAND.Controllers
         [HttpPost]
         public string DeleteRoleFromUser(string user, string role)
         {
-            user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
+            //user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
             _rep.DeleteRoleFromUser(user, role);
             return "У пользователя " + user + " удалена " + _rep.GetRoleDesc(role);
             //return "DEL " + role + " -=- " + perm;
@@ -59,7 +59,7 @@ namespace YORMUNGAND.Controllers
         [HttpPost]
         public string AddRoleToUser(string user, string role)
         {
-            user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
+            //user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
             _rep.AddRoleToUser(user, role);
             return "Пользователю " + user + " добавлена " + _rep.GetRoleDesc(role);
             //return "ADD " + role + " -=- " + perm;

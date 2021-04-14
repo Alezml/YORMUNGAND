@@ -24,10 +24,12 @@ namespace YORMUNGAND.Controllers
         //[Route("CESS/{id}")]
         public IActionResult List(string id)
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             IEnumerable<QueueItemID> ids = null;
             IEnumerable<QueueItemID> accid = null;

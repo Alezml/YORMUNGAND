@@ -36,19 +36,33 @@ namespace YORMUNGAND.Data.Models
                 
             }
         }
-        public static Boolean IsAccess(IServiceProvider services, string prava)
+        public static string GetUserName(IServiceProvider services)
+        {
+            return services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.User.Identity.Name;
+        }
+        public static string IsAccess(IServiceProvider services, string prava)
         {
             var context = services.GetService<AppDBContent>();
             var _user = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.User.Identity.Name;
+            string _userAgent = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Request.Headers["User-Agent"].ToString();
             var _rep = new AccessToolsRepository(context);
+
             IniUser(_rep, _user);
+            LogUserAgent(_rep, _userAgent, _user);
             if (CheckAccess(_rep, _user, prava))
             {
-                return true;
+                if (_userAgent.Contains("Chrome") || _userAgent.Contains("YaBrowser"))
+                {
+                    return "true";
+                }
+                else
+                {
+                    return "wrongagent";
+                }
             }
             else
             {
-                return false;
+                return "false";
             }
         }
         public static Boolean CheckAccess(AccessToolsRepository _rep, string UserName, string prava)
@@ -74,6 +88,10 @@ namespace YORMUNGAND.Data.Models
                 }
             }
             return false;
+        }
+        public static void LogUserAgent(AccessToolsRepository _rep, string uaName, string userName)
+        {
+            _rep.AddUserAgentLog(uaName, userName);
         }
     }
 }

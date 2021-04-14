@@ -28,10 +28,12 @@ namespace YORMUNGAND.Controllers
         [Route("CESS/REPORTS/WAVE1")]
         public IActionResult List1()
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "P_CESS_READER"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             MainReportWave1FS SerchParam = new MainReportWave1FS();
             //var s = new CessReportRepository(_appDBContent);
@@ -47,9 +49,12 @@ namespace YORMUNGAND.Controllers
         [Route("CESS/REPORTS/WAVE1")]
         public IActionResult List1(MainReportWave1FS SerchParam)
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "P_CESS_READER"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             SerchParam = MainReportWave1FS.Check(SerchParam);
             SerchParam.data = _rep.MainReportWave1ss(SerchParam);
@@ -61,9 +66,12 @@ namespace YORMUNGAND.Controllers
         }
         public IActionResult Detail1stWave(int ID)
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "P_CESS_READER"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             MainReportWave1 One1stWave = new MainReportWave1();
             One1stWave = _rep.Detail1stWaveById(ID);
@@ -73,9 +81,12 @@ namespace YORMUNGAND.Controllers
 
         public ActionResult Export(MainReportWave1FS SerchParam)
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "P_CESS_READER"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             MainReportWave1FS _sp = SerchParam;
             _sp.data = null;
@@ -242,17 +253,23 @@ namespace YORMUNGAND.Controllers
         }
         public ActionResult HowToSearch(string id)
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "P_CESS_READER"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             return PartialView();
         }
         public ActionResult InProcess(int id)
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             return PartialView();
         }

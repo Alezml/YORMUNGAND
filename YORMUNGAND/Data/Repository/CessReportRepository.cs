@@ -321,7 +321,7 @@ namespace YORMUNGAND.Data.Repository
         EF.Functions.Like(p.DOUBLE, (SerchParam.DOUBLE ?? "%")) || p.DOUBLE == null).Where(p =>
         EF.Functions.Like(p.VIR_DIAP, (SerchParam.VIR_DIAP ?? "%")) || p.VIR_DIAP == null).Where(p =>
         EF.Functions.Like(p.PROSTAVLENIE, (SerchParam.PROSTAVLENIE ?? "%")) || p.PROSTAVLENIE == null).Where(p =>
-        EF.Functions.Like(p.NRI_LINK, (SerchParam.NRI_LINK ?? "%")) || p.NRI_LINK == null).Take(1000);
+        EF.Functions.Like(p.NRI_LINK, (SerchParam.NRI_LINK ?? "%")) || p.NRI_LINK == null);
         ////Вывести записи по параметрам поиска
         //public IEnumerable<MainReportWave1> MainReportWave1s(MainReportWave1FS SerchParam) =>
         //    appDBContent.MAIN_1.OrderByDescending(i => i.VIR_DATE).OrderBy(l => l.id).Where(k1 =>

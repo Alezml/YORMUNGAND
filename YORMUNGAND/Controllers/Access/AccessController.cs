@@ -17,5 +17,9 @@ namespace YORMUNGAND.Controllers
         {
             return PartialView();
         }
+        public ActionResult WrongAgent()
+        {
+            return PartialView();
+        }
     }
 }

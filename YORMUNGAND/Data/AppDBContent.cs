@@ -20,6 +20,8 @@ namespace YORMUNGAND.Data
         public DbSet<AccessUsers> AccessUsers { get; set; }
         public DbSet<AccessRole> AccessRole { get; set; }
         public DbSet<AccessPermissions> AccessPermissions { get; set; }
+        public DbSet<UserAgentLog> UserAgentLog { get; set; }
+        public DbSet<CashBlock> CashBlock { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<QueueItemID>()

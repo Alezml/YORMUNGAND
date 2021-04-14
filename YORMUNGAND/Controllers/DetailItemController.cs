@@ -21,10 +21,12 @@ namespace YORMUNGAND.Controllers
         [Route("DetailItem/{id}")]
         public IActionResult List(string QID) //IActionResult ViewResult
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             IEnumerable<QueueItemID> ids = null;
             ids = _allids.QueueItems.Where(i => i.QID.Equals(QID)).OrderBy(i => i.QID);
@@ -37,10 +39,12 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ShowDetail(string QID)
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             return RedirectToAction(QID);
         }

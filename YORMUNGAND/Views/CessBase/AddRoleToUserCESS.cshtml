@@ -11,7 +11,7 @@
                 console.log($(e.target)[0].checked)
                 if ($(e.target)[0].checked) {
                     var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val() }
-
+                    console.log("@ViewBag.User")
                     $.ajax({
                         url: '@Url.Action("AddRoleToUser", "TestApi")',
                         type: "POST",

@@ -23,10 +23,12 @@ namespace YORMUNGAND.Controllers
 
         public RedirectToActionResult ToDoOk(string QID)
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)
@@ -38,10 +40,12 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ToDoFalse(string QID)
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)
@@ -53,10 +57,12 @@ namespace YORMUNGAND.Controllers
         }
         public RedirectToActionResult ToNew(string QID)
         {
-
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             var item = _qiRep.QueueItems.FirstOrDefault(i => i.QID == QID);
             if (item != null)

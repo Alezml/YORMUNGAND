@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YORMUNGAND.Data;
 
 namespace YORMUNGAND.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210412085340_d4")]
+    partial class d4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,30 +112,6 @@ namespace YORMUNGAND.Migrations
                     b.HasKey("id");
 
                     b.ToTable("AccessUsers");
-                });
-
-            modelBuilder.Entity("YORMUNGAND.Data.Models.CashBlock", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("BLOCKED")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("BLOCK_DATE")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("BLOCK_NAME")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DATE")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id");
-
-                    b.ToTable("CashBlock");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.Cess76Int", b =>

@@ -1,0 +1,25 @@
+﻿@model CashBlock
+<div class="col-md-8 mt-5 mb-2" style="margin-left: auto; margin-right:auto; margin-top:auto; margin-bottom:auto">
+    <form asp-controller="CashBase" asp-action="Block" method="post" class="form-check-label" style="text-align: center;">
+            @{
+                if (@Model.BLOCKED)
+                {
+                    <div style="text-align:center; margin-top:105px;">
+                        <h4>Блокировка установлена @Model.BLOCK_DATE пользователем: @Model.BLOCK_NAME</h4>
+                        <h1>Заблокирована дата: @Model.DATE.ToShortDateString()</h1>
+                    </div>
+                }
+                else
+                {
+                    <div style="text-align:center; margin-top:105px;">
+                        <h1>Блокировка не установлена</h1>
+                    </div>
+                }
+            }
+            <div style="justify-content: center; display: flex; margin-top: 55px;">
+                <input style="text-align:center; width:200px" asp-for="DATE" class="form-control" />
+                <input style="width:200px; text-align:center;" class="btn btn-outline-dark" type="submit" value="Блокировать" />
+                <input style="width:200px" class="btn btn-outline-dark" type="submit" value="Снять блокировку" asp-controller="CashBase" asp-action="Unlock" />
+            </div>
+    </form>
+</div>

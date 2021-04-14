@@ -24,9 +24,12 @@ namespace YORMUNGAND.Controllers
         }
         public IActionResult index()
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "RPA";
             return View();
@@ -34,9 +37,12 @@ namespace YORMUNGAND.Controllers
         [Route("RPABASE/PERMISSIONS")]
         public IActionResult Permissions()
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "Управление правами";
             AccessPermissionsForm APF = new AccessPermissionsForm();
@@ -47,9 +53,12 @@ namespace YORMUNGAND.Controllers
         [Route("RPABASE/PERMISSIONS")]
         public IActionResult Permissions(AccessPermissionsForm inptForm)
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "Управление правами";
 
@@ -86,9 +95,12 @@ namespace YORMUNGAND.Controllers
         [Route("RPABASE/ROLE")]
         public IActionResult Role()
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "Управление ролями";
             AccessRoleForm ARL = new AccessRoleForm();
@@ -99,9 +111,12 @@ namespace YORMUNGAND.Controllers
         [Route("RPABASE/ROLE")]
         public IActionResult Role(AccessRoleForm inptForm)
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "Управление ролями";
 
@@ -111,6 +126,13 @@ namespace YORMUNGAND.Controllers
         }
         public IActionResult AddPermToRole(string role)
         {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
             ViewBag.Role = role;
             ViewBag.RoleDesc = _rep.GetRoleDesc(role);
             return View(_rep.GetPermByRoleAndOther(role));
@@ -118,9 +140,12 @@ namespace YORMUNGAND.Controllers
         [Route("RPABASE/USER")]
         public IActionResult Users()
         {
-            if (!Access.IsAccess(_service, "RPA"))
+            switch (Access.IsAccess(_service, "RPA"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
             ViewBag.Title = "Управление пользователя";
             return View(_rep.GetAllUsers());

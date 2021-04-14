@@ -10,25 +10,27 @@
                 console.log("")
                 console.log($(e.target)[0].checked)
                 if ($(e.target)[0].checked) {
-                    var data = { role: "@ViewBag.Role", perm: $(e.target).val()}
+                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val() }
+                    console.log("@ViewBag.User")
                     $.ajax({
-                        url: '@Url.Action("AddPermToRole", "TestApi")',
+                        url: '@Url.Action("AddRoleToUser", "TestApi")',
                         type: "POST",
                         data: data,
                     }).done(function (resp) {
-                        alert("Succes! " + resp);
+                        alert("Success! " + resp);
                         setEvents();
                     }).error(function (err) {
                         alert("Error! " + err.status);
                     });
                 } else {
-                    var data = { role: "@ViewBag.Role", perm: $(e.target).val()}
+                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val()}
+                    console.log("@ViewBag.User")
                     $.ajax({
-                        url: '@Url.Action("DeletePermFromRole", "TestApi")',
+                        url: '@Url.Action("DeleteRoleFromUser", "TestApi")',
                         type: "POST",
                         data: data,
                     }).done(function (resp) {
-                        alert("Succes! " + resp);
+                        alert("Success! " + resp);
                         setEvents();
                     }).error(function (err) {
                         alert("Error! " + err.status);
@@ -41,7 +43,7 @@
         });
     </script>
     <div>
-        <h2>Выбрать права для роли @ViewBag.RoleDesc</h2>
+        <h2>Выбрать роли для пользователя @ViewBag.User</h2>
         <div class="shape-wrap">
             <fieldset class="shape-bar">
                 @foreach (ThreeString _ts in Model)

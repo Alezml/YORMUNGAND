@@ -17,11 +17,13 @@ namespace YORMUNGAND.Controllers
         }
         public IActionResult Index()
         {
-            if (!Access.IsAccess(_service, "BaseRight"))
+            switch (Access.IsAccess(_service, "BaseRight"))
             {
-                return RedirectToAction("NoAccess", "Access");
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
             }
-
             return View();
         }
     }
