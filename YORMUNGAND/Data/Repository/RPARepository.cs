@@ -67,6 +67,10 @@ namespace YORMUNGAND.Data.Repository
         {
             return appDBContent.RPAAlert.FirstOrDefault(a => a.id == id);
         }
+        public DateTime GetLastAlertDate()
+        {
+            return appDBContent.RPAAlert.OrderByDescending(a => a.EVENT_TIME).Select(a => a.EVENT_TIME).FirstOrDefault();
+        }
     }
 }
 

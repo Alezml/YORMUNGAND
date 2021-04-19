@@ -17,5 +17,6 @@ namespace YORMUNGAND.Data.Models
     {
         public IEnumerable<Alert> ToDo { get; set; }
         public IEnumerable<Alert> Worked { get; set; }
+        public TimeSpan TimeWOAlerts { get; set; }
     }
 }
