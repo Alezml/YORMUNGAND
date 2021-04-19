@@ -1,0 +1,27 @@
+﻿@model AlertView
+<div class="main_content-body">
+    <meta http-equiv="refresh" content="5">
+    @{
+        if (Model.ToDo.Count() != 0)
+        {
+            <h1>Внимание:</h1>
+            <div class="row mt-2 mb-2">
+                @{
+                    foreach (Alert id in Model.ToDo)
+                    {
+                        @await Html.PartialAsync("AlertsToDo", @id)
+                    }
+                }
+            </div>
+        }
+    }
+    <h1>Решено:</h1>
+    <div class="row mt-2 mb-2">
+        @{
+            foreach (Alert id in Model.Worked)
+            {
+                @await Html.PartialAsync("AlertsWorked", @id)
+            }
+        }
+    </div>
+</div>

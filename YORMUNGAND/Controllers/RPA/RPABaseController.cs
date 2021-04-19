@@ -16,11 +16,13 @@ namespace YORMUNGAND.Controllers
         protected static IServiceProvider _service;
         private readonly AppDBContent _appDBContent;
         private AccessToolsRepository _rep;
+        private RPARepository _repR;
         public RPABaseController(IServiceProvider service, AppDBContent appDBContent)
         {
             _service = service;
             _appDBContent = appDBContent;
             _rep = new AccessToolsRepository(_appDBContent);
+            _repR = new RPARepository(_appDBContent);
         }
         public IActionResult index()
         {
@@ -154,6 +156,63 @@ namespace YORMUNGAND.Controllers
         {
             ViewBag.User = user;
             return View(_rep.GetRoleByUserAndOther(user));
+        }
+        [Route("RPA/ALERTS")]
+        public IActionResult Alerts()
+        {
+            switch (Access.IsAccess(_service, "P_RPA_VIEW_1"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Отслеживание алертов";
+            AlertView alertview = new AlertView
+            {
+                Worked = _repR.GetWorkedAlerts(),
+                ToDo = _repR.GetToDoAlerts()
+            };
+            return View(alertview);
+        }
+        [Route("RPA/ALERTDETAIL")]
+        public IActionResult AlertDetail(int id)
+        {
+            switch (Access.IsAccess(_service, "P_RPA_VIEW_1"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Отслеживание алертов";
+            return View(_repR.GetAlertByID(id));
+        }
+        public IActionResult WorkAlert(int id)
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Отслеживание алертов";
+            _repR.WorkAlert(id);
+            return RedirectToAction("Alerts");
+        }
+        public IActionResult ToDoAlert(int id)
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Отслеживание алертов";
+            _repR.ToDoAlert(id);
+            return RedirectToAction("Alerts");
         }
     }
 }

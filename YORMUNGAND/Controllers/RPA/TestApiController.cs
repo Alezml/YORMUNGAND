@@ -18,10 +18,12 @@ namespace YORMUNGAND.Controllers
     {
         AppDBContent _appDBContent;
         AccessToolsRepository _rep;
+        RPARepository _repR;
         public TestApiController(AppDBContent appDBContent)
         {
             _appDBContent = appDBContent;
             _rep = new AccessToolsRepository(_appDBContent);
+            _repR = new RPARepository(_appDBContent);
         }
 
         [Route("Permissions")]
@@ -51,18 +53,20 @@ namespace YORMUNGAND.Controllers
         [HttpPost]
         public string DeleteRoleFromUser(string user, string role)
         {
-            //user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
             _rep.DeleteRoleFromUser(user, role);
             return "У пользователя " + user + " удалена " + _rep.GetRoleDesc(role);
-            //return "DEL " + role + " -=- " + perm;
         }
         [HttpPost]
         public string AddRoleToUser(string user, string role)
         {
-            //user = user.Replace("VIMPELCOM_MAIN", "VIMPELCOM_MAIN" + "\\");
             _rep.AddRoleToUser(user, role);
             return "Пользователю " + user + " добавлена " + _rep.GetRoleDesc(role);
-            //return "ADD " + role + " -=- " + perm;
+        }
+        [HttpPost]
+        public string CreateWarning(string proces, string tag, string errorMsg, string dolist)
+        {
+            _repR.AddAlert(proces, tag, errorMsg, dolist);
+            return "SUCCESS";
         }
     }
 }

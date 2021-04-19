@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YORMUNGAND.Data;
 
 namespace YORMUNGAND.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210415151808_d42")]
+    partial class d42
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,12 +121,6 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Blink")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DOLIST")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ERROR_MSG")
                         .HasColumnType("nvarchar(max)");
 
@@ -136,12 +132,6 @@ namespace YORMUNGAND.Migrations
 
                     b.Property<string>("TAG")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("WORKED")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("WORKED_TIME")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("id");
 

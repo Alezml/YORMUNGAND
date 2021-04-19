@@ -1,0 +1,23 @@
+﻿@model Alert
+
+<div class="col-lg-12" style="margin:5px;">
+    <div style="    background: rgba(227, 255, 158, 0.62);
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    " class="aer">
+        <a asp-controller="RPABase" asp-action="AlertDetail" asp-route-ID="@Model.id">
+            <div class="topchic">
+                <h2>@Model.TAG</h2>
+                <p>
+                    Процес: @Model.PROCES
+                </p>
+                <p>
+                    Время события: @Model.EVENT_TIME
+                    Ошибка: @Model.ERROR_MSG
+                    Как решить: @Model.DOLIST
+                </p>
+            </div>
+        </a>
+    </div>
+</div>

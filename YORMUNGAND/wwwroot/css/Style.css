@@ -119,3 +119,53 @@ th.slimrow {
 a.compItem {
     width: 650px;
 }
+@-webkit-keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff;
+        background: rgb(0, 0, 0);
+    }
+}
+
+@keyframes pulsate {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff;
+        background: rgb(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes pulsatetext {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
+}
+
+@keyframes pulsatetext {
+    50% {
+        color: #fff;
+        text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff;
+    }
+}
+#blink7 {
+    color: rgb(245,245,245);
+    text-shadow: 0 -1px rgba(0,0,0,.1);
+    background: rgb(255, 0, 0);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    -webkit-animation: pulsate 0.5s linear infinite;
+    animation: pulsate 0.5s linear infinite;
+}
+
+#noblink7 {
+    color: rgb(245,245,245);
+    text-shadow: 0 -1px rgba(0,0,0,.1);
+    background: rgb(255, 0, 0);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    -webkit-animation: pulsatetext 1s linear infinite;
+    animation: pulsatetext 1s linear infinite;
+}

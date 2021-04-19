@@ -1,0 +1,31 @@
+﻿@model Alert
+
+<div class="col-lg-12" style="margin:5px; margin-top:100px">
+    <div style="    background: rgba(0, 139, 140, 0.35);
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    " >
+        <div class="AlertToDo">
+            <h2>@Model.TAG</h2>
+            <p>
+                Процес: @Model.PROCES
+                @{
+                    if (Model.WORKED)
+                    {
+                    <a class="btn btn-warning" asp-controller="RPABase" asp-action="ToDoAlert" asp-route-ID="@Model.id">Вернуть в работу</a>
+                    }
+                    else
+                    {
+                    <a class="btn btn-warning" asp-controller="RPABase" asp-action="WorkAlert" asp-route-ID="@Model.id">Решить</a>
+                    }
+                }
+            </p>
+                <p>
+                    Время события: @Model.EVENT_TIME
+                    Ошибка: @Model.ERROR_MSG
+                    Как решить: @Model.DOLIST
+                </p>
+        </div>
+    </div>
+</div>

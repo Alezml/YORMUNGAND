@@ -22,6 +22,7 @@ namespace YORMUNGAND.Data
         public DbSet<AccessPermissions> AccessPermissions { get; set; }
         public DbSet<UserAgentLog> UserAgentLog { get; set; }
         public DbSet<CashBlock> CashBlock { get; set; }
+        public DbSet<Alert> RPAAlert { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<QueueItemID>()
