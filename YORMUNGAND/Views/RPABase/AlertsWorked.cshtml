@@ -1,22 +1,27 @@
 ﻿@model Alert
 
 <div class="col-lg-12" style="margin:5px;">
-    <div style="    background: rgba(227, 255, 158, 0.62);
+    <div style="background: rgba(227, 255, 158, 0.62);
         border-radius: 15px;
         text-align: center;
-        box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    " class="aer">
+        padding: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);"
+        class="aer">
         <a asp-controller="RPABase" asp-action="AlertDetail" asp-route-ID="@Model.id">
             <div class="topchic">
-                <h2>@Model.TAG</h2>
-                <p>
-                    Процес: @Model.PROCES
-                </p>
-                <p>
-                    Время события: @Model.EVENT_TIME
-                    Ошибка: @Model.ERROR_MSG
-                    Как решить: @Model.DOLIST
-                </p>
+                <div class="d-flex flex-row justify-content-around mt-2 align-items-center">
+                    <h2 class="d-inline-block">@Model.TAG</h2>
+                    <h2 class="d-inline-block">@Model.PROCES</h2>
+                    <p class="d-inline-block">@Model.EVENT_TIME</p>
+                </div>
+                <div class="alert-bg_color-opacity_white d-flex flex-row">
+                    <h6 class="d-inline-block min-width-150 text-left">Как решить:</h6>
+                    <h6 class="d-inline-block flex-grow-1 text-left">@Model.DOLIST</h6>
+                </div>
+                <div class="alert-bg_color-opacity_white d-flex flex-row">
+                    <h6 class="d-inline-block min-width-150 text-left">Ошибка:</h6>
+                    <h6 class="d-inline-block flex-grow-1 text-left">@Model.ERROR_MSG</h6>
+                </div>
             </div>
         </a>
     </div>
