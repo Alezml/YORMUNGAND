@@ -173,3 +173,7 @@ a.compItem {
 .text-left {
     text-align: left;
 }
+.text-shadow-black {
+    text-shadow: black 0 0 5px;
+    font-weight: 800 !important;
+}
