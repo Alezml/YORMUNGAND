@@ -173,10 +173,10 @@ namespace YORMUNGAND.Controllers
                 Worked = _repR.GetWorkedAlerts(),
                 ToDo = _repR.GetToDoAlerts()
             };
-            if (alertview.ToDo.Count() == 0)
-            {
-                alertview.TimeWOAlerts = DateTime.Now - _repR.GetLastAlertDate();
-            }
+            //if (alertview.ToDo.Count() == 0)
+            //{
+            //    alertview.TimeWOAlerts = DateTime.Now - _repR.GetLastAlertDate();
+            //}
             return View(alertview);
         }
         [Route("RPA/ALERTDETAIL")]
