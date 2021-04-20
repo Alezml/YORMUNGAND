@@ -50,7 +50,7 @@ namespace YORMUNGAND.Data.Repository
         // получить отработанные алерты
         public IEnumerable<Alert> GetWorkedAlerts()
         {
-            return appDBContent.RPAAlert.Where(a => a.WORKED == true).OrderByDescending(a => a.WORKED_TIME).Take(3);
+            return appDBContent.RPAAlert.Where(a => a.WORKED == true).OrderByDescending(a => a.WORKED_TIME).Take(4);
         }
         // получить не отработанные алерты
         public IEnumerable<Alert> GetToDoAlerts()
