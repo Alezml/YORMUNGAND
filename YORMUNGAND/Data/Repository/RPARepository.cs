@@ -59,7 +59,7 @@ namespace YORMUNGAND.Data.Repository
             foreach (Alert alert in alerts)
             {
                 //доавить признак мигания если событие недавние
-                alert.Blink = alert.EVENT_TIME.AddMinutes(5) > DateTime.Now ? "blink7" : "noblink7";
+                alert.Blinks = alert.EVENT_TIME.AddMinutes(5) > DateTime.Now ? "blink7" : "noblink7";
             }
             return alerts;
         }

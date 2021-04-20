@@ -22,6 +22,7 @@ namespace YORMUNGAND.Data.Models
         public DateTime EVENT_TIME { set; get; }
         public bool WORKED { set; get; }
         public DateTime WORKED_TIME { set; get; }
-        virtual public string Blink { set; get; }
+        virtual public Boolean Blink { set; get; }
+        virtual public string Blinks { set; get; }
     }
 }

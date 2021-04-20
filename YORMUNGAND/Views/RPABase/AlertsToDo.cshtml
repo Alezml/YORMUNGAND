@@ -7,7 +7,7 @@
         box-shadow: 0 0 15px rgba(0,0,0,0.5);
     " class="aer">
         <a asp-controller="RPABase" asp-action="AlertDetail" asp-route-ID="@Model.id">
-            <div id="blink7">
+            <div id="@Model.Blinks">
                 <h1>@Model.TAG</h1>
                 <h2>
                    Как решить: @Model.DOLIST
