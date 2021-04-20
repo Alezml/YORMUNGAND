@@ -48,9 +48,9 @@ namespace YORMUNGAND.Data.Repository
             };
         }
         // получить отработанные алерты
-        public IEnumerable<Alert> GetWorkedAlerts()
+        public IEnumerable<Alert> GetWorkedAlerts(int count)
         {
-            return appDBContent.RPAAlert.Where(a => a.WORKED == true).OrderByDescending(a => a.WORKED_TIME).Take(4);
+            return appDBContent.RPAAlert.Where(a => a.WORKED == true).OrderByDescending(a => a.WORKED_TIME).Take(count);
         }
         // получить не отработанные алерты
         public IEnumerable<Alert> GetToDoAlerts()
