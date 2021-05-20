@@ -17,15 +17,24 @@ namespace YORMUNGAND.Data.Repository
         }
         public void AddAlert(string proces, string tag, string errorMsg, string dolist)
         {
-            appDBContent.RPAAlert.Add(new Alert
+            Alert _alert = appDBContent.RPAAlert.FirstOrDefault(a => a.PROCES == proces && a.TAG == tag && a.ERROR_MSG == errorMsg && a.DOLIST == dolist && a.WORKED == false);
+            if (_alert == null)
             {
-                PROCES = proces,
-                TAG = tag,
-                ERROR_MSG = errorMsg,
-                DOLIST = dolist,
-                EVENT_TIME = DateTime.Now,
-                WORKED = false,
-            });
+                appDBContent.RPAAlert.Add(new Alert
+                {
+                    PROCES = proces,
+                    TAG = tag,
+                    ERROR_MSG = errorMsg,
+                    DOLIST = dolist,
+                    EVENT_TIME = DateTime.Now,
+                    WORKED = false,
+                    COUNT = 1,
+                });
+            }
+            else
+            {
+                _alert.COUNT = _alert.COUNT + 1;
+            }
             appDBContent.SaveChanges();
         }
         public void WorkAlert(int id)
@@ -55,11 +64,11 @@ namespace YORMUNGAND.Data.Repository
         // получить не отработанные алерты
         public IEnumerable<Alert> GetToDoAlerts()
         {
-            IEnumerable<Alert> alerts = appDBContent.RPAAlert.Where(a => a.WORKED == false).OrderByDescending(a => a.WORKED_TIME);
+            IEnumerable<Alert> alerts = appDBContent.RPAAlert.Where(a => a.WORKED == false).OrderByDescending(a => a.EVENT_TIME);
             foreach (Alert alert in alerts)
             {
                 //доавить признак мигания если событие недавние
-                alert.Blinks = alert.EVENT_TIME.AddMinutes(5) > DateTime.Now ? "blink7" : "noblink7";
+                alert.Blinks = alert.EVENT_TIME.AddSeconds(10) > DateTime.Now ? "blink7" : "noblink7";
             }
             return alerts;
         }

@@ -20,6 +20,5 @@ namespace YORMUNGAND.Data
 
         public DbSet<MainReportWave1> MAIN_1 { get; set; }
         public DbSet<TestModel> TEST { get; set; }
-
     }
 }

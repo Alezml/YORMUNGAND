@@ -1,15 +1,17 @@
 ﻿<!doctype html>
 
-<html lang="en">
+<html lang="en" id="html">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/font-awesome-4.7.0/css/font-awesome.min.css">
 
     @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">*@
     @*<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">*@
 
     <link href="~/css/bootstrap-table.min.css" rel="stylesheet" />
-    <link href="~/css/all.css" rel="stylesheet"  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link href="~/css/all.css" rel="stylesheet" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 
@@ -44,7 +46,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid" style="background: rgba(241, 239, 199, 0.05)">
-                <a class="navbar-brand" href="#">@User.Identity.Name</a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -65,7 +67,8 @@
                     </ul>
                     <form class="d-flex">
                         @*<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">*@
-                        <button class="btn btn-outline-success" type="submit">@User.Identity.IsAuthenticated</button>
+                        <a class="navbar-brand" href="#"  onclick='window.location.reload()'>@User.Identity.Name.Replace("VIMPELCOM_MAIN\\", "")</a>
+                        <button class="btn btn-outline-success" type="submit" asp-controller="RPABase" asp-action="DeployReport">v0.006</button>
                     </form>
                 </div>
             </div>
@@ -85,7 +88,7 @@
             //var item = $('#table')
             //console.log(item);
             if (item != null) {
-                item.style.height = (window.screen.availHeight - 290) + 'px';
+                item.style.height = (window.innerHeight - 220) + 'px';
                 //console.error(document.getElementsByClassName("fixed-table-container")[0].style.height);
                 $('input.form-control.search-input').attr('placeholder', 'Поиск по странице')
                 clearTimeout(inter);

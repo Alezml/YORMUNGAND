@@ -3,7 +3,7 @@
     overflow-x: hidden;
 }
 .main_content-body {
-    margin-top: 100px;
+    margin-top: 10px;
 }
 h1 {
     margin: 10px;
@@ -165,7 +165,7 @@ a.compItem {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     line-height: 1.3em;
-    max-height: 4.5em;
+    max-height: 3.1em;
 }
 .min-width-150 {
     min-width: 150px;
@@ -176,4 +176,15 @@ a.compItem {
 .text-shadow-black {
     text-shadow: black 0 0 5px;
     font-weight: 800 !important;
+}
+
+.btn-outline-light:hover {
+    color: rgb(255,0,0);
+}
+
+div.modal-body > table td,
+div.modal-body > table th,
+div.modal-body > table tr,
+div.modal-body > table {
+    border: 1px solid black;
 }

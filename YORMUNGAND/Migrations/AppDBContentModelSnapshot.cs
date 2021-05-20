@@ -125,6 +125,9 @@ namespace YORMUNGAND.Migrations
                     b.Property<string>("Blinks")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("COUNT")
+                        .HasColumnType("int");
+
                     b.Property<string>("DOLIST")
                         .HasColumnType("nvarchar(max)");
 
@@ -416,6 +419,27 @@ namespace YORMUNGAND.Migrations
                     b.HasKey("id");
 
                     b.ToTable("QueueItemIDs");
+                });
+
+            modelBuilder.Entity("YORMUNGAND.Data.Models.StatistikCessReportDwnld", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EVENT_DATE")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ROWS_COUNT")
+                        .HasColumnType("int");
+
+                    b.Property<string>("USER")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("StatCessReportDwnld");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.UserAgentLog", b =>

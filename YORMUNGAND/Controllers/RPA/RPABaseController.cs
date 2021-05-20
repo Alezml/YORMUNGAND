@@ -218,5 +218,10 @@ namespace YORMUNGAND.Controllers
             _repR.ToDoAlert(id);
             return RedirectToAction("Alerts");
         }
+        [Route("RPABASE/DEPLOY")]
+        public IActionResult DeployReport()
+        {
+            return View();
+        }
     }
 }

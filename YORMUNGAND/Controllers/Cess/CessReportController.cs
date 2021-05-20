@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,13 +16,15 @@ namespace YORMUNGAND.Controllers
 {
     public class CessReportController : Controller
     {
-        private readonly CESSDBContent _appDBContent;
+        private readonly CESSDBContent _cessDBContent;
+        private readonly AppDBContent _appDBContent;
         private CessReportRepository _rep;
         protected static IServiceProvider _service;
-        public CessReportController(CESSDBContent appDBContent, IServiceProvider service)
+        public CessReportController(CESSDBContent cessDBContent, IServiceProvider service, AppDBContent appDBContent)
         {
             _appDBContent = appDBContent;
-            _rep = new CessReportRepository(_appDBContent);
+            _cessDBContent = cessDBContent;
+            _rep = new CessReportRepository(_cessDBContent, _appDBContent);
             _service = service;
         }
         //[Route("CESS/REPORTS/WAVE1/{page:int?}")]
@@ -41,6 +44,7 @@ namespace YORMUNGAND.Controllers
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
             ViewBag.Title = "ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -61,6 +65,7 @@ namespace YORMUNGAND.Controllers
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
             ViewBag.Title = "Поиск ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -90,7 +95,8 @@ namespace YORMUNGAND.Controllers
             }
             MainReportWave1FS _sp = SerchParam;
             _sp.data = null;
-            IEnumerable<MainReportWave1> _data = _rep.MainReportWave1Export(_sp);
+            IEnumerable<MainReportWave1> _data = _rep.MainReportWave1Exports(_sp);
+            _rep.AddStatisticCessReprtDwld(Access.GetUserName(_service), _data.ToList().Count); //статистика
             if (_data.ToList().Count == 0)
             {
                 ViewData["NoExport"] = "Yes";
