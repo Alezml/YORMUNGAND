@@ -9,8 +9,8 @@
     <td class="slimrow" title="@SupportClass.ToHtml(Model.DS_N)"><div class="row_oneItem-medium">@Model.DS_N</div></td>
     <td class="slimrow" title="@SupportClass.ToHtml(Model.VIR_DOP_N)"><div class="row_oneItem-small0">@Model.VIR_DOP_N</div></td>
     <td class="slimrow" title="@SupportClass.ToHtml(Model.PROVIDER)"><div class="row_oneItem-medium">@Model.PROVIDER</div></td>
-    <td class="slimrow" title="@Model.VIR_DATE"><div class="row_oneItem-small">@SupportClass.DataShort(Model.VIR_DATE)</div></td>
-    <td class="slimrow" title="@Model.VIR_SUMM_WO_NDS"><div class="row_oneItem-small">@decimal.Round(Model.VIR_SUMM_WO_NDS, 2)</div></td>
+    <td class="slimrow" title="@SupportClass.DataShort(Model.VIR_DATE)"><div class="row_oneItem-small">@SupportClass.DataShort(Model.VIR_DATE)</div></td>
+    <td class="slimrow" title="@decimal.Round(Model.VIR_SUMM_WO_NDS, 2)"><div class="row_oneItem-small">@decimal.Round(Model.VIR_SUMM_WO_NDS, 2)</div></td>
     <td class="slimrow" title="@Model.INITIATOR_FIO"><div class="row_oneItem-small">@SupportClass.FIOshort(Model.INITIATOR_FIO)</div></td>
     <td class="slimrow" title="@Model.RESPONSIBLE_FIO"><div class="row_oneItem-small">@SupportClass.FIOshort(Model.RESPONSIBLE_FIO)</div></td>
     <td class="slimrow" title="@Model.STAGE"><div class="row_oneItem-small">@Model.STAGE</div></td>
@@ -23,7 +23,14 @@
     <td class="slimrow" title="@Model.PR_COM"><div class="row_oneItem-medium">@Model.PR_COM</div></td>
     <td class="slimrow" title="@Model.SEVD"><div class="row_oneItem-medium">@Model.SEVD</div></td>
     <td class="slimrow" title="@Model.SEVD_N"><div class="row_oneItem-medium">@Model.SEVD_N</div></td>
-    <td class="slimrow" title="@Model.ECM_LINK"><div class="row_oneItem-medium">@Model.ECM_LINK</div></td>
+    @if (@Model.ECM_LINK == "")
+    {
+        <td class="slimrow" title=""><div class="row_oneItem-medium"></div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="@Model.ECM_LINK"><div class="row_oneItem-medium"><a href="@Model.ECM_LINK" target="_blank" onclick="event.stopPropagation()">Открыть ECM</a></div></td>
+    }
     <td class="slimrow" title="@Model.DS_DATE"><div class="row_oneItem-medium">@Model.DS_DATE</div></td>
     <td class="slimrow" title="@Model.GFK"><div class="row_oneItem-medium">@Model.GFK</div></td>
     <td class="slimrow" title="@Model.VIR_START_WORK"><div class="row_oneItem-medium">@Model.VIR_START_WORK</div></td>
@@ -31,10 +38,32 @@
     <td class="slimrow" title="@Model.VIR_INTEGRATION_DATE"><div class="row_oneItem-medium">@Model.VIR_INTEGRATION_DATE</div></td>
     <td class="slimrow" title="@Model.DIADOK_UPLOAD_DATE"><div class="row_oneItem-medium">@Model.DIADOK_UPLOAD_DATE</div></td>
     <td class="slimrow" title="@Model.DIADOK_SIGN_DATE"><div class="row_oneItem-medium">@Model.DIADOK_SIGN_DATE</div></td>
-    <td class="slimrow" title="@Model.IMS_LINK"><div class="row_oneItem-medium">@Model.IMS_LINK</div></td>
+    @if (@Model.IMS_LINK == "")
+    {
+        <td class="slimrow" title=""><div class="row_oneItem-medium"></div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="@Model.IMS_LINK"><div class="row_oneItem-medium"><a href="@Model.IMS_LINK" target="_blank" onclick="event.stopPropagation()">Открыть IMS</a></div></td>
+    }
     <td class="slimrow" title="@Model.DIADOK_ID"><div class="row_oneItem-medium">@Model.DIADOK_ID</div></td>
-    <td class="slimrow" title="@Model.DIADOK_LINK"><div class="row_oneItem-medium">@Model.DIADOK_LINK</div></td>
-    <td class="slimrow" title="@Model.NRI_CODE_PROJECT"><div class="row_oneItem-medium">@Model.NRI_CODE_PROJECT</div></td>
+    @if (@Model.DIADOK_LINK == "")
+    {
+        <td class="slimrow" title=""><div class="row_oneItem-medium"></div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="@Model.DIADOK_LINK"><div class="row_oneItem-medium"><a href="@Model.DIADOK_LINK" target="_blank" onclick="event.stopPropagation()">Открыть Диадок</a></div></td>
+    }
+    @if (@Model.NRI_CODE_PROJECT == "")
+    {
+        <td class="slimrow" title=""><div class="row_oneItem-medium"></div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="@Model.NRI_CODE_PROJECT"><div class="row_oneItem-medium"><a href="http://nri-application.vimpelcom.ru/terrabyte/project/index.jsp?&type=prjbs&id=@Model.NRI_CODE_PROJECT" target="_blank" onclick="event.stopPropagation()">@Model.NRI_CODE_PROJECT</a></div></td>
+    }
+
     <td class="slimrow" title="@Model.CONTRACT_N"><div class="row_oneItem-medium">@Model.CONTRACT_N</div></td>
     <td class="slimrow" title="@Model.DOG_N"><div class="row_oneItem-medium">@Model.DOG_N</div></td>
     <td class="slimrow" title="@Model.DOG_DATE"><div class="row_oneItem-medium">@Model.DOG_DATE</div></td>
@@ -43,7 +72,14 @@
     <td class="slimrow" title="@Model.ERROR1"><div class="row_oneItem-medium">@Model.ERROR1</div></td>
     <td class="slimrow" title="@Model.ERROR2"><div class="row_oneItem-medium">@Model.ERROR2</div></td>
     <td class="slimrow" title="@Model.TECH_ERROR"><div class="row_oneItem-medium">@Model.TECH_ERROR</div></td>
-    <td class="slimrow" title="@Model.NRI_LINK"><div class="row_oneItem-medium">@Model.NRI_LINK</div></td>
+    @if (@Model.NRI_LINK == "")
+    {
+        <td class="slimrow" title=""><div class="row_oneItem-medium"></div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="@Model.NRI_LINK"><div class="row_oneItem-medium"><a href="@Model.NRI_LINK" target="_blank" onclick="event.stopPropagation()">Открыть NRI</a></div></td>
+    }
     <td class="slimrow" title="@Model.VIR_PAY_CONDITIONS"><div class="row_oneItem-medium">@Model.VIR_PAY_CONDITIONS</div></td>
     <td class="slimrow" title="@Model.GEO"><div class="row_oneItem-medium">@Model.GEO</div></td>
     <td class="slimrow" title="@Model.ZP_N"><div class="row_oneItem-medium">@Model.ZP_N</div></td>
@@ -55,7 +91,7 @@
     <td class="slimrow" title="@Model.VIR_DIAP"><div class="row_oneItem-medium">@Model.VIR_DIAP</div></td>
     <td class="slimrow" title="@Model.PROSTAVLENIE"><div class="row_oneItem-medium">@Model.PROSTAVLENIE</div></td>
     <td class="slimrow" title="@Model.ECM_FILL"><div class="row_oneItem-medium">@Model.ECM_FILL</div></td>
-    <td class="slimrow" title="Отменить обработку роботом"><div><a class="btn btn-danger" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank" >Отменить обработку роботом</a></div></td>
-    <td class="slimrow" title="Не дубль"><div><a class="btn btn-warning" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank" >Это не дубль</a></div></td>
+    <td class="slimrow" title="Отменить обработку роботом"><div><a class="btn btn-danger" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank">Отменить обработку роботом</a></div></td>
+    <td class="slimrow" title="Не дубль"><div><a class="btn btn-warning" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank">Это не дубль</a></div></td>
 
 </tr>

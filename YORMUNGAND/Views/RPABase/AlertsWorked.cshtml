@@ -7,22 +7,33 @@
         padding: 10px;
         box-shadow: 0 0 15px rgba(0,0,0,0.5);"
         class="aer">
-        <a asp-controller="RPABase" asp-action="AlertDetail" asp-route-ID="@Model.id">
-            <div class="topchic">
-                <div class="d-flex flex-row justify-content-around mt-2 align-items-center">
-                    <h2 class="d-inline-block">@Model.TAG</h2>
-                    <h2 class="d-inline-block">@Model.PROCES</h2>
-                    <p class="d-inline-block">@Model.EVENT_TIME</p>
-                </div>
-                <div class="alert-bg_color-opacity_white d-flex flex-row">
-                    <h6 class="d-inline-block min-width-150 text-left">Как решить:</h6>
-                    <h6 class="d-inline-block flex-grow-1 text-left">@Model.DOLIST</h6>
-                </div>
-                <div class="alert-bg_color-opacity_white d-flex flex-row">
-                    <h6 class="d-inline-block min-width-150 text-left">Ошибка:</h6>
-                    <h6 class="d-inline-block flex-grow-1 text-left">@Model.ERROR_MSG</h6>
-                </div>
+        <div class="d-flex flex-row justify-content-around mt-2 align-items-center">
+            <h2 class="d-inline-block">@Model.TAG</h2>
+            @if (@Model.COUNT > 1)
+            {
+                <h2 class="d-inline-block">@Model.PROCES (@Model.COUNT)</h2>
+            }
+            else
+            {
+                <h2 class="d-inline-block">@Model.PROCES</h2>
+            }
+            <div class="d-inline-block">
+                <p class="d-inline-block">@Model.EVENT_TIME</p>
+                <a class="btn btn-outline-success btn-sm" asp-controller="RPABase" asp-action="AlertDetail" asp-route-ID="@Model.id">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-outline-success btn-sm" asp-controller="RPABase" asp-action="ToDoAlert" asp-route-ID="@Model.id">
+                    <i class="fa fa-reply" aria-hidden="true"></i>
+                </a>
             </div>
-        </a>
+        </div>
+        <div class="alert-bg_color-opacity_white d-flex flex-row">
+            <h6 class="d-inline-block min-width-150 text-left">Как решить:</h6>
+            <h6 class="d-inline-block flex-grow-1 text-left">@Model.DOLIST</h6>
+        </div>
+        <div class="alert-bg_color-opacity_white d-flex flex-row">
+            <h6 class="d-inline-block min-width-150 text-left">Ошибка:</h6>
+            <h6 class="d-inline-block flex-grow-1 text-left">@Model.ERROR_MSG</h6>
+        </div>
     </div>
 </div>

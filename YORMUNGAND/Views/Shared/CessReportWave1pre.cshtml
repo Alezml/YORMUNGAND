@@ -12,7 +12,7 @@
                         <td style="padding-left: 5px;"><input class="btn btn-outline-dark" type="submit" value="Применить" /></td>
                         <td style="padding-left: 75px;">Найдено </td>
                         <td>@Model.count</td>
-                        <td> из </td>
+                        <td></td>
                         <td>@Model.countTotal</td>
                         <td style="padding-left: 75px;"><input class="btn btn-outline-dark" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
                         <td style="padding-left: 75px; display:block"><a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-outline-info compItem">Как пользоваться поиском</a></td>
@@ -22,24 +22,27 @@
                                 <div id="dialogContent" class="modal-dialog"></div>
                             </div>
                         </td>                        @*<td valign="bottom" style="width:100px">Из: @Model.countTotal</td>
-        <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
+                    <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
 
                         @*<td valign="bottom" style="width:150px; padding-left: 90px;">
-             @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
-        new { id = "SQL_LIKE" }, new { @class = "compItem" })
-         </td>*@
+                         @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
+                    new { id = "SQL_LIKE" }, new { @class = "compItem" })
+                     </td>*@
                         @*<td valign="bottom" style="padding-left: 90px;">
-            <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
-        </td>*@
+                        <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                    </td>*@
                         @*<td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success compItem" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
 
-        <td valign="bottom" style="width:150px; padding-left: 90px;">
-            <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
-        </td>*@
+                    <td valign="bottom" style="width:150px; padding-left: 90px;">
+                        <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                    </td>*@
                     </tr>
                 </thead>
             </table>
         </div>
+        <a style="float: left; margin-top: 10px" class="btn btn-outline-dark" asp-controller="CessReport" asp-action="List1" title="Очистить поиск">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+        </a>
 
         <table data-toggle="table"
                id="table"
@@ -51,6 +54,7 @@
                data-show-toggle="true"
                data-show-fullscreen="true"
                data-cookie="true"
+               data-card-view="false"
                @*data-height="1000"*@
                data-cookie-id-table="saveId"
                data-detail-view="true"
@@ -89,7 +93,7 @@
                     <th data-field="VIR_INTEGRATION_DATE" data-visible="false" data-detail-formatter="DetailFormatter">ВИР_Дата_интеграции</th>
                     <th data-field="DIADOK_UPLOAD_DATE" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_Дата_загрузки</th>
                     <th data-field="DIADOK_SIGN_DATE" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_Дата_подписания</th>
-                    <th data-field="IMS_LINK" data-visible="false" data-detail-formatter="DetailFormatter">IMS_ссылка</th>
+                    <th data-field="IMS_LINK" data-visible="false">IMS_ссылка</th>
                     <th data-field="DIADOK_ID" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_ID</th>
                     <th data-field="DIADOK_LINK" data-visible="false" data-detail-formatter="DetailFormatter">Диадок_ссылка</th>
                     <th data-field="NRI_CODE_PROJECT" data-visible="false" data-detail-formatter="DetailFormatter">NRI_Код_проекта</th>
@@ -120,7 +124,7 @@
             <tbody class="tb-class-1">
                 <tr>
                     <td class="slimrow"><div class="row_oneItem-small"><input asp-for="ZM_LOT" class="form-control" /></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="REGION" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="REGION" class="form-control" asp-items="@Model.REGIONSELECT"></select></div></td>
                     <td class="slimrow"><div class="row_oneItem-small"><input asp-for="FILIAL" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-small0"><input asp-for="NRI_BS_N" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="NRI_BS_NAME" class="form-control" /></div></td>
@@ -198,6 +202,7 @@
         $(function () {
             $('#table').bootstrapTable('hideColumn', 'cancel');
             $('#table').bootstrapTable('hideColumn', 'nodouble');
+            $('#table').bootstrapTable('hideColumn', 'refreshfrom');
             $('#table').bootstrapTable();
         })
     </script>
@@ -218,6 +223,7 @@
                 //var elementFakeScroll = document.querySelector('.fake-scroll');
                 //elementFakeScroll.style.width = e.target.scrollLeft + 250 + 'px';
                 //console.log(e.target.scrollLeft);
+                $table.bootstrapTable('toggleDetailView', 1)
             }
             var newDiv = document.createElement("table");
             //newDiv.style.display = "inline-block";
@@ -288,6 +294,15 @@
             newDiv.innerHTML = newDiv.innerHTML + "<tbody></table></div></td></tr><tbody></table>";
             newDiv.innerHTML = newDiv.innerHTML + "<div id='modDialog' class='modal fade'><div id='dialogContent' class='modal-dialog'></div></div>";
             return newDiv;
+        }
+        function DetailFormatterNO(index, row) {
+            $table.bootstrapTable('toggleDetailView', index)
+            return ""
+        }
+    </script>
+    <script>
+        function skipdetail(e) {
+        e.preventDefault();
         }
     </script>
 </div>

@@ -170,7 +170,7 @@ namespace YORMUNGAND.Controllers
             ViewBag.Title = "Отслеживание алертов";
             AlertView alertview = new AlertView
             {
-                Worked = _repR.GetWorkedAlerts(),
+                Worked = _repR.GetWorkedAlerts(3),
                 ToDo = _repR.GetToDoAlerts()
             };
             //if (alertview.ToDo.Count() == 0)
@@ -217,6 +217,11 @@ namespace YORMUNGAND.Controllers
             ViewBag.Title = "Отслеживание алертов";
             _repR.ToDoAlert(id);
             return RedirectToAction("Alerts");
+        }
+        [Route("RPABASE/DEPLOY")]
+        public IActionResult DeployReport()
+        {
+            return View();
         }
     }
 }

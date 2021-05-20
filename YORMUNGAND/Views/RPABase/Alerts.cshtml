@@ -1,33 +1,45 @@
 ﻿@model AlertView
 <div class="main_content-body">
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="10">
     @{
         if (Model.ToDo.Count() != 0)
         {
-            <h1>Внимание:</h1>
-            <div class="row mt-2 mb-2">
-                @{
+        <h1 style="float: left; width: 45%;">Внимание:</h1>
+        <h1 style="float: left; width: 45%; text-align: right;">@DateTime.Now.ToString("H:mm d/MM")</h1>
+        <div style="clear: left"></div>
+        <div class="row mt-0 mb-0">
+            @{
                     foreach (Alert id in Model.ToDo)
                     {
-                        @await Html.PartialAsync("AlertsToDo", @id)
+                @await Html.PartialAsync("AlertsToDo", @id)
                     }
-                }
-            </div>
+            }
+        </div>
         }
         else
         {
         @*<div class="row mt-2 mb-2" style="text-align:center">
-            <h1>Успешно работаем без инцидентов  @Model.TimeWOAlerts.Days дней @Model.TimeWOAlerts.Hours часов  @Model.TimeWOAlerts.Minutes минут @Model.TimeWOAlerts.Seconds секунд</h1>
-        </div>*@
+                <h1>Успешно работаем без инцидентов  @Model.TimeWOAlerts.Days дней @Model.TimeWOAlerts.Hours часов  @Model.TimeWOAlerts.Minutes минут @Model.TimeWOAlerts.Seconds секунд</h1>
+            </div>*@
         }
     }
-    <h1>Решено:</h1>
-    <div class="row mt-2 mb-2">
+    <h1 style="float: left; width: 45%;">Решено:</h1>
+    @if (Model.ToDo.Count() == 0)
+    {
+    <h1 style="float: left; width: 45%; text-align: right;">@DateTime.Now.ToString("H:mm d/MM")</h1>
+    }
+    <div style="clear: left"></div>
+
+
+    <div class="row mt-0 mb-0">
         @{
             foreach (Alert id in Model.Worked)
             {
-                @await Html.PartialAsync("AlertsWorked", @id)
+            @await Html.PartialAsync("AlertsWorked", @id)
             }
         }
     </div>
+    <script>
+        document.getElementById('html').style.overflowY = 'hidden';
+    </script>
 </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace YORMUNGAND.Data.Models
         public string NRI_LINK { set; get; }
         public string ZM_LOT { set; get; }
         public string REGION { set; get; }
+        public List<SelectListItem> REGIONSELECT { set; get; }
         public string FILIAL { set; get; }
         public string NRI_BS_N { set; get; }
         public string NRI_BS_NAME { set; get; }
