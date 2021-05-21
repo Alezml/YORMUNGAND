@@ -7,9 +7,9 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class Process
     {
-        private int id { get; set; }
-        private string ProcessName { get; set; }
-        private string Responsible { get; set; }
+        public int id { get; set; }
+        public string ProcessName { get; set; }
+        public string Responsible { get; set; }
         public virtual List<ProcessChild> ProcessChildrenList { get; set; }
     }
 }

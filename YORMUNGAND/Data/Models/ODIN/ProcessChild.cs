@@ -7,14 +7,16 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class ProcessChild : Process
     {
-        private int id { get; set; }
-        private Process processId { get; set; }
-        private string startParams { get; set; }
-        private int priority { get; set; }
+        public int id { get; set; }
+        public Process processId { get; set; }
+        public string startParams { get; set; }
+        public int priority { get; set; }
         public virtual List<Machine> machineList { get; set; }
-        private int maxCountMachines { get; set; }
-        private int minCountMachines { get; set; }
+        public int maxCountMachines { get; set; }
+        public int minCountMachines { get; set; }
         public virtual List<SchedulerProcess> SchedulerProcessesList { get; set; }
+        public virtual List<QueueProcesses> QueueProcessesList { get; set; }
         public virtual List<DefaultQueueProcesses> DefaultQueueProcessesList { get; set; }
+        public virtual List<QueueProcessLog> QueueProcessLogList { get; set; }
     }
 }

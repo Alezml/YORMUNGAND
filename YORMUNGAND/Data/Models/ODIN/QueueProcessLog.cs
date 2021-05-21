@@ -7,14 +7,13 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class QueueProcessLog
     {
-        private string id { get; set; }
-        private QueueProcesses queueProcessesId { get; set; }
-        private DateTime StartRequestTime { get; set; }
-        private DateTime StartProcessTime { get; set; }
-        private DateTime EndProcessTime { get; set; }
-        private Machine Machine { get; set; }
-        private bool isSuccess { get; set; }
-        private bool needRestart { get; set; }
-        private ProcessChild restartableProcess { get; set; }
+        public string id { get; set; }
+        public DateTime StartRequestTime { get; set; }
+        public DateTime StartProcessTime { get; set; }
+        public DateTime EndProcessTime { get; set; }
+        public Machine Machine { get; set; }
+        public bool isSuccess { get; set; }
+        public bool needRestart { get; set; }
+        public ProcessChild restartableProcess { get; set; }
     }
 }

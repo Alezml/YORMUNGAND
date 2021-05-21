@@ -7,8 +7,8 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class Machine
     {
-        private int id { get; set; }
-        private string machineName { get; set; }
+        public int id { get; set; }
+        public string machineName { get; set; }
         public virtual List<ProcessChild> ProcessChildrenList { get; set; }
         public virtual List<QueueProcessLog> QueueProcessLogsList { get; set; }
     }

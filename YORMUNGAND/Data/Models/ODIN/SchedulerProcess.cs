@@ -7,8 +7,8 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class SchedulerProcess
     {
-        private int id { get; set; }
-        private ProcessChild processChildId { get; set; }
-        private DateTime timeStart { get; set; }
+        public int id { get; set; }
+        public ProcessChild processChildId { get; set; }
+        public DateTime timeStart { get; set; }
     }
 }

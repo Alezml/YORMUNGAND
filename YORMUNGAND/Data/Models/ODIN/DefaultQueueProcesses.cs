@@ -7,10 +7,10 @@ namespace YORMUNGAND.Data.Models.ODIN
 {
     public class DefaultQueueProcesses
     {
-        private int id { get; set; }
-        private string typeOfSchedule { get; set; }
-        private int paramDay { get; set; }
-        private TimeSpan timeSpanStart { get; set; }
-        private ProcessChild processChild { get; set; }
+        public int id { get; set; }
+        public string typeOfSchedule { get; set; }
+        public int paramDay { get; set; }
+        public TimeSpan timeSpanStart { get; set; }
+        public ProcessChild processChild { get; set; }
     }
 }
