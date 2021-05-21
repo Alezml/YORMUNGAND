@@ -21,6 +21,7 @@ namespace YORMUNGAND.Controllers
         {
             _odinDBContent = odinDBContent;
             _rep = new OdinRepository(_odinDBContent);
+            _service = service;
         }
         [Route("SS/MACHINE")]
         public IActionResult SS_Machine()
