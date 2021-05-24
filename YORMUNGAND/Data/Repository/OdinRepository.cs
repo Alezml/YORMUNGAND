@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using YORMUNGAND.Data.Interfaces;
 using YORMUNGAND.Data.Models;
 using YORMUNGAND.Data.Models.ODIN;
+using System.Text.RegularExpressions;
 
 namespace YORMUNGAND.Data.Repository
 {
@@ -24,20 +25,27 @@ namespace YORMUNGAND.Data.Repository
         //Добавить машинку
         public string AddNewMachine(MachineForm MF)
         {
-            Machine machine = odinDBContent.Machine.FirstOrDefault(m => m.machineName == MF.machineName);
-            if (machine == null)
+            if (Regex.IsMatch(MF.machineName, @"[^0-9a-zA-Z\-]"))
             {
-                odinDBContent.Machine.Add(new Machine
-                {
-                    machineName = MF.machineName
-                }
-                    );
-                odinDBContent.SaveChanges();
-                return "Добавлена успешно";
+                return "Недопустимые символы";
             }
             else
             {
-                return "Уже существует";
+                Machine machine = odinDBContent.Machine.FirstOrDefault(m => m.machineName == MF.machineName);
+                if (machine == null)
+                {
+                    odinDBContent.Machine.Add(new Machine
+                    {
+                        machineName = MF.machineName
+                    }
+                        );
+                    odinDBContent.SaveChanges();
+                    return "Добавлена успешно";
+                }
+                else
+                {
+                    return "Уже существует";
+                }
             }
         }
     }
