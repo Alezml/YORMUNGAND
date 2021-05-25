@@ -22,8 +22,8 @@ namespace YORMUNGAND.Data.Repository
         {
             return odinDBContent.Machine.OrderByDescending(m => m.id);
         }
-        //Добавить машинку
         public string AddNewMachine(MachineForm MF)
+        //Добавить машинку
         {
             if (Regex.IsMatch(MF.machineName, @"[^0-9a-zA-Z\-]"))
             {
@@ -47,6 +47,11 @@ namespace YORMUNGAND.Data.Repository
                     return "Уже существует";
                 }
             }
+        }
+        public IEnumerable<Guid> GetAllGuidsFromProcess()
+        //Получить список всех гуид процессов в базе планировщика
+        {
+            return odinDBContent.Process.Select(p => p.BPprocessid);
         }
     }
 }

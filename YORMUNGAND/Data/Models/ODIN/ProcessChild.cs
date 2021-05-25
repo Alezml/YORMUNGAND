@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace YORMUNGAND.Data.Models.ODIN
 {
-    public class ProcessChild : Process
+    public class ProcessChild
     {
         public int id { get; set; }
         public Process processId { get; set; }
