@@ -44,7 +44,10 @@ namespace YORMUNGAND.Controllers
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
-            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы", "", "", "", "");
+            SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", "", "", "", "");
+            SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", "", "", "", "");
+            SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", "", "", "", "");
             ViewBag.Title = "ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -61,11 +64,19 @@ namespace YORMUNGAND.Controllers
                     return RedirectToAction("NoAccess", "Access");
             }
             SerchParam = MainReportWave1FS.Check(SerchParam);
-            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
+            if (SerchParam.page > (SerchParam.count / SerchParam.pagesize + (SerchParam.count % SerchParam.pagesize == 0 ? 0 : 1)))
+            {
+                SerchParam.page = 1;
+            }
+            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
-            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы", "", SerchParam.FILIAL, SerchParam.STAGE, SerchParam.PROCESSING);
+            SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", SerchParam.REGION, "", SerchParam.STAGE, SerchParam.PROCESSING);
+            SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", SerchParam.REGION, SerchParam.FILIAL, "", SerchParam.PROCESSING);
+            SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", SerchParam.REGION, SerchParam.FILIAL, SerchParam.STAGE, "");
+
             ViewBag.Title = "Поиск ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }

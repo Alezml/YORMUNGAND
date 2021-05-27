@@ -1,4 +1,11 @@
 ﻿@model MainReportWave1FS
+@functions
+{
+    int Page(int countTotal, int pagesize)
+    {
+        return countTotal / pagesize + (countTotal % pagesize == 0 ? 0 : 1);
+    }
+}
 <div class="row">
     <form asp-controller="CessReport" asp-action="List1" method="post" class="form-check-label">
         <div class="col-md-1 mt-1 mb-0">
@@ -8,11 +15,13 @@
                         <td>Размер:</td>
                         <td><input style="width:70px;" asp-for="pagesize" class="form-control" /></td>
                         <td style="padding-left: 5px;"> Страница:</td>
-                        <td><input style="width:70px; padding-left: 5px" asp-for="page" class="form-control" /></td>
+                        <td><input style="width:70px; padding-left: 5px" asp-for="page" class="form-control" value=@Model.page/></td>
+                        <td> Из </td>
+                        <td> @Page(@Model.count, @Model.pagesize)</td>
                         <td style="padding-left: 5px;"><input class="btn btn-outline-dark" type="submit" value="Применить" /></td>
                         <td style="padding-left: 75px;">Найдено </td>
                         <td>@Model.count</td>
-                        <td></td>
+                        <td> Из </td>
                         <td>@Model.countTotal</td>
                         <td style="padding-left: 75px;"><input class="btn btn-outline-dark" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
                         <td style="padding-left: 75px; display:block"><a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-outline-info compItem">Как пользоваться поиском</a></td>
@@ -22,20 +31,20 @@
                                 <div id="dialogContent" class="modal-dialog"></div>
                             </div>
                         </td>                        @*<td valign="bottom" style="width:100px">Из: @Model.countTotal</td>
-                    <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
+                            <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
 
                         @*<td valign="bottom" style="width:150px; padding-left: 90px;">
-                         @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
-                    new { id = "SQL_LIKE" }, new { @class = "compItem" })
-                     </td>*@
+                                 @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
+                            new { id = "SQL_LIKE" }, new { @class = "compItem" })
+                             </td>*@
                         @*<td valign="bottom" style="padding-left: 90px;">
-                        <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
-                    </td>*@
+                                <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                            </td>*@
                         @*<td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success compItem" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
 
-                    <td valign="bottom" style="width:150px; padding-left: 90px;">
-                        <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
-                    </td>*@
+                            <td valign="bottom" style="width:150px; padding-left: 90px;">
+                                <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                            </td>*@
                     </tr>
                 </thead>
             </table>
@@ -124,20 +133,23 @@
             <tbody class="tb-class-1">
                 <tr>
                     <td class="slimrow"><div class="row_oneItem-small"><input asp-for="ZM_LOT" class="form-control" /></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="REGION" class="form-control" asp-items="@Model.REGIONSELECT"></select></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="FILIAL" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="REGION" class="form-control select_send_ajax" asp-items="@Model.REGIONSELECT"></select></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="FILIAL" class="form-control select_send_ajax" asp-items="@Model.FILIALSELECT"></select></div></td>
+                    @*<td class="slimrow"><div class="row_oneItem-small"><input asp-for="FILIAL" class="form-control" /></div></td>*@
                     <td class="slimrow"><div class="row_oneItem-small0"><input asp-for="NRI_BS_N" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="NRI_BS_NAME" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="DS_N" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-small1"><input asp-for="VIR_DOP_N" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PROVIDER" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-small7"><input asp-for="VIR_DATEfrom" class="form-control" /><input asp-for="VIR_DATEto" class="form-control" /></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small4"><input asp-for="VIR_SUMM_WO_NDSfrom" asp-format="{0:N2}" class="form-control" /><input asp-for="VIR_SUMM_WO_NDSto" asp-format="{0:N2}" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small4"><input asp-for="VIR_SUMM_WO_NDSfrom" asp-format="{0:N2}" class="form-control select_send_ajax" /><input asp-for="VIR_SUMM_WO_NDSto" asp-format="{0:N2}" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="INITIATOR_FIO" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="RESPONSIBLE_FIO" class="form-control" /></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="STAGE" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="STAGE" class="form-control select_send_ajax" asp-items="@Model.STAGESELECT"></select></div></td>
+                    @*<td class="slimrow"><div class="row_oneItem-small"><input asp-for="STAGE" class="form-control" /></div></td>*@
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="STATUS" class="form-control" /></div></td>
-                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="PROCESSING" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small"><select asp-for="PROCESSING" class="form-control select_send_ajax" asp-items="@Model.PROCESSINGSELECT"></select></div></td>
+                    @*<td class="slimrow"><div class="row_oneItem-small"><input asp-for="PROCESSING" class="form-control" /></div></td>*@
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_DOC_TYPE" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="VIR_DOP" class="form-control" /></div></td>
                     <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="PR_N" class="form-control" /></div></td>
@@ -192,6 +204,7 @@
     </form>
     <script>
 
+
         $(function () {
             $('#table').bootstrapTable({
                 formatsearch: function () {
@@ -202,7 +215,6 @@
         $(function () {
             $('#table').bootstrapTable('hideColumn', 'cancel');
             $('#table').bootstrapTable('hideColumn', 'nodouble');
-            $('#table').bootstrapTable('hideColumn', 'refreshfrom');
             $('#table').bootstrapTable();
         })
     </script>
@@ -302,7 +314,7 @@
     </script>
     <script>
         function skipdetail(e) {
-        e.preventDefault();
+            e.preventDefault();
         }
     </script>
 </div>

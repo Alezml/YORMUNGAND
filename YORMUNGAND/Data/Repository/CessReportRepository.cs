@@ -512,28 +512,44 @@ namespace YORMUNGAND.Data.Repository
                 result = result.Where(p => EF.Functions.Like(p.ECM_FILL, SerchParam.ECM_FILL));
             return result;
         }
-        public List<SelectListItem> GetSelectList(string FieldName, string DefaultText)
+        public List<SelectListItem> GetSelectList(string FieldName, string DefaultText, string region, string filial, string stage, string processing)
         {
-            var list2 = cessDBContent.MAIN_1.Select("m => m." + FieldName).Distinct();
+            var result = cessDBContent.MAIN_1.OrderBy(p => p.id);
+            if (region != "" && region != null)
+                result = result.Where(p => p.REGION == region).OrderBy(p => p.id);
+            if (filial != "" && filial != null)
+                result = result.Where(p => p.FILIAL == filial).OrderBy(p => p.id);
+            if (stage != "" && stage != null)
+                result = result.Where(p => p.STAGE == stage).OrderBy(p => p.id);
+            if (processing != "" && processing != null)
+                result = result.Where(p => p.PROCESSING == processing).OrderBy(p => p.id);
+            var result2 = result.Select("m => m." + FieldName).Distinct();
+            //var list2 = cessDBContent.MAIN_1;
+            //list2 = list2.Where(m => m.REGION == region);
+            //list2 = list2.Select("m => m." + FieldName).Distinct();
+
             //var list = appDBContent.MAIN_1.Select(m => new { REG = m.PROVIDER, VAL = m.PROVIDER }).Distinct().ToList();
             //var list3 = list2.ToList();
             var list = new List<SelectListItem>();
             int counter = 0;
-            foreach (var c in list2)
+            foreach (var c in result2)
             {
-                list.Insert(counter, new SelectListItem { Selected = false, Text = c.ToString(), Value = c.ToString() });
-                counter++;
+                if (c.ToString() != "")
+                {
+                    list.Insert(counter, new SelectListItem { Selected = false, Text = c.ToString(), Value = c.ToString() });
+                    counter++;
+                }
             }
             list.Insert(0, new SelectListItem { Selected = true, Text = DefaultText, Value = "" });
             //list.Insert(0, new { REG = "Все регионы", VAL = "" });
             return list;
-                //.Select(r =>
-                //  new SelectListItem
-                //  {
-                //      Selected = false,
-                //      Text = r.REG,
-                //      Value = r.VAL
-                //  });
+            //.Select(r =>
+            //  new SelectListItem
+            //  {
+            //      Selected = false,
+            //      Text = r.REG,
+            //      Value = r.VAL
+            //  });
         }
         public void AddStatisticCessReprtDwld(string user, int count)
         {

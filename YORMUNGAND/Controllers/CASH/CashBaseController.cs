@@ -78,6 +78,18 @@ namespace YORMUNGAND.Controllers
             _rep.Unlock();
             return RedirectToAction("Block");
         }
+        public IActionResult NewRI()
+        {
+            switch (Access.IsAccess(_service, "P_CASH_EDITOR"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Блокировка работы робота в ЕСМ";
+            return RedirectToAction("Block");
+        }
         [Route("CASHBASE/USER")]
         public IActionResult UsersCash()
         {
