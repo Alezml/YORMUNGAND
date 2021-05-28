@@ -24,6 +24,7 @@ namespace YORMUNGAND.Data
         public DbSet<CashBlock> CashBlock { get; set; }
         public DbSet<Alert> RPAAlert { get; set; }
         public DbSet<StatistikCessReportDwnld> StatCessReportDwnld { get; set; }
+        public DbSet<TeleApiAccess> TeleApiAccess { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<QueueItemID>()

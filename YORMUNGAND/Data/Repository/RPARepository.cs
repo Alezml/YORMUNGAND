@@ -11,9 +11,11 @@ namespace YORMUNGAND.Data.Repository
     public class RPARepository 
     {
         private readonly AppDBContent appDBContent;
+        private readonly TeleApi teleapi;
         public RPARepository(AppDBContent appDBContent)
         {
             this.appDBContent = appDBContent;
+            this.teleapi = new TeleApi(appDBContent);
         }
         public void AddAlert(string proces, string tag, string errorMsg, string dolist)
         {
@@ -30,6 +32,7 @@ namespace YORMUNGAND.Data.Repository
                     WORKED = false,
                     COUNT = 1,
                 });
+                teleapi.SendMsg(DateTime.Now + " Новый алерт по проекту " + tag);
             }
             else
             {

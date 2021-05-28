@@ -20,15 +20,20 @@ namespace YORMUNGAND.Controllers
         private BPdev1Repository _repBPd1;
         private BPdev1DBContent _bpd1DBContent;
 
+        private AppDBContent _appDBContent;
+
+        private TeleApi teleapi;
 
         protected static IServiceProvider _service;
-        public OdinBaseController(IServiceProvider service, OdinDBContent odinDBContent, BPdev1DBContent bpd1DBContent)
+        public OdinBaseController(IServiceProvider service, OdinDBContent odinDBContent, BPdev1DBContent bpd1DBContent, AppDBContent appDBContent)
         {
             _odinDBContent = odinDBContent;
             _rep = new OdinRepository(_odinDBContent);
             _bpd1DBContent = bpd1DBContent;
             _repBPd1 = new BPdev1Repository(_bpd1DBContent);
             _service = service;
+            _appDBContent = appDBContent;
+            this.teleapi = new TeleApi(_appDBContent);
         }
         [Route("SS/TEST")]
         public IActionResult SS_Test()
@@ -40,6 +45,7 @@ namespace YORMUNGAND.Controllers
                 case "false":
                     return RedirectToAction("NoAccess", "Access");
             }
+            teleapi.SendMsg("[" + DateTime.Now + "] Новый алерт по проекту ");
             ViewBag.Title = "Управление машинками";
             var test = _repBPd1.GetAllApprovedProcess();
             foreach (var item in test)
