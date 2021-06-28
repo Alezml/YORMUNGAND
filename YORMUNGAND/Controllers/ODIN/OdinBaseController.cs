@@ -101,5 +101,46 @@ namespace YORMUNGAND.Controllers
             MachineForm MF = new MachineForm();
             return View(MF);
         }
+        [Route("SS/PROCESSCHILD")]
+        public IActionResult SS_PROCESSCHILD()
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Создание PROCESSCHILD";
+            ProcessChildForm PC = new ProcessChildForm();
+            PC.processIdListSelect = _rep.GetProcessSelectList();
+            PC.machineListSelect = _rep.GetMachineSelectList();
+            return View(PC);
+        }
+        [HttpPost]
+        [Route("SS/PROCESSCHILD")]
+        public IActionResult SS_PROCESSCHILD(ProcessChildForm inptForm)
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Создание PROCESSCHILD";
+            if(inptForm.machineListID == null || inptForm.machineListID.Count() == 0)
+            {
+                ModelState.AddModelError("machineList", "Выберите хотя бы один ресурс");
+            }
+            if (ModelState.IsValid)
+            {
+                int x = 1;
+            }
+            ProcessChildForm PC = new ProcessChildForm();
+            PC.processIdListSelect = _rep.GetProcessSelectList();
+            PC.machineListSelect = _rep.GetMachineSelectList();
+            return View(PC);
+        }
     }
 }

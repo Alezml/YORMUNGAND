@@ -7,6 +7,7 @@ using YORMUNGAND.Data.Interfaces;
 using YORMUNGAND.Data.Models;
 using YORMUNGAND.Data.Models.ODIN;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace YORMUNGAND.Data.Repository
 {
@@ -52,6 +53,20 @@ namespace YORMUNGAND.Data.Repository
         //Получить список всех гуид процессов в базе планировщика
         {
             return odinDBContent.Process.Select(p => p.BPprocessid);
+        }
+
+        //Получить все процессы
+        public IEnumerable<Process> GetAllProcess()
+        {
+            return odinDBContent.Process.OrderByDescending(m => m.id);
+        }
+        public List<SelectListItem> GetProcessSelectList()
+        {
+            return GetAllProcess().Select(m => new SelectListItem { Selected = false, Text = m.ProcessName, Value = m.id.ToString() }).ToList();
+        }
+        public List<SelectListItem> GetMachineSelectList()
+        {
+            return GetAllMachines().Select(m => new SelectListItem { Selected = false, Text = m.machineName, Value = m.id.ToString() }).ToList();
         }
     }
 }
