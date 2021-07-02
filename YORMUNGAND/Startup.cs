@@ -42,6 +42,8 @@ namespace YORMUNGAND
             services.AddDbContext<OdinDBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("DefaultConnectionODIN")));
             // Подключение к БД
             services.AddDbContext<BPdev1DBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("DefaultConnectionBPdev1")));
+            // Подключение к БД
+            services.AddDbContext<CPD003DBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("ConnectionCPD003")));
 
             services.AddTransient<IALLids, QueueItemRepository>();
             //services.AddTransient<ITest, TestRepository>();
