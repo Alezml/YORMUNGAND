@@ -26,6 +26,7 @@ namespace YORMUNGAND.Data.Models
         public string REGION { set; get; }
         public List<SelectListItem> REGIONSELECT { set; get; }
         public string FILIAL { set; get; }
+        public List<SelectListItem> FILIALSELECT { set; get; }
         public string NRI_BS_N { set; get; }
         public string NRI_BS_NAME { set; get; }
         public string DS_N { set; get; }
@@ -45,6 +46,7 @@ namespace YORMUNGAND.Data.Models
         public string INITIATOR_FIO { set; get; }
         public string RESPONSIBLE_FIO { set; get; }
         public string STAGE { set; get; }
+        public List<SelectListItem> STAGESELECT { set; get; }
         public string PR_N { set; get; }
         public string PR_STATUS { set; get; }
         public string PR_COM { set; get; }
@@ -72,6 +74,7 @@ namespace YORMUNGAND.Data.Models
         public string TECH_ERROR { set; get; }
         public string STATUS { set; get; }
         public string PROCESSING { set; get; }
+        public List<SelectListItem> PROCESSINGSELECT { set; get; }
         public string GEO { set; get; }
         public string ZP_N { set; get; }
         public string ZP_STATUS { set; get; }

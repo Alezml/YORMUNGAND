@@ -11,7 +11,7 @@
     @*<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">*@
 
     <link href="~/css/bootstrap-table.min.css" rel="stylesheet" />
-    <link href="~/css/all.css" rel="stylesheet" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link href="~/css/all.css" rel="stylesheet" integrity="" crossorigin="anonymous" />
     <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/Style.css" rel="stylesheet" type="text/css" />
 
@@ -24,9 +24,9 @@
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>*@
 
-    <script src="~/js/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="~/js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="~/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="~/js/jquery.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="~/js/popper.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="~/js/bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
     <script src="~/js/bootstrap-table.min.js"></script>
     <script src="~/js/bootstrap-table-cookie.min.js"></script>
     <script type="text/javascript">
@@ -68,7 +68,7 @@
                     <form class="d-flex">
                         @*<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">*@
                         <a class="navbar-brand" href="#"  onclick='window.location.reload()'>@User.Identity.Name.Replace("VIMPELCOM_MAIN\\", "")</a>
-                        <button class="btn btn-outline-success" type="submit" asp-controller="RPABase" asp-action="DeployReport">v0.006</button>
+                        <button class="btn btn-outline-success" type="submit" asp-controller="RPABase" asp-action="DeployReport">v0.008</button>
                     </form>
                 </div>
             </div>
@@ -93,6 +93,19 @@
                 $('input.form-control.search-input').attr('placeholder', 'Поиск по странице')
                 clearTimeout(inter);
             }
+
+                $('.select_send_ajax').on('change', function () {
+                    this.form.submit();
+            });
+            //$('.form-control').on('change', function () {
+            //    this.form.submit();
+            //});
+
+            //$('form').submit(function (event) { //Отправка всех форм
+            //    console.log(123);
+            //    this.form.submit();
+            //    //event.preventDefault();
+            //});
         }, 1000);
 
     </script>

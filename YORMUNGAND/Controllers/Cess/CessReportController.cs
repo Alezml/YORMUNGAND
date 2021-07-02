@@ -44,7 +44,10 @@ namespace YORMUNGAND.Controllers
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
-            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы", "", "", "", "");
+            SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", "", "", "", "");
+            SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", "", "", "", "");
+            SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", "", "", "", "");
             ViewBag.Title = "ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -61,11 +64,19 @@ namespace YORMUNGAND.Controllers
                     return RedirectToAction("NoAccess", "Access");
             }
             SerchParam = MainReportWave1FS.Check(SerchParam);
-            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             SerchParam.count = _rep.MainReportWave1c(SerchParam);
             SerchParam.countTotal = _rep.MainReportWave1ct(SerchParam);
+            if (SerchParam.page > (SerchParam.count / SerchParam.pagesize + (SerchParam.count % SerchParam.pagesize == 0 ? 0 : 1)))
+            {
+                SerchParam.page = 1;
+            }
+            SerchParam.data = _rep.MainReportWave1ss(SerchParam);
             //SerchParam.data = _rep.MainReportWave1post(SerchParam.data);
-            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы");
+            SerchParam.REGIONSELECT = _rep.GetSelectList("REGION", "Все регионы", "", SerchParam.FILIAL, SerchParam.STAGE, SerchParam.PROCESSING);
+            SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", SerchParam.REGION, "", SerchParam.STAGE, SerchParam.PROCESSING);
+            SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", SerchParam.REGION, SerchParam.FILIAL, "", SerchParam.PROCESSING);
+            SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", SerchParam.REGION, SerchParam.FILIAL, SerchParam.STAGE, "");
+
             ViewBag.Title = "Поиск ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -152,8 +163,8 @@ namespace YORMUNGAND.Controllers
                     worksheet.Cell(1, 37).Value = "Договор_дата";
                     worksheet.Cell(1, 38).Value = "Инициатор_почта";
                     worksheet.Cell(1, 39).Value = "Поставщик_ИНН";
-                    worksheet.Cell(1, 40).Value = "Ошибка1";
-                    worksheet.Cell(1, 41).Value = "Ошибка2";
+                    worksheet.Cell(1, 40).Value = "Ошибка инициатору";
+                    worksheet.Cell(1, 41).Value = "Ошибка ответственному";
                     worksheet.Cell(1, 42).Value = "Тех_Ошибка";
                     worksheet.Cell(1, 43).Value = "NRI_ссылка";
                     worksheet.Cell(1, 44).Value = "ВИР_Условия_платежа";
@@ -221,11 +232,11 @@ namespace YORMUNGAND.Controllers
                         }
                         if (row.ERROR2.Length < 2000)
                         {
-                            worksheet.Cell(rowi, 40).Value = row.ERROR2;
+                            worksheet.Cell(rowi, 41).Value = row.ERROR2;
                         }
                         else
                         {
-                            worksheet.Cell(rowi, 40).Value = row.ERROR2.Substring(0, 2000);
+                            worksheet.Cell(rowi, 41).Value = row.ERROR2.Substring(0, 2000);
                         }
                         worksheet.Cell(rowi, 42).Value = row.TECH_ERROR;
                         worksheet.Cell(rowi, 43).Value = row.NRI_LINK;

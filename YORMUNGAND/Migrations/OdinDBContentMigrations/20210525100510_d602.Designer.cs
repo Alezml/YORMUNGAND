@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YORMUNGAND.Data;
 
 namespace YORMUNGAND.Migrations.OdinDBContentMigrations
 {
     [DbContext(typeof(OdinDBContent))]
-    partial class OdinDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210525100510_d602")]
+    partial class d602
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,6 +87,10 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                     b.Property<Guid>("BPprocessid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProcessName")
                         .HasColumnType("nvarchar(max)");
 
@@ -94,35 +100,8 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                     b.HasKey("id");
 
                     b.ToTable("Process");
-                });
 
-            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.ProcessChild", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("maxCountMachines")
-                        .HasColumnType("int");
-
-                    b.Property<int>("minCountMachines")
-                        .HasColumnType("int");
-
-                    b.Property<int>("priority")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("processIdid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("startParams")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("processIdid");
-
-                    b.ToTable("ProcessChild");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Process");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.QueueProcessLog", b =>
@@ -214,6 +193,30 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                     b.ToTable("SchedulerProcess");
                 });
 
+            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.ProcessChild", b =>
+                {
+                    b.HasBaseType("YORMUNGAND.Data.Models.ODIN.Process");
+
+                    b.Property<int>("maxCountMachines")
+                        .HasColumnType("int");
+
+                    b.Property<int>("minCountMachines")
+                        .HasColumnType("int");
+
+                    b.Property<int>("priority")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("processIdid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("startParams")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("processIdid");
+
+                    b.HasDiscriminator().HasValue("ProcessChild");
+                });
+
             modelBuilder.Entity("MachineProcessChild", b =>
                 {
                     b.HasOne("YORMUNGAND.Data.Models.ODIN.ProcessChild", null)
@@ -236,15 +239,6 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                         .HasForeignKey("processChildid");
 
                     b.Navigation("processChild");
-                });
-
-            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.ProcessChild", b =>
-                {
-                    b.HasOne("YORMUNGAND.Data.Models.ODIN.Process", "processId")
-                        .WithMany("ProcessChildrenList")
-                        .HasForeignKey("processIdid");
-
-                    b.Navigation("processId");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.QueueProcessLog", b =>
@@ -284,6 +278,15 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                     b.Navigation("processChildId");
                 });
 
+            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.ProcessChild", b =>
+                {
+                    b.HasOne("YORMUNGAND.Data.Models.ODIN.Process", "processId")
+                        .WithMany("ProcessChildrenList")
+                        .HasForeignKey("processIdid");
+
+                    b.Navigation("processId");
+                });
+
             modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.Machine", b =>
                 {
                     b.Navigation("QueueProcessLogsList");
@@ -292,6 +295,11 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
             modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.Process", b =>
                 {
                     b.Navigation("ProcessChildrenList");
+                });
+
+            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.QueueProcesses", b =>
+                {
+                    b.Navigation("queueProcessLogsList");
                 });
 
             modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.ProcessChild", b =>
@@ -303,11 +311,6 @@ namespace YORMUNGAND.Migrations.OdinDBContentMigrations
                     b.Navigation("QueueProcessLogList");
 
                     b.Navigation("SchedulerProcessesList");
-                });
-
-            modelBuilder.Entity("YORMUNGAND.Data.Models.ODIN.QueueProcesses", b =>
-                {
-                    b.Navigation("queueProcessLogsList");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,98 @@
+﻿@model VBAprojectForm
+<div class="row">
+    <form asp-controller="RPABase" asp-action="VBAPROJECTS" method="post" class="form-check-label">
+        <div class="col-md-4 mt-3 mb-0">
+            <table>
+                <thead>
+                </thead>
+            </table>
+        </div>
+
+        <table data-toggle="table"
+               id="table"
+               data-search="true"
+               data-search-highlight="true"
+               data-show-columns="true"
+               data-detail-filter="detailFilter"
+               data-detail-formatter="DetailFormatterPerm"
+               data-show-toggle="true"
+               data-buttons-align="right"
+               data-cookie="true"
+               data-height="1000"
+               data-cookie-id-table="saveIdperm"
+               data-detail-view="true"
+               data-detail-view-by-click="true"
+               data-virtual-scroll="true"
+               data-detail-view-icon="true">
+            <thead>
+                <tr class="tr-class-1">
+                    <th data-field="id" data-detail-formatter="DetailFormatterPerm"><div class="row_oneItem-small">id</div></th>
+                    <th data-field="PERMISSION" data-detail-formatter="DetailFormatterPerm"><div class="row_oneItem-small">Название</div></th>
+                    <th data-field="DESC" data-detail-formatter="DetailFormatterPerm"><div class="row_oneItem-small">Описание</div></th>
+                    <th data-field="EDITDESC" data-visible="false" data-detail-formatter="DetailFormatterPerm" data-switchable="false"><div class="row_oneItem-NoWay"> </div></th>
+                </tr>
+            </thead>
+            <tbody class="tb-class-1">
+                <tr>
+                    <td valign="bottom"><input class="btn btn-success" type="submit" value="Создать проект ->" /></td>
+                    <td class="slimrow"><input asp-for="NAME" class="form-control" value=@Model.NAME /></td>
+                    <td class="slimrow"><input asp-for="DESC" class="form-control" value=@Model.DESC /></td>
+                    <td class="slimrow row_oneItem-extraSmall"></td>
+                </tr>
+
+                @{
+                    foreach (VBAproject id in Model.VBAPROJECTS)
+                    {
+                        <tr>
+                            <td class="slimrow" title="@id.id"><div class="row_oneItem-medium">@id.id</div></td>
+                            <td class="slimrow" title="@id.NAME"><div class="row_oneItem-medium">@id.NAME</div></td>
+                            <td class="slimrow" title="@id.DESC"><div class="row_oneItem-medium">@id.DESC</div></td>
+                            <td class="slimrow" title="Редактировать описание"><div><a class="btn btn-warning" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.DESC" target="_blank">Редактировать описание</a></div></td>
+                        </tr>
+                    }
+                    Model.VBAPROJECTS = null;
+                }
+            </tbody>
+        </table>
+    </form>
+    <script>
+        $(function () {
+            $('#table').bootstrapTable('hideColumn', 'EDITDESC')
+            $('#table').bootstrapTable()
+        })
+    </script>
+    <script>
+        //выводить детальное описание только для строк начиная с 1
+        function detailFilter(index) {
+            return index > 0
+        }
+    </script>
+
+    <script>
+        //вывод детального описания
+        function DetailFormatterPerm(index, row) {
+            var item = document.querySelector('.fixed-table-body');
+            item.onscroll = (e) => {
+                $('.fake-scroll').css('width', e.target.scrollLeft + 250 + 'px');
+                //var elementFakeScroll = document.querySelector('.fake-scroll');
+                //elementFakeScroll.style.width = e.target.scrollLeft + 250 + 'px';
+                //console.log(e.target.scrollLeft);
+            }
+            var newDiv = document.createElement("table");
+            //newDiv.style.display = "inline-block";
+            var html = new Map();
+            $.each(row, function (key, value) {
+                if (key.substr(key.length - 6) == '_title') {
+                    html.set(key.substr(1, key.length - 7), value);
+                }
+            });
+            newDiv.innerHTML = "<table><tbody><tr><td><div class='fake-scroll' style='height:1px; width:" + (item.scrollLeft + 250) + "px;'></div></td><td><div><table><tbody>";
+            newDiv.innerHTML = newDiv.innerHTML + "<tr><td></td><td><h3>Управление</h3></td><td>" + row.EDITDESC + "</td ></tr>"
+            newDiv.innerHTML = newDiv.innerHTML + "<tr><td></td><td><h5>Имя</h5></td><td width=300>" + ((html.has('NAME')) ? html.get('NAME') : '-') + "</td></tr>";
+            newDiv.innerHTML = newDiv.innerHTML + "<tr><td></td><td><h5>Описание</h5></td><td width=300>" + ((html.has('DESC')) ? html.get('DESC') : '-') + "</td></tr>";
+            newDiv.innerHTML = newDiv.innerHTML + "<tbody></table></div></td></tr><tbody></table>";
+            return newDiv;
+        }
+    </script>
+
+</div>

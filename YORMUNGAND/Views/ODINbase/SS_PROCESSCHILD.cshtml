@@ -1,0 +1,52 @@
+﻿@using YORMUNGAND.Data.Models.ODIN;
+@model ProcessChildForm
+
+
+<div class="row">
+    <form asp-controller="OdinBase" asp-action="SS_PROCESSCHILD" method="post" class="form-check-label">
+        <div class="col-md-8 mx-auto mt-5 mb-3">
+            <div class="form-group">
+                <label asp-for="processId" class="mt-2"></label>
+                <div class="col-12">
+                    <select asp-for="processId" class="form-control mb-2" asp-items="@Model.processIdListSelect"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="startParams" class="mt-2"></label>
+                <div class="col-12">
+                    <input asp-for="startParams" class="form-control mb-2" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="priority" class="mt-2"></label>
+                <div class="col-12">
+                    <input asp-for="priority" class="form-control mb-2"/>
+                    <span asp-validation-for="priority" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="machineList" class="mt-2"></label>
+                <div class="col-12">
+                    <select multiple="multiple" class="multi-select form-control mb-2" asp-for="machineListID" asp-items="@Model.machineListSelect"></select>
+                    <span asp-validation-for="machineList" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="minCountMachines" class="mt-2"></label>
+                <div class="col-12">
+                    <input asp-for="minCountMachines" class="form-control mb-2" />
+                    <span asp-validation-for="minCountMachines" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="maxCountMachines" class="mt-2"></label>
+                <div class="col-12">
+                    <input asp-for="maxCountMachines" class="form-control mb-2" />
+                    <span asp-validation-for="maxCountMachines" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-outline-dark" type="submit" value="Создать" />
+            </div>
+</form>
+</div>

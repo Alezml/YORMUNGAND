@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YORMUNGAND.Data;
 
 namespace YORMUNGAND.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210610144011_d608")]
+    partial class d608
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -470,17 +472,11 @@ namespace YORMUNGAND.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime>("DESC")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("VBAprojectID")
                         .HasColumnType("int");
-
-                    b.Property<double>("VER")
-                        .HasColumnType("float");
 
                     b.HasKey("id");
 
@@ -497,14 +493,8 @@ namespace YORMUNGAND.Migrations
                     b.Property<string>("DESC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LINK")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NAME")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("VER")
-                        .HasColumnType("float");
 
                     b.HasKey("id");
 

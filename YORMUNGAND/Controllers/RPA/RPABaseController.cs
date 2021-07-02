@@ -17,12 +17,14 @@ namespace YORMUNGAND.Controllers
         private readonly AppDBContent _appDBContent;
         private AccessToolsRepository _rep;
         private RPARepository _repR;
+        private VBARepository _repV;
         public RPABaseController(IServiceProvider service, AppDBContent appDBContent)
         {
             _service = service;
             _appDBContent = appDBContent;
             _rep = new AccessToolsRepository(_appDBContent);
             _repR = new RPARepository(_appDBContent);
+            _repV = new VBARepository(_appDBContent);
         }
         public IActionResult index()
         {
@@ -220,6 +222,43 @@ namespace YORMUNGAND.Controllers
         }
         [Route("RPABASE/DEPLOY")]
         public IActionResult DeployReport()
+        {
+            return View();
+        }
+        [Route("RPABASE/VBAPROJECTS")]
+        public IActionResult VBAPROJECTS()
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Управление проектами VBA";
+            VBAprojectForm VPF = new VBAprojectForm();
+            VPF.VBAPROJECTS = _repV.GetAllVBAprojects();
+            return View(VPF);
+        }
+        [HttpPost]
+        [Route("RPABASE/VBAPROJECTS")]
+        public IActionResult VBAPROJECTS(VBAprojectForm inptForm)
+        {
+            switch (Access.IsAccess(_service, "RPA"))
+            {
+                case "wrongagent":
+                    return RedirectToAction("WrongAgent", "Access");
+                case "false":
+                    return RedirectToAction("NoAccess", "Access");
+            }
+            ViewBag.Title = "Управление проектами VBA";
+
+            VBAprojectForm VPF = _repV.AddNewVBAproject(inptForm);
+            VPF.VBAPROJECTS = _repV.GetAllVBAprojects();
+            return View(VPF);
+        }
+        [Route("RPABASE/VBA")]
+        public IActionResult VBA()
         {
             return View();
         }

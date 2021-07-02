@@ -19,16 +19,22 @@ namespace YORMUNGAND.Controllers
         AppDBContent _appDBContent;
         AccessToolsRepository _rep;
         RPARepository _repR;
-        public TestApiController(AppDBContent appDBContent)
+        VBARepository _repV;
+        protected static IServiceProvider _service;
+        public TestApiController(AppDBContent appDBContent, IServiceProvider service)
         {
             _appDBContent = appDBContent;
             _rep = new AccessToolsRepository(_appDBContent);
             _repR = new RPARepository(_appDBContent);
+            _repV = new VBARepository(_appDBContent);
+            _service = service;
         }
 
         [Route("Permissions")]
         public IEnumerable<AccessPermissions> GetProducts1()
         {
+            var X = Access.IsAccess(_service, "P_RPA_VIEW_1");
+
             return _appDBContent.AccessPermissions.ToList();
         }
         [HttpPost]
@@ -67,6 +73,23 @@ namespace YORMUNGAND.Controllers
         {
             _repR.AddAlert(proces, tag, errorMsg, dolist);
             return "SUCCESS";
+        }
+        [Route("VBALOG")]
+        public string WriteVBAlog(int id)
+        {
+            _repV.WriteVBAlog(id);
+            return "SUCCESS";
+        }
+        [Route("VBALOG2")]
+        public string WriteVBAlog2(int id, double ver, string pcname)
+        {
+            _repV.WriteVBAlog2(id, ver, pcname);
+            return "SUCCESS";
+        }
+        [Route("VBAVER1")]
+        public string CheckVBAver1(int id, double ver)
+        {
+            return _repV.CheckVBAver(id, ver);
         }
     }
 }
