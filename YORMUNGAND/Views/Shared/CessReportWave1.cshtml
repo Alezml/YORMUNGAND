@@ -92,8 +92,16 @@
     <td class="slimrow" title="@Model.PROSTAVLENIE"><div class="row_oneItem-medium">@Model.PROSTAVLENIE</div></td>
     <td class="slimrow" title="@Model.ECM_FILL"><div class="row_oneItem-medium">@Model.ECM_FILL</div></td>
     <td class="slimrow" title="Отменить обработку роботом"><div></div></td>
-    <td class="slimrow" title="Не дубль"><div></div></td>
+        <td class="slimrow" title="Не дубль"><div></div></td>
     @*<td class="slimrow" title="Отменить обработку роботом"><div><a class="btn btn-danger" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank">Отменить обработку роботом</a></div></td>
     <td class="slimrow" title="Не дубль"><div><a class="btn btn-warning" asp-controller="CessReport" asp-action="InProcess" asp-route-ID="@Model.id" target="_blank">Это не дубль</a></div></td>*@
-
+    <td class="slimrow" title="@Model.REFILLING_TERMINATION"><div class="row_oneItem-medium">@Model.REFILLING_TERMINATION</div></td>
+    @if (@Model.RECEIVED_PORTAL)
+    {
+        <td class="slimrow" title="Да"><div class="row_oneItem-medium">Да</div></td>
+    }
+    else
+    {
+        <td class="slimrow" title="Нет"><div class="row_oneItem-medium">Нет</div></td>
+    }
 </tr>

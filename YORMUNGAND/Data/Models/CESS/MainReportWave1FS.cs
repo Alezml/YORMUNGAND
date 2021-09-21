@@ -85,6 +85,11 @@ namespace YORMUNGAND.Data.Models
         public string VIR_DIAP { set; get; }
         public string PROSTAVLENIE { set; get; }
         public string ECM_FILL { set; get; }
+        public string REFILLING_TERMINATION { set; get; }
+        public bool RECEIVED_PORTAL { set; get; }
+        public string RECEIVED_PORTAL_STR { set; get; }
+        public List<SelectListItem> RECEIVED_PORTAL_SELECT { set; get; }
+
         public MainReportWave1FS()
         {
             this.pagesize = 50;
@@ -100,6 +105,20 @@ namespace YORMUNGAND.Data.Models
 
             if (SearchParam.pagesize < 1)
                 SearchParam.pagesize = 50;
+
+            if (SearchParam.RECEIVED_PORTAL_STR != null)
+                switch (SearchParam.RECEIVED_PORTAL_STR)
+                {
+                    case "true":
+                        SearchParam.RECEIVED_PORTAL = true;
+                        break;
+                    case "false":
+                        SearchParam.RECEIVED_PORTAL = false;
+                        break;
+                    default:
+                        SearchParam.RECEIVED_PORTAL_STR = null;
+                        break;
+                }
 
             //if (SearchParam.NRI_LINK == "" || SearchParam.NRI_LINK == null)
             //    SearchParam.NRI_LINK = "%";

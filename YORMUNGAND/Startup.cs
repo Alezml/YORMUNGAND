@@ -15,7 +15,6 @@ using YORMUNGAND.Data.Repository;
 using YORMUNGAND.Data.Models;
 using Microsoft.AspNetCore.Server.IISIntegration;
 
-
 namespace YORMUNGAND
 {
     public class Startup
@@ -44,6 +43,9 @@ namespace YORMUNGAND
             services.AddDbContext<BPdev1DBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("DefaultConnectionBPdev1")));
             // Подключение к БД
             services.AddDbContext<CPD003DBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("ConnectionCPD003")));
+            // Подключение к БД
+            services.AddDbContext<VALHALLADBContent>(options => options.UseSqlServer(_confString2.GetConnectionString("ValhallaConnection")));
+
 
             services.AddTransient<IALLids, QueueItemRepository>();
             //services.AddTransient<ITest, TestRepository>();

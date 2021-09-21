@@ -1,13 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
 using YORMUNGAND.Data.Repository;
-using YORMUNGAND.Data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace YORMUNGAND.Data.Models
@@ -18,7 +13,7 @@ namespace YORMUNGAND.Data.Models
         {
             //Проверить есть ли такой юзер в базе, если нет то добавить
             var user = _rep.GetUserByDomainName(UserName);
-            
+
             if (user == null)
             {
                 var listrole = new List<AccessRole>
@@ -33,7 +28,7 @@ namespace YORMUNGAND.Data.Models
                 {
                     _rep.UpdateUserSeen(user);
                 }
-                
+
             }
         }
         public static string GetUserName(IServiceProvider services)
@@ -74,7 +69,7 @@ namespace YORMUNGAND.Data.Models
             }
             else
             {
-                foreach (AccessRole role in user.ACCESSROLE )
+                foreach (AccessRole role in user.ACCESSROLE)
                 {
                     if (role.ROLE == "SHERIFF")
                     {

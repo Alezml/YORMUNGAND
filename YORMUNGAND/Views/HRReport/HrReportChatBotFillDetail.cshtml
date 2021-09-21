@@ -1,0 +1,7 @@
+﻿@using VALHALLA.Data.Models;
+<tr>
+    @foreach (var item in @Model.REPORT_ROWS)
+    {
+        @(item.REPORT_HDR + " : " + item.R_DATA + "<br>")
+    }
+</tr>

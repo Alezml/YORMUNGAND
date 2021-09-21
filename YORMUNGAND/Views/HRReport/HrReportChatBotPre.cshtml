@@ -1,0 +1,182 @@
+﻿@using VALHALLA.Data.Models;
+@model HR_REPORT_CHATBOT_MAIN_FS
+@functions
+{
+    int Page(int countTotal, int pagesize)
+    {
+        return countTotal / pagesize + (countTotal % pagesize == 0 ? 0 : 1);
+    }
+}
+<div class="row">
+    <form asp-controller="HRReport" asp-action="HrReportChatBot" method="post" class="form-check-label">
+        <div class="col-md-1 mt-1 mb-0">
+            <table style="margin-top: 20px">
+                <thead>
+                    <tr>
+                        <td>Размер:</td>
+                        <td><input style="width:70px;" asp-for="pagesize" class="form-control" /></td>
+                        <td style="padding-left: 5px;"> Страница:</td>
+                        <td><input style="width:70px; padding-left: 5px" asp-for="page" class="form-control" value=@Model.page /></td>
+                        <td> Из </td>
+                        <td> @Page(@Model.count, @Model.pagesize)</td>
+                        <td style="padding-left: 5px;"><input class="btn btn-outline-dark" type="submit" value="Применить" /></td>
+                        <td style="padding-left: 75px;">Найдено </td>
+                        <td>@Model.count</td>
+                        <td> Из </td>
+                        <td>@Model.countTotal</td>
+                        <td style="padding-left: 75px;"><input class="btn btn-outline-dark" type="submit" value="Excel" asp-controller="HRReport" asp-action="Export"></td>
+                        <td style="padding-left: 75px; display:block"><a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-outline-info compItem">Как пользоваться поиском</a></td>
+
+                        <td>
+                            <div id="modDialog" class="modal fade">
+                                <div id="dialogContent" class="modal-dialog"></div>
+                            </div>
+                        </td>                        @*<td valign="bottom" style="width:100px">Из: @Model.countTotal</td>
+                            <td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>*@
+
+                        @*<td valign="bottom" style="width:150px; padding-left: 90px;">
+                                 @Html.ActionLink("Как пользоваться поиском", "HowToSearch",
+                            new { id = "SQL_LIKE" }, new { @class = "compItem" })
+                             </td>*@
+                        @*<td valign="bottom" style="padding-left: 90px;">
+                                <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                            </td>*@
+                        @*<td valign="bottom" style="width: 150px; padding-left: 90px;"><input class="btn btn-success compItem" type="submit" value="Excel" asp-controller="CessReport" asp-action="Export"></td>
+
+                            <td valign="bottom" style="width:150px; padding-left: 90px;">
+                                <a style="width:250px;" href="/CessReport/HowToSearch" class="btn btn-info compItem">Как пользоваться поиском</a>
+                            </td>*@
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <a style="float: left; margin-top: 10px" class="btn btn-outline-dark" asp-controller="HRReport" asp-action="HrReportChatBot" title="Очистить поиск">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+        </a>
+
+        <table data-toggle="table"
+               id="table"
+               data-search="true"
+               data-search-highlight="true"
+               data-show-columns="true"
+               data-detail-filter="detailFilter"
+               data-detail-formatter="DetailFormatter"
+               data-show-toggle="true"
+               data-show-fullscreen="true"
+               data-cookie="true"
+               data-card-view="false"
+               data-cookie-id-table="saveId"
+               data-detail-view="true"
+               data-detail-view-by-click="true"
+               data-virtual-scroll="true"
+               data-detail-view-icon="true">
+            <thead>
+                <tr class="tr-class-1">
+                    <th data-field="ID" data-detail-formatter="DetailFormatter">Обращение</th>
+                    <th data-field="REQ_DATE" data-detail-formatter="DetailFormatter">Дата обращения</th>
+                    <th data-field="TAB_NO" data-detail-formatter="DetailFormatter">Табельный номер</th>
+                    <th data-field="FIO" data-detail-formatter="DetailFormatter">Инициатор</th>
+                    <th data-field="STATUS" data-detail-formatter="DetailFormatter">Статус обращения</th>
+                    <th data-field="FINISH_DATE" data-detail-formatter="DetailFormatter">Дата отработки</th>
+                    <th data-field="HR_DOMAIN" data-detail-formatter="DetailFormatter">Ответственный</th>
+                    <th data-field="REPORT" data-detail-formatter="DetailFormatter"></th>
+                </tr>
+            </thead>
+            <tbody class="tb-class-1">
+                <tr>
+                    <td class="slimrow"><div class="row_oneItem-small"><input asp-for="id" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small7"><input asp-for="REQUEST_DATEfrom" class="form-control" /><input asp-for="REQUEST_DATEto" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="UD_EMPLOYEE_N" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-small5"><input asp-for="UD_FULL_NAME" class="form-control" /></div></td>
+                    <td class="slimrow">
+                        <div class="row_oneItem-small5">
+                            <select asp-for="PROCESSING_STATUS" class="form-control">
+                                <option value="1">Open</option>
+                                <option value="2">InWork</option>
+                                <option value="3">Completed</option>
+                            </select>
+                         </div>
+                    </td>
+                    <td class="slimrow"><div class="row_oneItem-small7"><input asp-for="FINISH_DATEfrom" class="form-control" /><input asp-for="FINISH_DATEto" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium"><input asp-for="HR_DOMAIN_NAME" class="form-control" /></div></td>
+                    <td class="slimrow"><div class="row_oneItem-medium d-none"></div></td>
+                </tr>
+                @{
+                    foreach (HR_REPORT_CHATBOT_MAIN id in Model.data)
+                    {
+                        @await Html.PartialAsync("HrReportChatBotFill", id)
+                    }
+                    Model.data = null;
+                }
+            </tbody>
+        </table>
+    </form>
+    <script>
+
+
+        $(function () {
+            $('#table').bootstrapTable({
+                formatsearch: function () {
+                    return 'Поиск по странице'
+                }
+            })
+        })
+        $(function () {
+            $('#table').bootstrapTable('hideColumn', 'cancel');
+            $('#table').bootstrapTable('hideColumn', 'nodouble');
+            $('#table').bootstrapTable();
+        })
+    </script>
+    <script>
+        //выводить детальное описание только для строк начиная с 1
+        function detailFilter(index) {
+            return index > 0
+        }
+    </script>
+
+    <script>
+        //вывод детального описания
+        function DetailFormatter(index, row) {
+            var item = document.querySelector('.fixed-table-body');
+            //item.parentElement.style.textAlign = "left";
+            item.onscroll = (e) => {
+                $('.fake-scroll').css('width', e.target.scrollLeft + 250 + 'px');
+                //var elementFakeScroll = document.querySelector('.fake-scroll');
+                //elementFakeScroll.style.width = e.target.scrollLeft + 250 + 'px';
+                //console.log(e.target.scrollLeft);
+                //$table.bootstrapTable('toggleDetailView', 1)
+            }
+            var newDiv = document.createElement("table");
+            //newDiv.style.display = "inline-block";
+            var html = new Map();
+            $.each(row, function (key, value) {
+                if (key.substr(key.length - 6) == '_title') {
+                    html.set(key.substr(1, key.length - 7), value);
+                }
+            });
+            var temp = @Page(@Model.count, @Model.pagesize);
+
+            newDiv.innerHTML = "<table><tbody><tr><td><div class='fake-scroll' style='height:1px; width:" + (item.scrollLeft + 250) + "px;'></div></td><td><div><table><tbody>";
+            newDiv.innerHTML = newDiv.innerHTML + "<tr><td></td><td><h3>Управление</h3></td><td>" + row.cancel + "</td ><td>" + row.nodouble + "</td></tr>";
+
+            row.REPORT.split("&lt;br&gt;").forEach((item) => {
+                var elements = item.split(":");
+                if (elements.length == 2)
+                    newDiv.innerHTML += "<tr><td></td><td><h5>" + elements[0].replaceAll("<div>", "").trim() + "</h5></td><td width=300>" + elements[1].trim() + "</td></tr>";
+            });
+            
+            newDiv.innerHTML = newDiv.innerHTML + "<tbody></table></div></td></tr><tbody></table>";
+            newDiv.innerHTML = newDiv.innerHTML + "<div id='modDialog' class='modal fade'><div id='dialogContent' class='modal-dialog'></div></div>";
+            return newDiv;
+        }
+        function DetailFormatterNO(index, row) {
+            $table.bootstrapTable('toggleDetailView', index)
+            return ""
+        }
+    </script>
+    <script>
+        function skipdetail(e) {
+            e.preventDefault();
+        }
+    </script>
+</div>

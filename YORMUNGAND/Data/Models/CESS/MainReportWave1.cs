@@ -175,6 +175,13 @@ namespace YORMUNGAND.Data.Models
 
         [Column("Дозаполнение_ЕСМ")]
         public string ECM_FILL { set; get; }
+
+        [Column("Дополнение\\Расторжение")]
+        public string REFILLING_TERMINATION { set; get; }
+
+        [Column("RECEIVED_PORTAL")]
+        public bool RECEIVED_PORTAL { set; get; }
+
         //public virtual string NRI_BS_NAME_FULL { set; get; }
         //public virtual string VIR_DOP_N_FULL { set; get; }
         //public virtual string PROVIDER_FULL { set; get; }

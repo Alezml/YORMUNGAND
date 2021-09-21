@@ -1,0 +1,33 @@
+﻿@using VALHALLA.Data.Models;
+@using YORMUNGAND.Data;
+@model HR_REPORT_CHATBOT_MAIN
+<tr class="jsTableRow">
+    <td class="slimrow" title="@Model.id"><div class="row_oneItem-medium">@Model.id</div></td>
+    <td class="slimrow" title="@Model.REQUEST_DATE"><div class="row_oneItem-medium">@Model.REQUEST_DATE</div></td>
+    <td class="slimrow" title="@Model.UD_EMPLOYEE_N"><div class="row_oneItem-medium">@Model.UD_EMPLOYEE_N</div></td>
+    <td class="slimrow" title="@Model.UD_FULL_NAME"><div class="row_oneItem-medium">@Model.UD_FULL_NAME</div></td>
+    <td class="slimrow" title="@Model.PROCESSING_STATUS"><div class="row_oneItem-medium">@((QueryStatus)Model.PROCESSING_STATUS)</div></td>
+    <td class="slimrow" title="@Model.FINISH_DATE"><div class="row_oneItem-medium">@Model.FINISH_DATE</div></td>
+    <td class="slimrow" title="@Model.HR_DOMAIN_NAME"><div class="row_oneItem-medium">@Model.HR_FULLNAME</div></td>
+    <td class="slimrow" title="Отчет">
+        @switch (Model.PROCESSING_STATUS)
+        {
+            case 1:
+                <a asp-controller="HRReport" asp-action="AcceptInWork" asp-route-ID="@Model.id">Взять в работу</a>
+                break;
+            case 2:
+                <a asp-controller="HRReport" asp-action="Complete" asp-route-ID="@Model.id">Завершить</a>
+                <a asp-controller="HRReport" asp-action="ReturnInWait" asp-route-ID="@Model.id">Вернуть в ожидание</a>
+                break;
+            case 3:
+                <a asp-controller="HRReport" asp-action="ReturnInWork" asp-route-ID="@Model.id">Вернуть в работу</a>
+                break;
+        }
+        <div class="d-none">
+            @foreach (var item in @Model.REPORT_ROWS)
+            {
+                @(item.REPORT_HDR + " : " + item.R_DATA + "<br>")
+            }
+        </div>
+    </td>
+</tr>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ThreeString>
+<div>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            function handleShape(e) {
+                console.log("")
+                console.log($(e.target)[0].checked)
+                if ($(e.target)[0].checked) {
+                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val() }
+                    console.log("@ViewBag.User")
+                    $.ajax({
+                        url: '@Url.Action("AddRoleToUser", "TestApi")',
+                        type: "POST",
+                        data: data,
+                    }).done(function (resp) {
+                        alert("Success! " + resp);
+                        setEvents();
+                    }).error(function (err) {
+                        alert("Error! " + err.status);
+                    });
+                } else {
+                    var data = { user: "@ViewBag.User.Replace("\\", "\\\\")", role: $(e.target).val()}
+                    console.log("@ViewBag.User")
+                    $.ajax({
+                        url: '@Url.Action("DeleteRoleFromUser", "TestApi")',
+                        type: "POST",
+                        data: data,
+                    }).done(function (resp) {
+                        alert("Success! " + resp);
+                        setEvents();
+                    }).error(function (err) {
+                        alert("Error! " + err.status);
+                    });
+
+                }
+            };
+            $(".shape-bar, .brand").controlgroup();
+            $("[name='shape']").on("change", handleShape);
+        });
+    </script>
+    <div>
+        <h2>Выбрать роли для пользователя @ViewBag.User</h2>
+        <div class="shape-wrap">
+            <fieldset class="shape-bar">
+                @foreach (ThreeString _ts in Model)
+                {
+                    <label for="@_ts.one">@_ts.two</label>
+                    <input type="checkbox" name="shape" id="@_ts.one" value="@_ts.one" @_ts.three>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>
+    @*<script>
+
+        $(document).ready(function () {
+
+            loadProducts();
+            function loadProducts() {
+                var items = "";
+                var data = { role: "@ViewBag.Role" }
+                $.ajax({
+                    url: '@Url.Action("GetPermByRoleAndOther", "TestApi")',
+                    type: "POST",
+                    data: data,
+                }).done(function (resp) {
+                    $.each(resp, function (idx, val) {
+                        items += "<label for='" + val.one + "'>" + val.two + "</label><input type='checkbox' name='" + val.one + "' id='" + val.one + "' value='" + val.one + "' " + val.three + ">";
+                    });
+                    $("#lstproducts").html(items);
+                    setEvents();
+                }).error(function (err) {
+                    alert("Error! " + err.status);
+                });
+            }
+        }
+    </script>*@

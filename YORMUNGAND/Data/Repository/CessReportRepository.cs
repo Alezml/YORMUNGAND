@@ -139,6 +139,10 @@ namespace YORMUNGAND.Data.Repository
                 result = result.Where(p => EF.Functions.Like(p.PROSTAVLENIE, SerchParam.PROSTAVLENIE));
             if (SerchParam.ECM_FILL != null)
                 result = result.Where(p => EF.Functions.Like(p.ECM_FILL, SerchParam.ECM_FILL));
+            if (SerchParam.REFILLING_TERMINATION != null)
+                result = result.Where(p => EF.Functions.Like(p.REFILLING_TERMINATION, SerchParam.REFILLING_TERMINATION));
+            if (SerchParam.RECEIVED_PORTAL_STR != null)
+                result = result.Where(p => p.RECEIVED_PORTAL == SerchParam.RECEIVED_PORTAL);
 
             int Count = result.Count(); 
             return Count;
@@ -394,9 +398,13 @@ namespace YORMUNGAND.Data.Repository
         if (SerchParam.PROSTAVLENIE != null)
             result = result.Where(p => EF.Functions.Like(p.PROSTAVLENIE, SerchParam.PROSTAVLENIE)); 
         if (SerchParam.ECM_FILL != null)
-            result = result.Where(p => EF.Functions.Like(p.ECM_FILL, SerchParam.ECM_FILL)); 
+            result = result.Where(p => EF.Functions.Like(p.ECM_FILL, SerchParam.ECM_FILL));
+        if (SerchParam.REFILLING_TERMINATION != null)
+            result = result.Where(p => EF.Functions.Like(p.REFILLING_TERMINATION, SerchParam.REFILLING_TERMINATION));
+        if (SerchParam.RECEIVED_PORTAL_STR != null)
+            result = result.Where(p => p.RECEIVED_PORTAL == SerchParam.RECEIVED_PORTAL);
 
-        result = result.Skip((SerchParam.page - 1) * SerchParam.pagesize).Take(SerchParam.pagesize);
+            result = result.Skip((SerchParam.page - 1) * SerchParam.pagesize).Take(SerchParam.pagesize);
         return result;
         }
         public IEnumerable<MainReportWave1> MainReportWave1Exports(MainReportWave1FS SerchParam)
@@ -510,6 +518,10 @@ namespace YORMUNGAND.Data.Repository
                 result = result.Where(p => EF.Functions.Like(p.PROSTAVLENIE, SerchParam.PROSTAVLENIE));
             if (SerchParam.ECM_FILL != null)
                 result = result.Where(p => EF.Functions.Like(p.ECM_FILL, SerchParam.ECM_FILL));
+            if (SerchParam.REFILLING_TERMINATION != null)
+                result = result.Where(p => EF.Functions.Like(p.REFILLING_TERMINATION, SerchParam.REFILLING_TERMINATION));
+            if (SerchParam.RECEIVED_PORTAL_STR != null)
+                result = result.Where(p => p.RECEIVED_PORTAL == SerchParam.RECEIVED_PORTAL);
             return result;
         }
         public List<SelectListItem> GetSelectList(string FieldName, string DefaultText, string region, string filial, string stage, string processing)
@@ -550,6 +562,14 @@ namespace YORMUNGAND.Data.Repository
             //      Text = r.REG,
             //      Value = r.VAL
             //  });
+        }
+        public List<SelectListItem>  GetSelectListTrueFalse()
+        {
+            var list = new List<SelectListItem>();
+            list.Insert(0, new SelectListItem { Selected = true, Text = "Все", Value = null });
+            list.Insert(1, new SelectListItem { Selected = false, Text = "Да", Value = "true" });
+            list.Insert(2, new SelectListItem { Selected = false, Text = "Нет", Value = "false" });
+            return list;
         }
         public void AddStatisticCessReprtDwld(string user, int count)
         {

@@ -62,13 +62,16 @@
                             <a class="nav-link" href="/CASHBASE">Касса</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/HRBASE">HR</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/RPABASE">RPA</a>
                         </li>
                     </ul>
                     <form class="d-flex">
                         @*<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">*@
                         <a class="navbar-brand" href="#"  onclick='window.location.reload()'>@User.Identity.Name.Replace("VIMPELCOM_MAIN\\", "")</a>
-                        <button class="btn btn-outline-success" type="submit" asp-controller="RPABase" asp-action="DeployReport">v0.008</button>
+                        <button class="btn btn-outline-success" type="submit" asp-controller="RPABase" asp-action="DeployReport">v0.010</button>
                     </form>
                 </div>
             </div>

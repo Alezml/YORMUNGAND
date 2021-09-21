@@ -48,6 +48,7 @@ namespace YORMUNGAND.Controllers
             SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", "", "", "", "");
             SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", "", "", "", "");
             SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", "", "", "", "");
+            SerchParam.RECEIVED_PORTAL_SELECT = _rep.GetSelectListTrueFalse();
             ViewBag.Title = "ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
         }
@@ -76,6 +77,7 @@ namespace YORMUNGAND.Controllers
             SerchParam.FILIALSELECT = _rep.GetSelectList("FILIAL", "Все филиалы", SerchParam.REGION, "", SerchParam.STAGE, SerchParam.PROCESSING);
             SerchParam.STAGESELECT = _rep.GetSelectList("STAGE", "Все этапы", SerchParam.REGION, SerchParam.FILIAL, "", SerchParam.PROCESSING);
             SerchParam.PROCESSINGSELECT = _rep.GetSelectList("PROCESSING", "Все типы", SerchParam.REGION, SerchParam.FILIAL, SerchParam.STAGE, "");
+            SerchParam.RECEIVED_PORTAL_SELECT = _rep.GetSelectListTrueFalse();
 
             ViewBag.Title = "Поиск ОТЧЕТ ЦЭСС ПЕРВАЯ ВОЛНА";
             return View(SerchParam);
@@ -106,6 +108,7 @@ namespace YORMUNGAND.Controllers
             }
             MainReportWave1FS _sp = SerchParam;
             _sp.data = null;
+            _sp = MainReportWave1FS.Check(_sp);
             IEnumerable<MainReportWave1> _data = _rep.MainReportWave1Exports(_sp);
             _rep.AddStatisticCessReprtDwld(Access.GetUserName(_service), _data.ToList().Count); //статистика
             if (_data.ToList().Count == 0)
@@ -178,6 +181,8 @@ namespace YORMUNGAND.Controllers
                     worksheet.Cell(1, 52).Value = "ВИР_Диапазоны";
                     worksheet.Cell(1, 53).Value = "Проставление";
                     worksheet.Cell(1, 54).Value = "Дозаполнение_ЕСМ";
+                    worksheet.Cell(1, 55).Value = "Дополнение Расторжение";
+                    worksheet.Cell(1, 56).Value = "С портала";
                     worksheet.Row(1).Style.Font.Bold = true;
                     int rowi = 2;
                     //нумерация строк/столбцов начинается с индекса 1 (не 0)
@@ -251,6 +256,15 @@ namespace YORMUNGAND.Controllers
                         worksheet.Cell(rowi, 52).Value = row.VIR_DIAP;
                         worksheet.Cell(rowi, 53).Value = row.PROSTAVLENIE;
                         worksheet.Cell(rowi, 54).Value = row.ECM_FILL;
+                        worksheet.Cell(rowi, 55).Value = row.REFILLING_TERMINATION;
+                        if (row.RECEIVED_PORTAL)
+                        {
+                            worksheet.Cell(rowi, 56).Value = "Да";
+                        }
+                        else
+                        {
+                            worksheet.Cell(rowi, 56).Value = "Нет";
+                        }
                         rowi += 1;
                     }
                     _data = null;

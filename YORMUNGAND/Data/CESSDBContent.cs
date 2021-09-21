@@ -13,6 +13,8 @@ namespace YORMUNGAND.Data
     
     public class CESSDBContent : DbContext
     {
+        //EntityFrameworkCore\Add-Migration d612 -Context CESSDBContent
+        //EntityFrameworkCore\update-database -Context CESSDBContent
         public CESSDBContent(DbContextOptions<CESSDBContent> options) : base(options)
         {
 

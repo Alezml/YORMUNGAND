@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YORMUNGAND.Data;
 
 namespace YORMUNGAND.Migrations.CESSDBContentMigrations
 {
     [DbContext(typeof(CESSDBContent))]
-    partial class CESSDBContentModelSnapshot : ModelSnapshot
+    [Migration("20210906120357_d612")]
+    partial class d612
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\HRbase\AddRoleToUserHR.cshtml" />
+    <None Include="Views\HRbase\Index.cshtml" />
+    <None Include="Views\HRbase\UsersHR.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="bootstrap.chosen" Version="1.0.0" />
     <PackageReference Include="bootstrap.sass" Version="4.6.0" />
